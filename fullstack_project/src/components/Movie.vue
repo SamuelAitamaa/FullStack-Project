@@ -1,6 +1,6 @@
 <template>
   <div class="movie">
-    <img src="../assets/lotr.jpg" alt="Placeholder image">
+    <img v-bind:src="image.url" alt="Placeholder image" />
     <div class="text">
       <h2>Movie Title</h2>
     </div>
@@ -8,8 +8,22 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-name: "Movie"
+  name: "Movie",
+  data() {
+    return {
+      image: '',
+    };
+  },
+  created: function() {
+    axios
+    .get(`https://jsonplaceholder.typicode.com/photos/${Math.ceil(Math.random() * 500)}`)
+    .then(res => {
+      this.image = res.data;
+    })
+  }
 }
 </script>
 

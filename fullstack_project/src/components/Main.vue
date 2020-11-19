@@ -8,6 +8,18 @@
       <h1>Horror</h1>
     </header>
     <MovieList class="horror" />
+    <header>
+      <h1>Fantasy</h1>
+    </header>
+    <MovieList class="fantasy" />
+    <header>
+      <h1>Comedy</h1>
+    </header>
+    <MovieList class="comedy" />
+    <header>
+      <h1>Drama</h1>
+    </header>
+    <MovieList class="drama" />
   </div>
 </template>
 
