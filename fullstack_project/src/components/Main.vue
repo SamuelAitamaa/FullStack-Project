@@ -3,7 +3,7 @@
     <header>
       <h1>Trending</h1>
     </header>
-    <TrendingMovieList class="trending" v-bind:genre=28 />
+    <TrendingMovieList class="trending"/>
     <header>
       <h1>Horror</h1>
     </header>

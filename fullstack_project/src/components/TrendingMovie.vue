@@ -27,6 +27,7 @@ export default {
         .then(res => {
           this.image = `http://image.tmdb.org/t/p/w300/${res.data.results[this.index].poster_path}`;
           this.title = res.data.results[this.index].title;
+          //console.log(`http://image.tmdb.org/t/p/w300/${res.data.results[6].poster_path}`)
         });
   }
 }

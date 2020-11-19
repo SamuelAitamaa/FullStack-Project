@@ -20,7 +20,7 @@ export default {
   },
   props: {
     index: String,
-    genre: String
+    genre: Number
   },
   created: function() {
     axios
