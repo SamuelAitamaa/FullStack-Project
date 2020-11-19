@@ -2,13 +2,18 @@
 <template>
     <div class="back">
     <div class="login">
-        <h1>Log in:</h1>
+        <h1>Log in</h1>
+        <div class="flexb">
         <div class="test">Name: <br><br> Password:</div>
         <div class="test"><input type = "text" pattern="[A-Z]{1}[a-z]{1,}" name = "first_name"> <br><br>
        <input type = "password" pattern="[A-Z]{1}[a-z]{1,}" name = "first_name">
-        <button>Log in</button>
+        </div>
+        </div>
+        <div class="button">
+            <button>Log in</button>
             <button>New user</button>
         </div>
+
     </div>
     </div>
 </template>
@@ -27,45 +32,51 @@
     .login{
         background: linear-gradient( #242323,grey);
         width: 50%;
-        align-content: center;
-        alignment: center;
         margin-left: 26%;
         margin-top: 30px;
         height: 300px;
         color: grey;
         font-weight: bolder;
-        display: flex;
+        padding-top: 10px;
     }
     h1{
         background: linear-gradient( #cb48b7, #ebb446);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        padding: 10px;
         font-size: 20px;
-        font-weight: lighter;
-        flex-basis: 100%;
+        font-weight: normal;
         font-family: 'Monsterrat', sans-serif;
+
+    }
+    .flexb{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
     }
     input{
         background: linear-gradient( lightgrey, grey);
         height: 20px;
         font-size: 15px;
         font-family: 'Monsterrat', sans-serif;
+        margin-bottom: 10px;
+
     }
-    header{
-        text-align: left;
-        color: white;
-        padding: 20px;
-    }
+
     .test{
         padding:60px 20px 20px 20px;
         flex-basis: 100px;
         font-size: 19px;
         font-family: 'Monsterrat', sans-serif;
     }
+    .button{
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
     button{
         font-family: 'Monsterrat', sans-serif;
-        margin-top: 15px;
         font-size: 19px;
         font-family: 'Monsterrat', sans-serif;
         font-weight: lighter;
@@ -75,7 +86,7 @@
         background: linear-gradient( #cb48b7, #ebb446);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        padding-right: 50px;
+       padding-bottom: 5px;
 
     }
     button:hover{
