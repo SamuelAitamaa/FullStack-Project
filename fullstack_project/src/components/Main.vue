@@ -20,6 +20,26 @@
       <h1>Drama</h1>
     </header>
     <MovieList class="drama" v-bind:genre=18 />
+    <header>
+      <h1>Action</h1>
+    </header>
+    <MovieList class="action" v-bind:genre=28 />
+    <header>
+      <h1>Adventure</h1>
+    </header>
+    <MovieList class="adventure" v-bind:genre=12 />
+    <header>
+      <h1>Romance</h1>
+    </header>
+    <MovieList class="romance" v-bind:genre=10749 />
+    <header>
+      <h1>Documentary</h1>
+    </header>
+    <MovieList class="documentary" v-bind:genre=99 />
+    <header>
+      <h1>Crime</h1>
+    </header>
+    <MovieList class="crime" v-bind:genre=80 />
   </div>
 </template>
 
