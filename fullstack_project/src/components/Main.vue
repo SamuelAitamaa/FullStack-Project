@@ -1,3 +1,4 @@
+
 <template>
   <div class="main">
     <h1>MyMovie</h1>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+
 export default {
   name: "Main"
 }
