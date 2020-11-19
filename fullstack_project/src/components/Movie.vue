@@ -1,8 +1,8 @@
 <template>
   <div class="movie">
-    <img v-bind:src="image.url" alt="Placeholder image" />
+    <img v-bind:src="image" alt="Placeholder image" />
     <div class="text">
-      <h2>Movie Title</h2>
+      <h2>{{ title }}</h2>
     </div>
   </div>
 </template>
@@ -15,14 +15,20 @@ export default {
   data() {
     return {
       image: '',
+      title: ''
     };
+  },
+  props: {
+    index: String,
+    genre: String
   },
   created: function() {
     axios
-    .get(`https://jsonplaceholder.typicode.com/photos/${Math.ceil(Math.random() * 500)}`)
+    .get(`http://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
     .then(res => {
-      this.image = res.data;
-    })
+      this.image = `http://image.tmdb.org/t/p/w300/${res.data.results[this.index].poster_path}`;
+      this.title = res.data.results[this.index].title;
+    });
   }
 }
 </script>
@@ -38,9 +44,9 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 40px;
+  height: 100px;
 
-  text-align: left;
+  text-align: center;
   color: white;
   background: rgba(69, 65, 65, .5);
 }

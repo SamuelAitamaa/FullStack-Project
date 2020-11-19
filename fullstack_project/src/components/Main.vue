@@ -3,23 +3,23 @@
     <header>
       <h1>Trending</h1>
     </header>
-    <MovieList class="trending" />
+    <MovieList class="trending" v-bind:genre=28 />
     <header>
       <h1>Horror</h1>
     </header>
-    <MovieList class="horror" />
+    <MovieList class="horror" v-bind:genre=27 />
     <header>
       <h1>Fantasy</h1>
     </header>
-    <MovieList class="fantasy" />
+    <MovieList class="fantasy" v-bind:genre=14 />
     <header>
       <h1>Comedy</h1>
     </header>
-    <MovieList class="comedy" />
+    <MovieList class="comedy" v-bind:genre=35 />
     <header>
       <h1>Drama</h1>
     </header>
-    <MovieList class="drama" />
+    <MovieList class="drama" v-bind:genre=18 />
   </div>
 </template>
 
