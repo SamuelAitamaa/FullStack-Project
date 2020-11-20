@@ -46,10 +46,13 @@ export default {
 .movie{
   display: flex;
   flex-direction: column;
-  max-width: 250px;
+  width: 250px;
+  height: 375px;
   position: relative;
 }
 .text{
+  display: none;
+
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -64,5 +67,6 @@ h2{
 }
 img{
   width: 100%;
+  height: 100%;
 }
 </style>
