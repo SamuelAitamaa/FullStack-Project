@@ -1,27 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 <template>
     <div class="back">
-    <div class="login">
-        <h1>Log in</h1>
-        <div class="flexb">
-        <div class="test">Name: <br><br> Password:</div>
-        <div id= "reg" class="test"><input type = "text" pattern="[A-Z]{1}[a-z]{1,}" > <br><br>
-       <input type = "password" >
-        </div>
-        </div>
-        <div class="button">
-            <button>Log in</button>
-            <router-link id="link" to="/register">New user</router-link>
-        </div>
+        <div class="login">
+            <h1>Log in</h1>
+            <form class="form">
+                <label class="test">Name:   </label>
+                <input type = "text"  v-model="thename"  >
 
+                <br><br>
+
+                <label>Password:    </label>
+                <input type = "password" v-model="thepass">
+                <br><br>
+
+            </form>
+            <div class="button">
+                <button v-on:click="regg">Register</button>
+
+            </div>
+
+        </div>
     </div>
-    </div>
+
 </template>
 
 <script>
+  //<div id="reg" class="test">
+    export default{
+      name: 'registration',
+      data(){
+        return{
+          thename:' ',
+          thepass:''
+        }
+      },
+      methods:{
+        regg: function() {
+
+          if (this.thename && this.thepass) {
+            console.log("Name: "+ this.thename + " Password: "+this.thepass)
+          }
+          if (!this.thename) {
+            alert('Name required.');
+          }
+          if (!this.thepass) {
+            alert('Password required.');
+          }
+        }/*,
+        validpass: function (email) {
+          var re = //;
+          return re.test(email);
+        }*/
+      }
+    }
 
 
 </script>
+
+
+
 
 <style scoped>
     .back{
@@ -48,13 +86,7 @@
         font-family: 'Monsterrat', sans-serif;
 
     }
-    .flexb{
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
-
-    }
     input{
         background: linear-gradient( lightgrey, grey);
         height: 20px;
@@ -63,9 +95,12 @@
         margin-bottom: 10px;
 
     }
+    label{
+        padding-right: 10px;
+    }
 
-    .test{
-        padding:60px 20px 20px 20px;
+    .form{
+        padding:50px 20px 20px 20px;
         flex-basis: 100px;
         font-size: 19px;
         font-family: 'Monsterrat', sans-serif;
@@ -86,28 +121,13 @@
         background: linear-gradient( #cb48b7, #ebb446);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-       padding-bottom: 5px;
+        padding-bottom: 5px;
 
     }
     button:hover{
         background: linear-gradient(#ebb446, #ebb446);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-    }
-
-    #link{
-        font-family: 'Monsterrat', sans-serif;
-        font-size: 19px;
-        font-family: 'Monsterrat', sans-serif;
-        font-weight: bold;
-        border: 2px grey ;
-        border-radius: 2px;
-        float: left;
-        background: linear-gradient( #cb48b7, #ebb446);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        padding-bottom: 5px;
-        text-decoration: none;
     }
 
 
