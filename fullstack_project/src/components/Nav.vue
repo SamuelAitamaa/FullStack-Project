@@ -1,13 +1,13 @@
 <template>
   <div id="nav">
     <div class="navItem">
-      <router-link to="/">Hamburger</router-link>
+      <router-link to="/">Logo</router-link>
     </div>
     <div class="navItem">
       <router-link to="/">Search</router-link>
     </div>
     <div class="navItem">
-      <input type="text">
+      <input type="text" v-model="input" @input.prevent="handleInput" />
     </div>
     <div class="navItem">
       <router-link to="/">Profile</router-link>
@@ -17,11 +17,26 @@
 
 <script>
 export default {
-name: "Nav"
+  name: "Nav",
+  data() {
+    return {
+      input: ''
+    }
+  },
+  methods: {
+    handleInput: function () {
+      this.$emit('input:change', this.input);
+    }
+  }
 }
 </script>
 
 <style scoped>
+
+p{
+  color: #ebb446;
+}
+
 #nav {
   padding: 30px;
   background: #171616;

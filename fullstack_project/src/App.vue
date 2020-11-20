@@ -1,18 +1,12 @@
 <template>
   <div id="app">
-    <Nav/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import Nav from "@/components/Nav";
-
 export default {
-  name: "Main",
-  components: {
-    Nav
-  }
+  name: "Main"
 }
 </script>
 
@@ -27,5 +21,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 </style>
