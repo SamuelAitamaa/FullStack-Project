@@ -5,6 +5,7 @@
       <header>
         <h1>Searching: {{ this.input }}</h1>
       </header>
+      <SearchList :input=this.input />
     </div>
     <div class="mainContainer" v-if="this.input.length === 0">
       <header>
@@ -54,12 +55,14 @@
 <script>
 import Nav from "@/components/Nav";
 import MovieList from "@/components/MovieList";
+import SearchList from "@/components/SearchList";
 
 export default {
   name: "Main",
   components: {
     Nav,
-    MovieList
+    MovieList,
+    SearchList
   },
   data() {
     return {

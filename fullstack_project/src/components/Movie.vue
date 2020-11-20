@@ -38,7 +38,7 @@ export default {
         this.title = res.data.results[this.index].title;
       });
     }
-  }
+  },
 }
 </script>
 
