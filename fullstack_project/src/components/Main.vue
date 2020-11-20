@@ -3,7 +3,7 @@
     <header>
       <h1>Trending</h1>
     </header>
-    <TrendingMovieList class="trending"/>
+    <MovieList class="trending" v-bind:genre=0 />
     <header>
       <h1>Horror</h1>
     </header>
@@ -45,12 +45,10 @@
 
 <script>
 import MovieList from "@/components/MovieList";
-import TrendingMovieList from "@/components/TrendingMovieList";
 
 export default {
   name: "Main",
   components: {
-    TrendingMovieList,
     MovieList
   }
 }

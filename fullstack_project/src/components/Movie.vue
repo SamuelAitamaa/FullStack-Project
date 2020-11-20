@@ -23,12 +23,21 @@ export default {
     genre: Number
   },
   created: function() {
-    axios
-    .get(`http://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-    .then(res => {
-      this.image = `http://image.tmdb.org/t/p/w300/${res.data.results[this.index].poster_path}`;
-      this.title = res.data.results[this.index].title;
-    });
+    if(this.genre === 0){
+      axios
+      .get(`https://api.themoviedb.org/3/trending/all/day?api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
+      .then(res => {
+        this.image = `http://image.tmdb.org/t/p/w300/${res.data.results[this.index].poster_path}`;
+        this.title = res.data.results[this.index].title;
+      });
+    }else{
+      axios
+      .get(`http://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
+      .then(res => {
+        this.image = `http://image.tmdb.org/t/p/w300/${res.data.results[this.index].poster_path}`;
+        this.title = res.data.results[this.index].title;
+      });
+    }
   }
 }
 </script>
