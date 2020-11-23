@@ -4,6 +4,7 @@
       <li v-for="element in this.elements" :key="element.id">
         <div class="movie">
           <img v-bind:src="element.poster_path" alt="Placeholder image" />
+          <button class="plus">+</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
@@ -92,7 +93,7 @@ ul li{
 .text{
   transform: scale(0);
 
-  display: flex;
+  display: /*flex*/none;
   justify-content: center;
   align-items: center;
 
@@ -107,6 +108,39 @@ ul li{
 
   transition: .2s ease-in-out;
 }
+.plus{
+  transform: scale(0);
+
+  color: #ebb446;
+  font-size: 36px;
+  font-weight: bolder;
+
+  height: 50px;
+  width: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: black;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  transition: .2s ease-in-out;
+}
+.plus:hover{
+  background-color: #ebb446;
+  color: black;
+}
+.plus:active{
+  background-color: #3dff2b;
+}
+.plus:focus{
+  outline: none;
+}
 h2{
   padding: 5px 10px;
 }
@@ -119,7 +153,7 @@ img{
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text{
+li:hover .text, li:hover .plus{
   transform: scale(1);
 }
 </style>
