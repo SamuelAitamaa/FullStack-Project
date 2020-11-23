@@ -80,9 +80,10 @@ export default {
 <style scoped>
 .main{
   background: #242323;
+  min-height: 100vh;
 }
 .mainContainer, .searchContainer{
-  padding: 20px 0 0 20px;
+  padding: 20px;
 
   transition: .2s ease-in-out;
 }
