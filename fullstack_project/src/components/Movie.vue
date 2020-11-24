@@ -1,5 +1,5 @@
 <template>
-  <div class="movie">
+  <div @click="addToList()" class="movie">
     <img v-bind:src="image" alt="Placeholder image" />
     <div class="text">
       <h2>{{ title }}</h2>
@@ -15,12 +15,15 @@ export default {
   data() {
     return {
       image: '',
-      title: ''
+      title: '',
     };
   },
   props: {
     index: String,
-    genre: Number
+    genre: Number,
+    computed: {
+      id: Number
+    }
   },
   created: function() {
     if(this.genre === 0){
@@ -29,14 +32,24 @@ export default {
       .then(res => {
         this.image = `http://image.tmdb.org/t/p/w300/${res.data.results[this.index].poster_path}`;
         this.title = res.data.results[this.index].title;
+        this.id = res.data.results[this.index].id;
       });
-    }else{
+    } else if (this.genre !== 0){
       axios
       .get(`http://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
       .then(res => {
         this.image = `http://image.tmdb.org/t/p/w300/${res.data.results[this.index].poster_path}`;
         this.title = res.data.results[this.index].title;
+        this.id = res.data.results[this.index].id;
       });
+
+  }
+  },
+
+  methods: {
+    addToList() {
+      //console.log(this.id);
+      this.$emit('getId', this.id)
     }
   }
 }

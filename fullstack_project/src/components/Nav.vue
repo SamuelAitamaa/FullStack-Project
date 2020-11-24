@@ -10,7 +10,7 @@
       <input type="text" v-model="input" @input.prevent="handleInput" />
     </div>
     <div class="navItem">
-      <router-link to="/">Profile</router-link>
+      <router-link to="/profile">Profile</router-link>
     </div>
   </div>
 </template>
