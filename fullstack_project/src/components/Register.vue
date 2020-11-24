@@ -2,23 +2,36 @@
 
 <template>
     <div class="back">
-        <div class="login">
-            <h1>Log in</h1>
-            <form class="form">
-                <label class="test">Name:   </label>
-                <input type = "text"  v-model="thename"  >
+        <div class="register">
+            <h1>REGISTER</h1>
 
-                <br><br>
+
+            <form class="form"  @submit="login">
+
+                <label class="test">Name:   </label>
+                <input type = "text" placeholder="Username"  v-model="thename"  />
+                <p>Must begin with uppercase letter.</p>
+                <br>
 
                 <label>Password:    </label>
-                <input type = "password" v-model="thepass">
-                <br><br>
 
+                <input type = "password"  placeholder="AxAx6x" v-model="thepass">
+                <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
+                <br>
+
+                <div class="button">
+                <button type="submit">Register</button>
+                </div>
             </form>
-            <div class="button">
-                <button v-on:click="regg">Register</button>
 
-            </div>
+            <p v-if="error.length">
+            <ul class="no-bullets">
+                <li v-for="e in error" v-bind:key="e.id">
+                    {{e}}
+                </li>
+            </ul>
+
+            </p>
 
         </div>
     </div>
@@ -26,32 +39,55 @@
 </template>
 
 <script>
-  //<div id="reg" class="test">
+
     export default{
       name: 'registration',
       data(){
         return{
-          thename:' ',
-          thepass:''
+          thename:null,
+          thepass:null,
+          error:[],
         }
       },
       methods:{
-        regg: function() {
-
+        login(e){
+          this.error=[];
           if (this.thename && this.thepass) {
-            console.log("Name: "+ this.thename + " Password: "+this.thepass)
+            console.log("no error");
+
           }
           if (!this.thename) {
-            alert('Name required.');
+            this.error.push("ERROR! User name required.")
           }
-          if (!this.thepass) {
-            alert('Password required.');
+          else if(!this.validname(this.thename)){
+            this.error.push('Name must begin with uppercase letter.');
+            console.log(this.thename);
           }
-        }/*,
-        validpass: function (email) {
-          var re = //;
-          return re.test(email);
-        }*/
+
+          if (!this.thepass){
+            this.error.push("ERROR! User password required.")
+          }
+            else if(!this.validpass(this.thepass)){
+              this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six charaters.');
+            console.log(this.thepass);
+            }
+
+
+          console.warn("Hello", this.error);
+          e.preventDefault();
+        },
+
+        validname: function (name) {
+          var re =/^(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[A-Za-z]{2,}$/;
+          return re.test(name);
+        },
+
+        validpass: function (password) {
+          var re =/^(?=.*[0-9]+.*)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)[0-9a-zA-Z]{6,}$/;
+          return re.test(password);
+        }
+
+
       }
     }
 
@@ -67,15 +103,16 @@
         height: 700px;
         padding-top: 30px;
     }
-    .login{
+    .register{
         background: linear-gradient( #242323,grey);
         width: 50%;
         margin-left: 26%;
         margin-top: 30px;
-        height: 300px;
+        height: auto;
         color: grey;
         font-weight: bolder;
         padding-top: 10px;
+        padding-bottom: 10px;
     }
     h1{
         background: linear-gradient( #cb48b7, #ebb446);
@@ -128,6 +165,21 @@
         background: linear-gradient(#ebb446, #ebb446);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+
+    ul.no-bullets {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        background: linear-gradient(to right, #ebb446, orange);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    p{
+        font-size: small;
+        color: darkgray;
+        font-weight: lighter;
     }
 
 

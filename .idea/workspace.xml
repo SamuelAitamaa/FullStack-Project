@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="" />
+    <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +81,8 @@
       <workItem from="1605771415732" duration="2424000" />
       <workItem from="1605795582628" duration="1973000" />
       <workItem from="1605858780981" duration="13338000" />
+      <workItem from="1606115989263" duration="3824000" />
+      <workItem from="1606201760698" duration="10110000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
