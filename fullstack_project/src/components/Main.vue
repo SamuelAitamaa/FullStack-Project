@@ -2,14 +2,12 @@
   <div class="main">
     <Nav @input:change="inputChange" />
     <div class="searchContainer" v-if="this.input.length >= 1">
-      <header>
-        <h1>Searching: {{ this.input }}</h1>
-      </header>
+      <Heading v-bind:title="this.input" v-bind:search="true" />
       <SearchList :input=this.input />
     </div>
     <div class="mainContainer" v-if="this.input.length === 0">
       <div v-for="(title, index) in this.titles" :key="title">
-        <Heading v-bind:title="titles[index]" />
+        <Heading v-bind:title="titles[index]" v-bind:search="false" />
         <MovieList v-bind:genre="genres[index]" />
       </div>
     </div>
