@@ -1,15 +1,24 @@
 <template>
 <div class="profile">
   <Nav @input:change="inputChange" />
+
   <h1>User</h1>
   <h2>Settings</h2>
 
   <header>
     <h1>Watch Later</h1>
   </header>
-  <div class="container">
-    <WatchLater class="WatchLater" v-bind:id=15 />
-    <WatchLater class="WatchLater" v-bind:id=26 />
+
+  <div class="container" v-if="ids.length>0">
+    <ul>
+      <li v-for="id in ids" v-bind:key="id">
+        <WatchLater class="WatchLater" v-bind:id=id.id />
+      </li>
+    </ul>
+  </div>
+
+  <div v-else class="container">
+    <h2>It seems empty here. Get started by adding movies to your watch list!</h2>
   </div>
 
 </div>
@@ -17,39 +26,52 @@
 
 <script>
 
-import Nav from "@/components/Nav";
 import WatchLater from "@/components/WatchLater";
+import Nav from "@/components/Nav";
 
 export default {
   name: "Profile",
   components: {
-    Nav,
     WatchLater,
+    Nav
   },
   data() {
     return {
       input: '',
-      id : ''
+      ids: [],
     }
   },
-  methods: {
-    inputChange(emit) {
-      this.input = emit;
+  props: {
+    computed: {
+      //id: Number,
+      //ids: []
     },
-    getId(emit) {
-      this.id = emit
-      console.log(this.id)
-      // After getting id, create new WatchLater into container with the catched id
+  },
+  created() {
+    this.ids = this.$store.state.movies
+    console.log(this.ids)
+  },
+  methods: {
+    inputChange(emit){
+      this.input = emit;
     }
-
   }
 }
 </script>
 
 <style scoped>
 
-.profile{
+.profile {
   background: #242323;
+}
+.container {
+  min-height: 100%;
+  background-color: #242323;
+}
+.nothingtoshow {
+  background-color: #242323;
+  min-height: 100%;
+  width: 100%
 }
 
 header{
