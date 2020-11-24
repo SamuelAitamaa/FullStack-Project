@@ -2,52 +2,14 @@
   <div class="main">
     <Nav @input:change="inputChange" />
     <div class="searchContainer" v-if="this.input.length >= 1">
-      <header>
-        <h1>Searching: {{ this.input }}</h1>
-      </header>
+      <Heading v-bind:title="this.input" v-bind:search="true" />
       <SearchList :input=this.input />
     </div>
     <div class="mainContainer" v-if="this.input.length === 0">
-      <header>
-        <h1>Trending</h1>
-      </header>
-      <MovieList class="trending" v-bind:genre=0 />
-      <header>
-        <h1>Horror</h1>
-      </header>
-      <MovieList class="horror" v-bind:genre=27 />
-      <header>
-        <h1>Fantasy</h1>
-      </header>
-      <MovieList class="fantasy" v-bind:genre=14 />
-      <header>
-        <h1>Comedy</h1>
-      </header>
-      <MovieList class="comedy" v-bind:genre=35 />
-      <header>
-        <h1>Drama</h1>
-      </header>
-      <MovieList class="drama" v-bind:genre=18 />
-      <header>
-        <h1>Action</h1>
-      </header>
-      <MovieList class="action" v-bind:genre=28 />
-      <header>
-        <h1>Adventure</h1>
-      </header>
-      <MovieList class="adventure" v-bind:genre=12 />
-      <header>
-        <h1>Romance</h1>
-      </header>
-      <MovieList class="romance" v-bind:genre=10749 />
-      <header>
-        <h1>Documentary</h1>
-      </header>
-      <MovieList class="documentary" v-bind:genre=99 />
-      <header>
-        <h1>Crime</h1>
-      </header>
-      <MovieList class="crime" v-bind:genre=80 />
+      <div v-for="(title, index) in this.titles" :key="title">
+        <Heading v-bind:title="titles[index]" v-bind:search="false" />
+        <MovieList v-bind:id="titles[index]" v-bind:genre="genres[index]" />
+      </div>
     </div>
   </div>
 </template>
@@ -56,17 +18,27 @@
 import Nav from "@/components/Nav";
 import MovieList from "@/components/MovieList";
 import SearchList from "@/components/SearchList";
+import Heading from "@/components/Heading";
 
 export default {
   name: "Main",
   components: {
     Nav,
     MovieList,
-    SearchList
+    SearchList,
+    Heading
   },
   data() {
     return {
-      input: ''
+      input: '',
+      titles: [
+          "Trending", "Horror", "Fantasy", "Comedy",
+          "Drama", "Action", "Adventure",
+          "Romance", "Documentary", "Crime"
+      ],
+      genres: [
+          0, 27, 14, 35, 18, 28, 12, 10749, 99, 80
+      ]
     }
   },
   methods: {
@@ -86,11 +58,6 @@ export default {
   padding: 20px;
 
   transition: .2s ease-in-out;
-}
-header{
-  text-align: left;
-  color: white;
-  padding: 20px;
 }
 
 </style>

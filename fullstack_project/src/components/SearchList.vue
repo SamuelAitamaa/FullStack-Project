@@ -50,7 +50,7 @@ export default {
 ul{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: left;
 }
 ul li{
   list-style-type: none;

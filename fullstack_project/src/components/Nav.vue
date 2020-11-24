@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <div class="navItem">
-      <router-link to="/">Logo</router-link>
+      <img src="../assets/logos.png" alt="Logo of the application">
     </div>
     <div class="navItem">
       <router-link to="/">Search</router-link>
@@ -34,7 +34,7 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&display=swap');
 #nav {
-  padding: 30px;
+  padding: 10px;
   background: #171616;
 
   display: flex;
@@ -47,6 +47,18 @@ export default {
 }
 .navItem:first-child{
   margin-right: auto;
+}
+
+img{
+  width: 80px;
+  height: 80px;
+  border: 3px solid #ebb446;
+  border-radius: 50%;
+
+  transition: .4s ease-in-out;
+}
+img:hover{
+  transform: rotateZ(360deg);
 }
 
 input{
@@ -63,7 +75,7 @@ input{
   transition: .2s ease-in-out;
 }
 input:focus{
-  width: 400px;
+  width: 300px;
 }
 #nav a {
   font-weight: bold;

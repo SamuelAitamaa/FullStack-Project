@@ -76,8 +76,12 @@ ul{
   flex-wrap: nowrap;
   justify-content: left;
   overflow-x: scroll;
+  scroll-behavior: smooth;
 
   transition: .2s ease-in-out;
+}
+ul:hover{
+  scroll-behavior: revert;
 }
 ul:active{
   transform: scale(1.02);
