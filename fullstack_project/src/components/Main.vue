@@ -8,7 +8,7 @@
     <div class="mainContainer" v-if="this.input.length === 0">
       <div v-for="(title, index) in this.titles" :key="title">
         <Heading v-bind:title="titles[index]" v-bind:search="false" />
-        <MovieList v-bind:genre="genres[index]" />
+        <MovieList v-bind:id="titles[index]" v-bind:genre="genres[index]" />
       </div>
     </div>
   </div>
