@@ -1,8 +1,8 @@
 <template>
-  <div class="movieList">
-    <ul v-dragscroll.x>
+  <div class="searchList">
+    <ul>
       <li v-for="element in this.elements" :key="element.id">
-        <div class="movie">
+        <div class="search">
           <img v-bind:src="element.poster_path" alt="Placeholder image" />
           <button class="plus">+</button>
           <div class="text">
@@ -15,49 +15,32 @@
 </template>
 
 <script>
-import { dragscroll } from 'vue-dragscroll';
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  name: "MovieList",
-  directives: {
-    dragscroll
-  },
+  name: "SearchList",
   data(){
     return {
       elements: []
     }
   },
   props: {
-    genre: Number
+    input: String
   },
-  created: function() {
-    if(this.genre === 0){
+  watch: {
+    input: function() {
       axios
-        .get(`https://api.themoviedb.org/3/trending/all/day?api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-        .then(res => {
-          this.elements = res.data.results;
-          this.elements.reduceRight(function (acc, element, index, elements) {
-            if(element.poster_path === null || element.poster_path === undefined){
-              elements.splice(index, 1);
-            }else{
-              element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
-            }
-          }, []);
-        });
-    }else{
-      axios
-        .get(`http://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-        .then(res => {
-          this.elements = res.data.results;
-          this.elements.reduceRight(function (acc, element, index, elements) {
-            if(element.poster_path === null || element.poster_path === undefined){
-              elements.splice(index, 1);
-            }else{
-              element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
-            }
-          }, []);
-        });
+      .get(`http://api.themoviedb.org/3/search/movie?query=${this.input}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
+      .then(res => {
+        this.elements = res.data.results;
+        this.elements.reduceRight(function (acc, element, index, elements) {
+          if(element.poster_path === null || element.poster_path === undefined){
+            elements.splice(index, 1);
+          }else{
+            element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
+          }
+        }, []);
+      });
     }
   }
 }
@@ -66,24 +49,15 @@ export default {
 <style scoped>
 ul{
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: left;
-  overflow-x: scroll;
-
-  transition: .2s ease-in-out;
-}
-ul:active{
-  transform: scale(1.02);
-}
-ul::-webkit-scrollbar{
-  width: 0;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 ul li{
   list-style-type: none;
   padding: 20px;
 }
 
-.movie{
+.search{
   display: flex;
   flex-direction: column;
   width: 250px;
