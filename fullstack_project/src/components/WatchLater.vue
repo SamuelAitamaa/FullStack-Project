@@ -3,7 +3,7 @@
     <ul>
       <li>
         <div class="movie">
-          <h2>{{this.title }}</h2>
+          <h2>{{ this.title }}</h2>
           <img v-bind:src="this.image" alt="Placeholder image" />
         </div>
       </li>

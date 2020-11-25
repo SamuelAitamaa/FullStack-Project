@@ -56,6 +56,7 @@ export default {
 
 .profile {
   background-color: #242323;
+  min-height: 100vh;
 }
 .container {
   min-height: 100%;
