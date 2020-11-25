@@ -26,7 +26,7 @@ export default {
     Nav,
     MovieList,
     SearchList,
-    Heading
+    Heading,
   },
   data() {
     return {

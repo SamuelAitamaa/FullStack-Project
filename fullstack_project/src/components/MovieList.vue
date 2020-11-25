@@ -33,31 +33,50 @@ export default {
   },
   created: function() {
     if(this.genre === 0){
-      axios
-        .get(`https://api.themoviedb.org/3/trending/all/day?api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-        .then(res => {
-          this.elements = res.data.results;
-          this.elements.reduceRight(function (acc, element, index, elements) {
-            if(element.poster_path === null || element.poster_path === undefined){
-              elements.splice(index, 1);
-            }else{
-              element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
-            }
-          }, []);
-        });
+      let one = `https://api.themoviedb.org/3/trending/all/week?page=1&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
+      let two = `https://api.themoviedb.org/3/trending/all/week?page=2&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
+      let three = `https://api.themoviedb.org/3/trending/all/week?page=3&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
+      let reqOne = axios.get(one);
+      let reqTwo = axios.get(two);
+      let reqThree = axios.get(three);
+      axios.all([reqOne, reqTwo, reqThree]).then(axios.spread((...res) => {
+        res[0].data.results.forEach(element => this.elements.push(element));
+        res[1].data.results.forEach(element => this.elements.push(element));
+        res[2].data.results.forEach(element => this.elements.push(element));
+        this.setImages(this.elements);
+      }))
     }else{
-      axios
-        .get(`http://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-        .then(res => {
-          this.elements = res.data.results;
-          this.elements.reduceRight(function (acc, element, index, elements) {
-            if(element.poster_path === null || element.poster_path === undefined){
-              elements.splice(index, 1);
-            }else{
-              element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
-            }
-          }, []);
-        });
+      let one = `http://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
+      let two = `http://api.themoviedb.org/3/tv/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
+      let reqOne = axios.get(one);
+      let reqTwo = axios.get(two);
+      axios.all([reqOne, reqTwo]).then(axios.spread((...res) => {
+        res[0].data.results.forEach(element => this.elements.push(element));
+        res[1].data.results.forEach(element => this.elements.push(element));
+        this.shuffle(this.elements);
+        this.setImages(this.elements);
+      }))
+    }
+  },
+  methods: {
+    shuffle: function (array) {
+      let index = array.length;
+      while (index !== 0) {
+        let rndIndex = Math.floor(Math.random() * index);
+        index -= 1;
+        let temp = array[index];
+        array[index] = array[rndIndex];
+        array[rndIndex] = temp;
+      }
+    },
+    setImages: function (array) {
+      array.reduceRight(function (acc, element, index, elements) {
+        if(element.poster_path === null || element.poster_path === undefined){
+          elements.splice(index, 1);
+        }else{
+          element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
+        }
+      }, []);
     }
   }
 }

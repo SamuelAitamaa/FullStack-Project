@@ -30,7 +30,7 @@ export default {
   watch: {
     input: function() {
       axios
-      .get(`http://api.themoviedb.org/3/search/movie?query=${this.input}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
+      .get(`http://api.themoviedb.org/3/search/multi?query=${this.input}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
       .then(res => {
         this.elements = res.data.results;
         this.elements.reduceRight(function (acc, element, index, elements) {
