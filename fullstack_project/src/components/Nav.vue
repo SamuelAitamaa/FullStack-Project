@@ -12,6 +12,9 @@
     <div class="navItem">
       <router-link to="/profile">Profile</router-link>
     </div>
+    <div class="navItem">
+      <router-link to="/login">Login</router-link>
+    </div>
   </div>
 </template>
 
