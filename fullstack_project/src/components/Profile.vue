@@ -41,15 +41,8 @@ export default {
       ids: [],
     }
   },
-  props: {
-    computed: {
-      //id: Number,
-      //ids: []
-    },
-  },
   created() {
     this.ids = this.$store.state.movies
-    console.log(this.ids)
   },
   methods: {
     inputChange(emit){
@@ -62,16 +55,11 @@ export default {
 <style scoped>
 
 .profile {
-  background: #242323;
+  background-color: #242323;
 }
 .container {
   min-height: 100%;
   background-color: #242323;
-}
-.nothingtoshow {
-  background-color: #242323;
-  min-height: 100%;
-  width: 100%
 }
 
 header{

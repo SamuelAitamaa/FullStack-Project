@@ -45,7 +45,6 @@ ul{
   display: flex;
   flex-wrap: nowrap;
   justify-content: left;
-  overflow-x: scroll;
 }
 ul li{
   list-style-type: none;

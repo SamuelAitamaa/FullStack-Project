@@ -4,7 +4,8 @@
       <li v-for="element in this.elements" :key="element.id">
         <div class="movie">
           <img v-bind:src="element.poster_path" alt="Placeholder image" />
-          <button @click="addToList(element.id)" class="plus">+</button>
+          <button v-if="checkList(element.id)===false" @click="addToList(element.id)" class="plus">+</button>
+          <button v-else-if="checkList(element.id)===true" @click="deleteFromList(element.id)" class="plus">-</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
@@ -33,9 +34,16 @@ export default {
   },
   methods: {
     addToList(id) {
-      console.log(id)
       this.$store.commit("newId", id)
+      console.log(id)
     },
+    checkList(id) {
+      let store = JSON.stringify(this.$store.state.movies)
+      return store.includes(id)
+    },
+    deleteFromList(id) {
+      this.$store.commit("deleteID", id)
+    }
   },
 
   created: function() {
