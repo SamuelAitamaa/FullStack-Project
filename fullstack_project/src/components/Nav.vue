@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
     <div class="navItem">
-      <img src="../assets/logos.png" alt="Logo of the application">
+      <router-link to="/"><img src="../assets/logos.png" alt="Logo of the application"></router-link>
     </div>
     <div class="navItem">
       <router-link to="/">Search</router-link>
@@ -10,7 +10,7 @@
       <input type="text" v-model="input" @input.prevent="handleInput" />
     </div>
     <div class="navItem">
-      <router-link to="/">Profile</router-link>
+      <router-link to="/profile">Profile</router-link>
     </div>
   </div>
 </template>

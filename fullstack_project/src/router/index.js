@@ -21,7 +21,13 @@ const routes = [
     methods: {
 
     }
-  }
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/ProfileView.vue')
+  },
+
 ]
 
 const router = new VueRouter({

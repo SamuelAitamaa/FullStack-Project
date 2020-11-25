@@ -4,7 +4,8 @@
       <li v-for="element in this.elements" :key="element.id">
         <div class="movie">
           <img v-bind:src="element.poster_path" alt="Placeholder image" />
-          <button class="plus">+</button>
+          <button v-if="checkList(element.id)===false" @click="addToList(element.id)" class="plus">+</button>
+          <button v-else-if="checkList(element.id)===true" @click="deleteFromList(element.id)" class="plus">-</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
@@ -31,6 +32,20 @@ export default {
   props: {
     genre: Number
   },
+  methods: {
+    addToList(id) {
+      this.$store.commit("newId", id)
+      console.log(id)
+    },
+    checkList(id) {
+      let store = JSON.stringify(this.$store.state.movies)
+      return store.includes(id)
+    },
+    deleteFromList(id) {
+      this.$store.commit("deleteID", id)
+    }
+  },
+
   created: function() {
     if(this.genre === 0){
       let one = `https://api.themoviedb.org/3/trending/all/week?page=1&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
