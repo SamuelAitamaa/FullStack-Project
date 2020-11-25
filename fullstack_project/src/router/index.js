@@ -16,18 +16,20 @@ const routes = [
     component: () => import('../views/About.vue')
   },
   {
-    path: '/api/getList',
-    name: 'GetList',
-    methods: {
-
-    }
-  },
-  {
     path: '/profile',
     name: 'Profile',
     component: () => import('../views/ProfileView.vue')
   },
-
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ '../views/LoginView.vue')
+  },
+  {
+    path:'/register',
+    name:'Register',
+    component:() => import(/* webpackChunkName: "register" */ '../views/RegisterView.vue')
+  }
 ]
 
 const router = new VueRouter({

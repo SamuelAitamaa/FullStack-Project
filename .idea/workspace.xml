@@ -20,21 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="">
-<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/fullstack_project/src/assets/lotr.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fullstack_project/src/components/Movie.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/terminal.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
->>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +45,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1kSkluAJCJVxUgSMm8E7Jq05mUt" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -74,11 +69,8 @@
       </list>
     </recent_temporary>
   </component>
-<<<<<<< Updated upstream
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-=======
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
->>>>>>> Stashed changes
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -92,6 +84,10 @@
       <workItem from="1605701536257" duration="126000" />
       <workItem from="1605706082181" duration="77000" />
       <workItem from="1605771415732" duration="2424000" />
+      <workItem from="1605795582628" duration="1973000" />
+      <workItem from="1605858780981" duration="13338000" />
+      <workItem from="1606115989263" duration="3824000" />
+      <workItem from="1606201760698" duration="10110000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
@@ -100,21 +96,29 @@
       <option name="project" value="LOCAL" />
       <updated>1605772286721</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL−00002" summary="grey div">
+      <created>1605779222524</created>
+      <option name="number" value="LOCAL−00002" />
+      <option name="presentableId" value="LOCAL−00002" />
+      <updated>1605779222524</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TerminalProjectNonSharedOptionsProvider">
     <option name="startingDirectory" value="$PROJECT_DIR$/fullstack_project" />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -123,13 +127,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Vue Router" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Vue Router" />
+    <MESSAGE value="grey div" />
+    <option name="LAST_COMMIT_MESSAGE" value="grey div" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1605781089858">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="265" y="0" key="CommitChangelistDialog2" timestamp="1605779221284">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1605781089858" />
+    <state x="265" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1605779221284" />
     <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1605771966690">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
