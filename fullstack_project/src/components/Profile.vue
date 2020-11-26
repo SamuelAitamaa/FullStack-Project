@@ -11,7 +11,7 @@
 
   <div class="container" v-if="ids.length>0">
     <ul>
-      <li v-for="id in ids" v-bind:key="id">
+      <li v-for="id in ids" v-bind:key="id.id">
         <WatchLater class="WatchLater" v-bind:id=id.id />
       </li>
     </ul>

@@ -43,7 +43,7 @@ export default {
 
 ul{
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: left;
 }
 ul li{
