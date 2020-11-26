@@ -28,25 +28,18 @@ export default {
     movie: Boolean
   },
   created: function () {
-    if(this.movie){
-      axios
-          .get(`https://api.themoviedb.org/3/movie/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-          .then(res => {
-            this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-            this.title = res.data.title;
-            this.identity = res.data.id;
-            this.info = res.data.overview;
-          })
-    }else{
-      axios
-          .get(`https://api.themoviedb.org/3/tv/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-          .then(res => {
-            this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-            this.title = res.data.name;
-            this.identity = res.data.id;
-            this.info = res.data.overview;
-          })
-    }
+    let url = '';
+    if(this.movie){url = `https://api.themoviedb.org/3/movie/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b`;}
+    else{url = `https://api.themoviedb.org/3/tv/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b`;}
+    axios
+        .get(url)
+        .then(res => {
+          this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
+          if(this.movie){this.title = res.data.title;}
+          else{this.title = res.data.name;}
+          this.identity = res.data.id;
+          this.info = res.data.overview;
+        })
   },
   methods: {
     hideInfo: function () {

@@ -24,10 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Heading.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Heading.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +87,7 @@
       <workItem from="1606201760698" duration="10110000" />
       <workItem from="1606331281172" duration="1598000" />
       <workItem from="1606372971571" duration="215000" />
-      <workItem from="1606374320029" duration="12683000" />
+      <workItem from="1606374320029" duration="13497000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
