@@ -147,7 +147,7 @@ button {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 5px;
-
+  cursor: pointer;
 }
 button:hover {
   background: linear-gradient(#ebb446, #ebb446);
