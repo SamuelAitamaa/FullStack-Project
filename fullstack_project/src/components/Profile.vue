@@ -5,12 +5,9 @@
   <h1>User</h1>
   <h2>Settings</h2>
 
-  <header>
-    <h1>Watch Later</h1>
-  </header>
-
-  <div class="container" v-if="ids.length>0">
+  <div v-if="ids.length>0">
     <ul>
+      <Heading v-bind:title="titles[0]" v-bind:search="false" />
       <li v-for="id in ids" v-bind:key="id">
         <WatchLater class="WatchLater" v-bind:id=id.id />
       </li>
@@ -18,7 +15,12 @@
   </div>
 
   <div v-else class="container">
-    <h2>It seems empty here. Get started by adding movies to your watch list!</h2>
+    <ul>
+      <Heading v-bind:title="titles[0]" v-bind:search="false" />
+      <li>
+        <h2>It seems empty here. Get started by adding movies to your watch list!</h2>
+      </li>
+    </ul>
   </div>
 
 </div>
@@ -28,17 +30,22 @@
 
 import WatchLater from "@/components/WatchLater";
 import Nav from "@/components/Nav";
+import Heading from "@/components/Heading";
 
 export default {
   name: "Profile",
   components: {
     WatchLater,
-    Nav
+    Nav,
+    Heading
   },
   data() {
     return {
       input: '',
       ids: [],
+      titles: [
+          'Watch Later'
+      ]
     }
   },
   created() {
@@ -47,7 +54,10 @@ export default {
   methods: {
     inputChange(emit){
       this.input = emit;
-    }
+    },
+    clearList() {
+
+    },
   }
 }
 </script>
