@@ -28,7 +28,7 @@ export default {
     movie: Boolean
   },
   created: function () {
-    let url = '';
+    let url;
     if(this.movie){url = `https://api.themoviedb.org/3/movie/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b`;}
     else{url = `https://api.themoviedb.org/3/tv/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b`;}
     axios
@@ -83,6 +83,28 @@ export default {
 @media screen and (max-width: 1200px){
   .container{
     flex-direction: column;
+  }
+  .container img{
+    width: 300px;
+  }
+  .titleAndDesc{
+    width: 600px;
+  }
+  .titleAndDesc p{
+    font-size: 16px;
+    padding: 40px;
+  }
+  @media screen and (max-width: 600px){
+    .container img{
+      width: 150px;
+    }
+    .titleAndDesc{
+      width: 400px;
+    }
+    .titleAndDesc p{
+      font-size: 10px;
+      padding: 30px;
+    }
   }
 }
 .titleAndDesc{
