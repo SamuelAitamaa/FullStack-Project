@@ -2,20 +2,15 @@
   <div class="movieList">
     <ul>
       <li v-for="element in this.elements" :key="element.id">
-        <div class="movie">
-          <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
-          <button v-if="!checkList(element.id)" @click="addToList(element.id)" class="plus">+</button>
-          <button v-else @click="deleteFromList(element.id)" class="plus">-</button>
-          <div class="text">
-            <h2>{{ element.title }} {{ element.name }}</h2>
-          </div>
+        <div class="element">
+          <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)" />
+          <button v-if="!checkList(element.id)" @click="addToList(element.id)" class="imgBtn">+</button>
+          <button v-else @click="deleteFromList(element.id)" class="imgBtn">-</button>
+          <Information v-bind:id="element.id" v-bind:identity="element.id"
+                       v-bind:movie="element.hasOwnProperty('title')" @hide:info="changeInfoVisibility"/>
         </div>
       </li>
     </ul>
-    <div v-for="element in this.elements" :key="element.id">
-      <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
-                   @hide:info="changeInfoVisibility"/>
-    </div>
   </div>
 </template>
 
@@ -117,91 +112,69 @@ ul{
 
   transition: .2s ease-in-out;
 }
-ul:hover{
-  scroll-behavior: revert;
-}
-ul:active{
-  transform: scale(1.02);
-}
 ul::-webkit-scrollbar{
   width: 0;
 }
 ul li{
   list-style-type: none;
   padding: 20px;
+
+  transition: .2s ease-in-out;
 }
 
-.movie{
+.element{
   display: flex;
   flex-direction: column;
   width: 250px;
   height: 375px;
   position: relative;
 }
-.text{
-  transform: scale(0);
-
-  display: /*flex*/none;
-  justify-content: center;
-  align-items: center;
-
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-
-  text-align: center;
-  color: black;
-  background: rgb(245, 212, 122);
-
-  transition: .2s ease-in-out;
-}
-.plus{
+.imgBtn{
   transform: scale(0);
 
   color: #ebb446;
+  background-color: black;
   font-size: 36px;
-  font-weight: bolder;
 
+  font-weight: bolder;
   height: 50px;
   width: 50px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: black;
   border: none;
   border-radius: 50%;
+
   position: absolute;
   top: 10px;
   right: 10px;
 
+  user-select: none;
   transition: .2s ease-in-out;
 }
-.plus:hover{
+.imgBtn:hover{
   background-color: #ebb446;
   color: black;
 }
-.plus:active{
+.imgBtn:active{
   background-color: #3dff2b;
 }
-.plus:focus{
+.imgBtn:focus{
   outline: none;
 }
-h2{
-  padding: 5px 10px;
+li:hover .imgBtn{
+  transform: scale(1);
 }
 img{
   width: 100%;
   height: 100%;
+
+  user-select: none;
 
   transition: .2s ease-in-out;
 }
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .plus{
-  transform: scale(1);
+li:active img{
+  outline: 8px solid #ebb446;
 }
 </style>

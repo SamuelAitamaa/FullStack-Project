@@ -4,7 +4,7 @@
       <li v-for="element in this.elements" :key="element.id">
         <div class="search">
           <img v-bind:src="element.poster_path" alt="Placeholder image" />
-          <button class="plus">+</button>
+          <button class="imgBtn">+</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
@@ -29,18 +29,20 @@ export default {
   },
   watch: {
     input: function() {
-      axios
-      .get(`http://api.themoviedb.org/3/search/multi?query=${this.input}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-      .then(res => {
-        this.elements = res.data.results;
-        this.elements.reduceRight(function (acc, element, index, elements) {
-          if(element.poster_path === null || element.poster_path === undefined){
-            elements.splice(index, 1);
-          }else{
-            element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
-          }
-        }, []);
-      });
+      if(this.input.length > 0){
+        axios
+            .get(`http://api.themoviedb.org/3/search/multi?query=${this.input}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
+            .then(res => {
+              this.elements = res.data.results;
+              this.elements.reduceRight(function (acc, element, index, elements) {
+                if(element.poster_path === null || element.poster_path === undefined){
+                  elements.splice(index, 1);
+                }else{
+                  element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
+                }
+              }, []);
+            });
+      }
     }
   }
 }
@@ -82,7 +84,7 @@ ul li{
 
   transition: .2s ease-in-out;
 }
-.plus{
+.imgBtn{
   transform: scale(0);
 
   color: #ebb446;
@@ -105,14 +107,14 @@ ul li{
 
   transition: .2s ease-in-out;
 }
-.plus:hover{
+.imgBtn:hover{
   background-color: #ebb446;
   color: black;
 }
-.plus:active{
+.imgBtn:active{
   background-color: #3dff2b;
 }
-.plus:focus{
+.imgBtn:focus{
   outline: none;
 }
 h2{
@@ -127,7 +129,7 @@ img{
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .plus{
+li:hover .text, li:hover .imgBtn{
   transform: scale(1);
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="WatchLater">
     <ul>
       <li>
-        <div class="movie">
+        <div class="element">
           <h2>{{ this.title }}</h2>
           <img v-bind:src="this.image" alt="Placeholder image" />
         </div>
@@ -52,7 +52,7 @@ ul li{
   user-select: none;
 }
 
-.movie{
+.element{
   display: flex;
   flex-direction: column;
   width: 250px;

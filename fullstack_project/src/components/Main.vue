@@ -2,11 +2,11 @@
 <template>
   <div class="main">
     <Nav @input:change="inputChange" />
-    <div class="searchContainer" v-if="this.input.length >= 1">
+    <div id="searchContainer">
       <Heading v-bind:title="this.input" v-bind:search="true" />
       <SearchList :input=this.input />
     </div>
-    <div class="mainContainer" v-if="this.input.length === 0">
+    <div id="mainContainer">
       <div v-for="(title, index) in this.titles" :key="title">
         <Heading v-bind:title="titles[index]" v-bind:search="false" />
         <MovieList v-bind:id="titles[index]" v-bind:genre="genres[index]" />
@@ -42,6 +42,19 @@ export default {
       ]
     }
   },
+  watch:{
+    input: function () {
+      const main = document.getElementById('mainContainer');
+      const search = document.getElementById('searchContainer');
+      if(this.input.length >= 1){
+        search.style.display = 'block';
+        main.style.display = 'none';
+      }else{
+        search.style.display = 'none';
+        main.style.display = 'block';
+      }
+    }
+  },
   methods: {
     inputChange(emit){
       this.input = emit;
@@ -55,10 +68,13 @@ export default {
   background: #242323;
   min-height: 100vh;
 }
-.mainContainer, .searchContainer{
+#mainContainer, #searchContainer{
   padding: 20px;
 
   transition: .2s ease-in-out;
+}
+#searchContainer{
+  display: none;
 }
 
 </style>
