@@ -5,7 +5,20 @@
       <img v-bind:src="this.image" alt="Placeholder image" />
       <div class="titleAndDesc">
         <h2>{{ this.title }}</h2>
-        <p>{{ this.info }}</p>
+        <ul>
+          <li v-for="genre in this.genres" :key="genre">
+            <p> / {{ genre }} / </p>
+          </li>
+        </ul>
+        <p v-if="this.info.length > 0">{{ this.info }}</p>
+        <p v-else>No overview available ... :(</p>
+        <div class="date">
+          <p v-if="this.released.length > 0 && this.movie">Released: {{ this.released }}</p>
+          <p v-if="this.released.length > 0 && !this.movie">First aired: {{ this.released }}</p>
+        </div>
+        <div class="link">
+          <a :href="this.homepage" target="_blank" v-if="this.homepage.length > 0">Link to site</a>
+        </div>
       </div>
     </div>
   </div>
@@ -19,8 +32,11 @@ export default {
   data(){
     return {
       title: '',
+      genres: [],
       image: '',
       info: '',
+      released: '',
+      homepage: ''
     }
   },
   props: {
@@ -34,11 +50,15 @@ export default {
     axios
         .get(url)
         .then(res => {
+          this.identity = res.data.id;
           this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
           if(this.movie){this.title = res.data.title;}
           else{this.title = res.data.name;}
-          this.identity = res.data.id;
+          res.data.genres.forEach(genre => this.genres.push(genre.name));
           this.info = res.data.overview;
+          if(this.movie){this.released = res.data.release_date;}
+          else{this.released = res.data.first_air_date;}
+          this.homepage = res.data.homepage;
         })
   },
   methods: {
@@ -54,7 +74,7 @@ export default {
 .information{
   font-family: 'Montserrat', sans-serif;
   color: #ebb446;
-  background-color: #171616;
+  background-image: linear-gradient(to top, black, #171616);
 
   width: 100vw;
   height: 101vh;
@@ -74,6 +94,7 @@ export default {
   align-items: center;
 
   width: 1200px;
+  padding-top: 20px;
 
   position: absolute;
   top: 50%;
@@ -85,14 +106,16 @@ export default {
     flex-direction: column;
   }
   .container img{
-    width: 300px;
+    width: 200px;
   }
   .titleAndDesc{
     width: 600px;
   }
-  .titleAndDesc p{
+  .titleAndDesc p, .titleAndDesc a{
     font-size: 16px;
-    padding: 40px;
+  }
+  .titleAndDesc h2{
+    font-size: 36px;
   }
   @media screen and (max-width: 600px){
     .container img{
@@ -101,23 +124,56 @@ export default {
     .titleAndDesc{
       width: 400px;
     }
-    .titleAndDesc p{
+    .titleAndDesc p, .titleAndDesc a{
       font-size: 10px;
-      padding: 30px;
+    }
+    .titleAndDesc h2{
+      font-size: 14px;
     }
   }
 }
+ul{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+}
+ul li {
+  list-style-type: none;
+}
 .titleAndDesc{
   max-width: 800px;
+  padding: 20px;
 }
 img{
   width: 400px;
   outline: 1px solid #ebb446;
 }
+h2{
+  font-size: 36px;
+  border-bottom: 1px solid #ebb446;
+  margin-bottom: 20px;
+}
 p{
-  padding: 50px;
   font-size: 24px;
   text-align: justify;
+}
+.date{
+  padding: 10px 0;
+}
+.link{
+  text-align: left;
+}
+a{
+  text-decoration: none;
+  font-size: 24px;
+  color: #ff724f;
+}
+a:visited{
+  color: #ff738f;
+}
+a:hover{
+  color: #ffe94f;
 }
 button{
   color: #ebb446;
