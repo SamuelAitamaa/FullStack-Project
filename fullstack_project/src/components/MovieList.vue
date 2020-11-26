@@ -1,6 +1,6 @@
 <template>
   <div class="movieList">
-    <ul v-dragscroll.x>
+    <ul>
       <li v-for="element in this.elements" :key="element.id">
         <div class="movie">
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
@@ -21,16 +21,12 @@
 
 <script>
 import Information from "@/components/Information";
-import { dragscroll } from 'vue-dragscroll';
 import axios from "axios";
 
 export default {
   name: "MovieList",
   components: {
     Information
-  },
-  directives: {
-    dragscroll
   },
   data(){
     return {
