@@ -1,5 +1,8 @@
+
+
 <template>
   <div class="back">
+    <Nav></Nav>
     <div class="login">
       <h1>LOG IN</h1>
 
@@ -7,12 +10,12 @@
 
         <label for="username">Name: </label>
         <input type="text" placeholder="Username" v-model="thename" id="username"/>
-        <p>Must begin with uppercase letter.</p>
+        <h3>Must begin with uppercase letter.</h3>
         <br>
 
         <label for="password">Password: </label>
         <input type="password" placeholder="AxAx6x" v-model="thepass" id="password">
-        <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
+        <h3>Requires: 6 characters, uppercase letter, lowercase letter, number</h3>
         <br>
 
         <div class="button">
@@ -35,9 +38,12 @@
 </template>
 
 <script>
-
+import Nav from './Nav';
 export default {
   name: 'login',
+  components: {
+    Nav
+  },
   data() {
     return {
       thename: null,
@@ -89,35 +95,36 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .back {
-  background: linear-gradient(black, #242323, black);
+  background: linear-gradient(to right, black, #242323);
   height: 700px;
-  padding-top: 30px;
   min-height: 100vh;
 }
 .login {
-  background: linear-gradient(#242323, grey);
+  background: linear-gradient(#242323, dimgrey);
   width: 50%;
   margin-left: 26%;
-  margin-top: 30px;
+  margin-top: 120px;
   height: auto;
-  color: grey;
-  font-weight: bolder;
-  padding-top: 10px;
-  padding-bottom: 10px;
-
+  color: white;
+  padding: 50px 20px 50px 20px;
+  border:3px solid #ebb446 ;
+  border-radius: 7px;
   font-family: 'Monsterrat', sans-serif;
 }
-h1 {
-  background: linear-gradient(#cb48b7, #ebb446);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 20px;
-  font-weight: revert;
+h1, h3{
+  color: white;
+  padding: 20px;
 }
+label{
+  color: white;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
 input {
   background: linear-gradient(lightgrey, grey);
-  height: 20px;
-  font-size: 15px;
+  height: 45px;
+  font-size: 30px;
   margin-bottom: 2px;
 }
 .form {
@@ -131,12 +138,12 @@ input {
   justify-content: center;
 }
 button {
-  font-size: 19px;
+  font-size: 40px;
   font-weight: bold;
   border: 2px grey;
   border-radius: 2px;
   float: left;
-  background: linear-gradient(#cb48b7, #ebb446);
+  background:  linear-gradient(orange, #ebb446);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 5px;
@@ -148,12 +155,12 @@ button:hover {
   -webkit-text-fill-color: transparent;
 }
 #link {
-  font-size: 19px;
+  font-size: 40px;
   font-weight: bold;
   border: 2px grey;
   border-radius: 2px;
   float: left;
-  background: linear-gradient(#cb48b7, #ebb446);
+  background:linear-gradient(orange, #ebb446);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: none;
