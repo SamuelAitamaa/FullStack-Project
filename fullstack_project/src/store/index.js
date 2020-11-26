@@ -13,7 +13,6 @@ export default new Vuex.Store({
     mutations: {
         newId(state, payload) {
             state.movies.push(payload)
-            console.log(state.movies)
         },
         deleteID(state, payload) {
             let index
@@ -24,7 +23,6 @@ export default new Vuex.Store({
                 }
             });
             state.movies.splice(index, 1)
-            console.log(state.movies)
         },
 
         deleteFromProfile(state, payload) {
@@ -36,7 +34,6 @@ export default new Vuex.Store({
                 }
             });
             state.movies.splice(index, 1)
-            console.log(state.movies)
         }
     },
     actions: {}

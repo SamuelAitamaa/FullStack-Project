@@ -9,7 +9,7 @@
     <ul>
       <Heading v-bind:title="titles[0]" v-bind:search="false" />
       <li v-for="element in elements" v-bind:key="element.id">
-        <WatchLater class="WatchLater" v-bind:id=element.id />
+        <WatchLater class="WatchLater" v-bind:element=element />
       </li>
     </ul>
     <div v-for="element in this.elements" :key="element.id">
