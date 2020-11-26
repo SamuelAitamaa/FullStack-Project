@@ -20,10 +20,12 @@ export default {
   },
   methods: {
     scrollRight: function () {
+      console.log('Scrolling right...');
       let list = document.getElementById(this.title);
       list.firstChild.scrollLeft += 2000;
     },
     scrollLeft: function () {
+      console.log('Scrolling left...');
       let list = document.getElementById(this.title);
       list.firstChild.scrollLeft -= 2000;
     }

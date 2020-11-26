@@ -3,7 +3,7 @@
     <ul v-dragscroll.x>
       <li v-for="element in this.elements" :key="element.id">
         <div class="movie">
-          <img v-bind:src="element.poster_path" alt="Placeholder image" />
+          <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
           <button v-if="!checkList(element.id)" @click="addToList(element.id)" class="plus">+</button>
           <button v-else @click="deleteFromList(element.id)" class="plus">-</button>
           <div class="text">
@@ -12,21 +12,30 @@
         </div>
       </li>
     </ul>
+    <div v-for="element in this.elements" :key="element.id">
+      <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
+                   @hide:info="changeInfoVisibility"/>
+    </div>
   </div>
 </template>
 
 <script>
+import Information from "@/components/Information";
 import { dragscroll } from 'vue-dragscroll';
 import axios from "axios";
 
 export default {
   name: "MovieList",
+  components: {
+    Information
+  },
   directives: {
     dragscroll
   },
   data(){
     return {
-      elements: []
+      elements: [],
+      infoVisible: false
     }
   },
   props: {
@@ -78,6 +87,15 @@ export default {
           element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
         }
       }, []);
+    },
+    changeInfoVisibility: function (id) {
+      this.infoVisible = !this.infoVisible;
+      let element = document.getElementById(id);
+      if(this.infoVisible){
+        element.style.display = 'block';
+      }else{
+        element.style.display = 'none';
+      }
     },
     addToList(id) {
       this.$store.commit("newId", id)
