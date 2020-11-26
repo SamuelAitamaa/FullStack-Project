@@ -12,9 +12,22 @@ export default new Vuex.Store({
     getters: {},
     mutations: {
         newId(state, payload) {
-            state.movies.push({id: payload})
+            state.movies.push(payload)
+            console.log(state.movies)
         },
         deleteID(state, payload) {
+            let index
+            state.movies.find(function(item, i){
+                if(item.id === payload.id){
+                    index = i;
+                    return i;
+                }
+            });
+            state.movies.splice(index, 1)
+            console.log(state.movies)
+        },
+
+        deleteFromProfile(state, payload) {
             let index
             state.movies.find(function(item, i){
                 if(item.id === payload){
@@ -23,6 +36,7 @@ export default new Vuex.Store({
                 }
             });
             state.movies.splice(index, 1)
+            console.log(state.movies)
         }
     },
     actions: {}

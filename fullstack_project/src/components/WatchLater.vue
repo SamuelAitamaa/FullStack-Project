@@ -6,7 +6,7 @@
         <h2>{{ this.title }}</h2>
         </div>
         <div class="movie">
-          <img v-bind:src="this.image" alt="Placeholder image" />
+          <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
           <button v-if="!checkList(id)" @click="addToList(id)" class="plus">+</button>
           <button v-else @click="deleteFromList(id)" class="plus">-</button>
         </div>
@@ -21,6 +21,8 @@ import { dragscroll } from 'vue-dragscroll';
 
 export default {
   name: "WatchLater",
+  components: {
+  },
   directives: {
     dragscroll
   },
@@ -32,7 +34,7 @@ export default {
   },
   props: {
     input: String,
-    id: Number
+    id: Number,
   },
 
     created: function() {
@@ -45,15 +47,24 @@ export default {
           });
     },
   methods: {
-    addToList(id) {
-      this.$store.commit("newId", id)
+    addToList(element) {
+      this.$store.commit("newId", element)
     },
-    checkList(id) {
+    checkList(element) {
       let store = JSON.stringify(this.$store.state.movies)
-      return store.includes(id)
+      return store.includes(JSON.stringify(element))
     },
     deleteFromList(id) {
-      this.$store.commit("deleteID", id)
+      this.$store.commit("deleteFromProfile", id)
+    },
+    changeInfoVisibility: function (id) {
+      this.infoVisible = !this.infoVisible;
+      let element = document.getElementById(id);
+      if(this.infoVisible){
+        element.style.display = 'block';
+      }else{
+        element.style.display = 'none';
+      }
     }
   }
 }
