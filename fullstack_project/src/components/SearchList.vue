@@ -3,11 +3,15 @@
     <ul>
       <li v-for="element in this.elements" :key="element.id">
         <div class="search">
-          <img v-bind:src="element.poster_path" alt="Placeholder image" />
-          <button class="imgBtn">+</button>
-          <div class="text">
-            <h2>{{ element.title }} {{ element.name }}</h2>
-          </div>
+          <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
+          <button v-if="!checkList(element.id)" @click="addToList(element.id)" class="imgBtn">+</button>
+          <button v-else @click="deleteFromList(element.id)" class="imgBtn">-</button>
+          <Information
+                  v-bind:id="element.id"
+                  v-bind:identity="element.id"
+                  v-bind:movie="element.hasOwnProperty('title')"
+                  @hide:info="changeInfoVisibility"
+          />
         </div>
       </li>
     </ul>
@@ -15,13 +19,18 @@
 </template>
 
 <script>
+import Information from '@/components/Information';
 import axios from 'axios';
 
 export default {
   name: "SearchList",
+  components: {
+    Information
+  },
   data(){
     return {
-      elements: []
+      elements: [],
+      infoVisible: false
     }
   },
   props: {
@@ -44,6 +53,27 @@ export default {
             });
       }
     }
+  },
+  methods: {
+    changeInfoVisibility: function (id) {
+      this.infoVisible = !this.infoVisible;
+      let element = document.getElementById(id);
+      if(this.infoVisible){
+        element.style.display = 'block';
+      }else{
+        element.style.display = 'none';
+      }
+    },
+    addToList(id) {
+      this.$store.commit("newId", id)
+    },
+    checkList(id) {
+      let store = JSON.stringify(this.$store.state.movies)
+      return store.includes(id)
+    },
+    deleteFromList(id) {
+      this.$store.commit("deleteID", id)
+    }
   }
 }
 </script>
@@ -65,24 +95,6 @@ ul li{
   width: 250px;
   height: 375px;
   position: relative;
-}
-.text{
-  transform: scale(0);
-
-  display: /*flex*/none;
-  justify-content: center;
-  align-items: center;
-
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-
-  text-align: center;
-  color: black;
-  background: rgb(245, 212, 122);
-
-  transition: .2s ease-in-out;
 }
 .imgBtn{
   transform: scale(0);
@@ -129,7 +141,7 @@ img{
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .imgBtn{
+li:hover .imgBtn{
   transform: scale(1);
 }
 </style>

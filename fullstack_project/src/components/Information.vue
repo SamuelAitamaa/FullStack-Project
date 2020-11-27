@@ -10,14 +10,21 @@
             <p> / {{ genre }} / </p>
           </li>
         </ul>
-        <p v-if="this.info.length > 0">{{ this.info }}</p>
-        <p v-else>No overview available ... :(</p>
+        <p v-if="this.info.length > 0"
+        >{{ this.info }}</p>
+        <p v-else
+        >No overview available ... :(</p>
         <div class="date">
-          <p v-if="this.released.length > 0 && this.movie">Released: {{ this.released }}</p>
-          <p v-if="this.released.length > 0 && !this.movie">First aired: {{ this.released }}</p>
+          <p v-if="this.released.length > 0 && this.movie"
+          >Released: {{ this.released }}</p>
+          <p v-if="this.released.length > 0 && !this.movie"
+          >First aired: {{ this.released }}</p>
         </div>
         <div class="link">
-          <a :href="this.homepage" target="_blank" v-if="this.homepage.length > 0">Link to site</a>
+          <a v-if="this.homepage.length > 0"
+             :href="this.homepage"
+             target="_blank"
+          >Link to site</a>
         </div>
       </div>
     </div>
@@ -58,7 +65,7 @@ export default {
           this.info = res.data.overview;
           if(this.movie){this.released = res.data.release_date;}
           else{this.released = res.data.first_air_date;}
-          this.homepage = res.data.homepage;
+          if(res.data.homepage !== ""){this.homepage = res.data.homepage;}
         })
   },
   methods: {
@@ -106,7 +113,7 @@ export default {
     flex-direction: column;
   }
   .container img{
-    width: 200px;
+    width: 180px;
   }
   .titleAndDesc{
     width: 600px;
@@ -125,7 +132,7 @@ export default {
       width: 400px;
     }
     .titleAndDesc p, .titleAndDesc a{
-      font-size: 10px;
+      font-size: 12px;
     }
     .titleAndDesc h2{
       font-size: 14px;
@@ -155,7 +162,7 @@ h2{
   margin-bottom: 20px;
 }
 p{
-  font-size: 24px;
+  font-size: 20px;
   text-align: justify;
 }
 .date{
@@ -195,6 +202,7 @@ button{
   top: 10px;
   right: 10px;
 
+  z-index: 101;
 }
 button:hover{
   background-color: #ebb446;
