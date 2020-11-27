@@ -4,7 +4,8 @@
       <li v-for="element in this.elements" :key="element.id">
         <div class="search">
           <img v-bind:src="element.poster_path" alt="Placeholder image" />
-          <button class="plus">+</button>
+          <button v-if="!checkList(element)" @click="addToList(element)" class="plus">+</button>
+          <button v-else @click="deleteFromList(element)" class="plus">-</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
@@ -41,6 +42,18 @@ export default {
           }
         }, []);
       });
+    }
+  },
+  methods: {
+    addToList(element) {
+      this.$store.commit("newId", element)
+    },
+    checkList(element) {
+      let store = JSON.stringify(this.$store.state.movies)
+      return store.includes(JSON.stringify(element.id)) && (store.includes(JSON.stringify(element.title)) || (store.includes(JSON.stringify(element.name))))
+    },
+    deleteFromList(element) {
+      this.$store.commit("deleteID", element)
     }
   }
 }

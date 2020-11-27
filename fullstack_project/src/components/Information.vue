@@ -6,6 +6,11 @@
       <div class="titleAndDesc">
         <h2>{{ this.title }}</h2>
         <p>{{ this.info }}</p>
+        <h2>Rating: {{this.rating}}</h2>
+        <div class="providers" v-for="provider in this.providers" :key="provider.index">
+          <p>{{provider.provider_name}}</p>
+          <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)"/>
+        </div>
       </div>
     </div>
   </div>
@@ -21,6 +26,8 @@ export default {
       title: '',
       image: '',
       info: '',
+      rating: '',
+      providers: []
     }
   },
   props: {
@@ -29,8 +36,8 @@ export default {
   },
   created: function () {
     let url = '';
-    if(this.movie){url = `https://api.themoviedb.org/3/movie/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b`;}
-    else{url = `https://api.themoviedb.org/3/tv/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b`;}
+    if(this.movie){url = `https://api.themoviedb.org/3/movie/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`;}
+    else{url = `https://api.themoviedb.org/3/tv/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`;}
     axios
         .get(url)
         .then(res => {
@@ -39,11 +46,24 @@ export default {
           else{this.title = res.data.name;}
           this.identity = res.data.id;
           this.info = res.data.overview;
+          this.rating = res.data.vote_average;
+          if(this.movie) {
+            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+              this.providers = res.data["watch/providers"].results.FI.buy
+            }
+            } else {
+            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+              this.providers = res.data["watch/providers"].results.FI.flatrate
+            }
+          }
         })
   },
   methods: {
     hideInfo: function () {
       this.$emit('hide:info', this.identity);
+    },
+    openProvider(provider) {
+      window.open(`https://www.google.com/search?q=${provider}`, '_blank');
     }
   }
 }
@@ -127,6 +147,15 @@ button:active{
 }
 button:focus{
   outline: none;
+}
+.providers {
+  display: inline-block;
+  padding: 10px 10px;
+  line-height: 100%;
+}
+img.logo{
+  width: 45px;
+  height: 45px;
 }
 
 </style>

@@ -1,6 +1,10 @@
 <template>
 <div class="profile">
   <Nav @input:change="inputChange" />
+  <div class="searchContainer" v-if="this.input.length >= 1">
+    <Heading v-bind:title="this.input" v-bind:search="true" />
+    <SearchList :input=this.input />
+  </div>
 
   <h1>User</h1>
   <h2>Settings</h2>
@@ -36,6 +40,7 @@ import WatchLater from "@/components/WatchLater";
 import Nav from "@/components/Nav";
 import Heading from "@/components/Heading";
 import Information from "@/components/Information";
+import SearchList from "@/components/SearchList";
 
 export default {
   name: "Profile",
@@ -43,12 +48,13 @@ export default {
     WatchLater,
     Nav,
     Heading,
-    Information
+    Information,
+    SearchList
   },
   data() {
     return {
       input: '',
-      elements: [],
+      elements: {},
       titles: [
           'Watch Later'
       ]
@@ -78,8 +84,9 @@ export default {
 </script>
 
 <style scoped>
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .profile {
+  font-family: 'Montserrat', sans-serif;
   background-color: #242323;
   min-height: 100vh;
 }

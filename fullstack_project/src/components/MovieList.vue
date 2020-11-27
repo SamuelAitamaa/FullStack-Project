@@ -102,7 +102,7 @@ export default {
     },
     checkList(element) {
       let store = JSON.stringify(this.$store.state.movies)
-      return store.includes(JSON.stringify(element))
+      return store.includes(JSON.stringify(element.id)) && (store.includes(JSON.stringify(element.title)) || (store.includes(JSON.stringify(element.name))))
     },
     deleteFromList(element) {
       this.$store.commit("deleteID", element)
