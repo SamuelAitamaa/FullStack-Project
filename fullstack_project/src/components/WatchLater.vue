@@ -49,35 +49,35 @@ export default {
     input: String,
     element: Object,
   },
-  created: function() {
-    if(JSON.stringify(this.element).includes("title")) {
-      axios
-          .get(`https://api.themoviedb.org/3/movie/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
-          .then(res => {
-            this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-            this.title = res.data.title;
-            this.id = res.data.id;
-            this.rating = res.data.vote_average;
-            this.overview = res.data.overview
-            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
-              this.providers = res.data["watch/providers"].results.FI.buy
-            }
-          });
-    } else {
-      axios
-          .get(`https://api.themoviedb.org/3/tv/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
-          .then(res => {
-            this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-            this.name = res.data.name;
-            this.id = res.data.id;
-            this.rating = res.data.vote_average;
-            this.overview = res.data.overview
-            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
-              this.providers = res.data["watch/providers"].results.FI.flatrate
-            }
-          });
-    }
-  },
+    created: function() {
+      if(JSON.stringify(this.element).includes("title")) {
+        axios
+            .get(`https://api.themoviedb.org/3/movie/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
+            .then(res => {
+              this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
+              this.title = res.data.title;
+              this.id = res.data.id;
+              this.rating = res.data.vote_average;
+              this.overview = res.data.overview
+              if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+                this.providers = res.data["watch/providers"].results.FI.buy
+              }
+            });
+      } else {
+        axios
+            .get(`https://api.themoviedb.org/3/tv/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
+            .then(res => {
+              this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
+              this.name = res.data.name;
+              this.id = res.data.id;
+              this.rating = res.data.vote_average;
+              this.overview = res.data.overview
+              if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+                this.providers = res.data["watch/providers"].results.FI.flatrate
+              }
+            });
+      }
+    },
   methods: {
     addToList(element) {
       this.$store.commit("newId", element)

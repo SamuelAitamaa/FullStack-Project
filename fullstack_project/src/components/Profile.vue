@@ -1,25 +1,24 @@
 <template>
-  <div class="profile">
-    <Nav @input:change="inputChange" />
-    <div class="searchContainer" v-if="this.input.length >= 1">
-      <Heading v-bind:title="this.input" v-bind:search="true" v-bind:profile="true" />
-      <SearchList :input=this.input />
-    </div>
+<div class="profile">
+  <Nav @input:change="inputChange" />
+  <div class="searchContainer" v-if="this.input.length >= 1">
+    <Heading v-bind:title="this.input" v-bind:search="true" v-bind:profile="true" />
+    <SearchList :input=this.input />
+  </div>
 
     <h1>User</h1>
     <h2>Settings</h2>
 
-    <div v-if="elements.length>0">
-      <ul>
-        <Heading v-bind:title="titles[0]" v-bind:search="false" v-bind:profile="true" />
-        <li v-for="element in elements" v-bind:key="element.id">
-          <WatchLater class="WatchLater" v-bind:element=element />
-        </li>
-      </ul>
-      <div v-for="element in this.elements" :key="element.id">
-        <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
-                     @hide:info="changeInfoVisibility"/>
-      </div>
+  <div v-if="elements.length>0">
+    <ul>
+      <Heading v-bind:title="titles[0]" v-bind:search="false" v-bind:profile="true" />
+      <li v-for="element in elements" v-bind:key="element.id">
+        <WatchLater class="WatchLater" v-bind:element=element />
+      </li>
+    </ul>
+    <div v-for="element in this.elements" :key="element.id">
+      <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
+                   @hide:info="changeInfoVisibility"/>
     </div>
 
     <div v-else class="container">
@@ -32,6 +31,7 @@
     </div>
 
   </div>
+</div>
 </template>
 
 <script>
