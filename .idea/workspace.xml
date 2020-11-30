@@ -25,6 +25,7 @@
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
@@ -39,6 +40,10 @@
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
+>>>>>>> parent of e25c369... Small change
 =======
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
@@ -110,12 +115,15 @@
       <workItem from="1606372971571" duration="215000" />
       <workItem from="1606374320029" duration="20267000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1606412455137" duration="9112000" />
       <workItem from="1606422112787" duration="3445000" />
       <workItem from="1606727253089" duration="7968000" />
 
       <workItem from="1606412455137" duration="8913000" />
       <workItem from="1606412455137" duration="8913000" />
+=======
+>>>>>>> parent of e25c369... Small change
 =======
 >>>>>>> parent of e25c369... Small change
       <workItem from="1606412455137" duration="8913000" />
