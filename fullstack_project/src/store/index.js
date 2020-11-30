@@ -1,14 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
-//import createPersistedState from "vuex-persistedstate";
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        movies: [],
+        movies: []
     },
-    //plugins: [createPersistedState()],
+    plugins: [createPersistedState({
+        //storage: window.sessionStorage,
+        key: 'lol'
+    })],
     getters: {},
     mutations: {
         newId(state, payload) {

@@ -5,7 +5,7 @@
         <div class="container">
 
         <div class="movie">
-          <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
+          <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(this.element.id)" />
         </div>
           <button @click="deleteFromList(element.id)" class="plus">-</button>
           <div class="aboutMovie">
