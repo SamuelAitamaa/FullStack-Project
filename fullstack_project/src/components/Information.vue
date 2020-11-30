@@ -6,10 +6,12 @@
       <div class="titleAndDesc">
         <h2>{{ this.title }}</h2>
         <p>{{ this.info }}</p>
-        <h2>Rating: {{this.rating}}</h2>
-        <div class="providers" v-for="provider in this.providers" :key="provider.index">
-          <p>{{provider.provider_name}}</p>
-          <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)"/>
+        <h3>Rating: {{this.rating}}</h3>
+        <div class="providers">
+          <div class="provider" v-for="provider in this.providers" :key="provider.index">
+            <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)"/>
+            <p @click="openProvider(provider.provider_name)">{{provider.provider_name}}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -47,11 +49,13 @@ export default {
           this.info = res.data.overview;
           this.rating = res.data.vote_average;
           if(this.movie) {
-            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+            if(JSON.stringify(res.data["watch/providers"].results).includes("FI") &&
+               res.data["watch/providers"].results.FI !== undefined) {
               this.providers = res.data["watch/providers"].results.FI.buy
             }
           } else {
-            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+            if(JSON.stringify(res.data["watch/providers"].results).includes("FI") &&
+              res.data["watch/providers"].results.FI !== undefined) {
               this.providers = res.data["watch/providers"].results.FI.flatrate
             }
           }
@@ -94,10 +98,14 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-@media screen and (max-width: 1200px){
-  .container{
-    flex-direction: column;
-  }
+h2{
+  text-align: left;
+  padding-left: 50px;
+  font-size: 28px;
+}
+h3{
+  text-align: left;
+  padding-left: 50px;
 }
 .titleAndDesc{
   max-width: 800px;
@@ -110,6 +118,66 @@ p{
   padding: 50px;
   font-size: 24px;
   text-align: justify;
+}
+.providers {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 50px;
+}
+.provider{
+  min-width: 300px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.providers p{
+  padding: 20px;
+}
+.logo{
+  width: 45px;
+  height: 45px;
+  max-width: 45px;
+  min-width: 45px;
+}
+@media screen and (max-width: 1200px){
+  .container{
+    flex-direction: column;
+  }
+  .container img{
+    width: 180px;
+  }
+  .titleAndDesc{
+    width: 600px;
+  }
+  .titleAndDesc p{
+    font-size: 16px;
+    padding-top: 25px;
+  }
+  .titleAndDesc h2{
+    font-size: 28px;
+    padding-top: 12px;
+  }
+  @media screen and (max-width: 600px){
+    .container img{
+      width: 150px;
+    }
+    .titleAndDesc{
+      width: 400px;
+    }
+    .titleAndDesc p{
+      font-size: 12px;
+      padding-top: 12px;
+    }
+    .titleAndDesc h2{
+      font-size: 14px;
+    }
+    .titleAndDesc h3{
+      font-size: 12px;
+    }
+  }
 }
 button{
   color: #ebb446;
@@ -126,6 +194,7 @@ button{
   position: fixed;
   top: 10px;
   right: 10px;
+  z-index: 101;
 }
 button:hover{
   background-color: #ebb446;
@@ -136,14 +205,5 @@ button:active{
 }
 button:focus{
   outline: none;
-}
-.providers {
-  display: inline-block;
-  padding: 10px 10px;
-  line-height: 100%;
-}
-img.logo{
-  width: 45px;
-  height: 45px;
 }
 </style>

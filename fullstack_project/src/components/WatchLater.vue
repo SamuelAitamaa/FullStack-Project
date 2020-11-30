@@ -1,6 +1,6 @@
 <template>
   <div class="WatchLater">
-    <ul v-dragscroll.x>
+    <ul>
       <li>
         <div class="container">
 
@@ -28,13 +28,9 @@
 
 <script>
 import axios from 'axios';
-import { dragscroll } from 'vue-dragscroll';
 export default {
   name: "WatchLater",
   components: {},
-  directives: {
-    dragscroll
-  },
   data(){
     return {
       title: '',

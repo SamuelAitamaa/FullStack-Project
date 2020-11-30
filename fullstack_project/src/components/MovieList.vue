@@ -1,6 +1,6 @@
 <template>
   <div class="movieList">
-    <ul v-dragscroll.x>
+    <ul>
       <li v-for="element in this.elements" :key="element.id">
         <div class="movie">
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
@@ -9,27 +9,21 @@
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
+          <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
+                       @hide:info="changeInfoVisibility"/>
         </div>
       </li>
     </ul>
-    <div v-for="element in this.elements" :key="element.id">
-      <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
-                   @hide:info="changeInfoVisibility"/>
-    </div>
   </div>
 </template>
 
 <script>
 import Information from "@/components/Information";
-import { dragscroll } from 'vue-dragscroll';
 import axios from "axios";
 export default {
   name: "MovieList",
   components: {
     Information
-  },
-  directives: {
-    dragscroll
   },
   data(){
     return {
@@ -121,9 +115,6 @@ ul{
 }
 ul:hover{
   scroll-behavior: revert;
-}
-ul:active{
-  transform: scale(1.02);
 }
 ul::-webkit-scrollbar{
   width: 0;

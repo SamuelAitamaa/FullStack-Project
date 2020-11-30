@@ -3,12 +3,14 @@
     <ul>
       <li v-for="element in this.elements" :key="element.id">
         <div class="search">
-          <img v-bind:src="element.poster_path" alt="Placeholder image" />
+          <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
           <button v-if="!checkList(element)" @click="addToList(element)" class="plus">+</button>
           <button v-else @click="deleteFromList(element)" class="plus">-</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
+          <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
+                       @hide:info="changeInfoVisibility"/>
         </div>
       </li>
     </ul>
@@ -16,9 +18,13 @@
 </template>
 
 <script>
+import Information from "@/components/Information";
 import axios from 'axios';
 export default {
   name: "SearchList",
+  components:{
+    Information
+  },
   data(){
     return {
       elements: []
@@ -44,6 +50,15 @@ export default {
     }
   },
   methods: {
+    changeInfoVisibility: function (id) {
+      this.infoVisible = !this.infoVisible;
+      let element = document.getElementById(id);
+      if(this.infoVisible){
+        element.style.display = 'block';
+      }else{
+        element.style.display = 'none';
+      }
+    },
     addToList(element) {
       this.$store.commit("newId", element)
     },
