@@ -1,18 +1,23 @@
 <template>
   <div class="back">
+    <Nav></Nav>
     <div class="register">
       <h1>REGISTER</h1>
 
       <form class="form" @submit="login">
 
         <label class="test" for="username">Name: </label>
-        <input type="text" placeholder="Username" v-model="thename" id="username"/>
-        <p>Must begin with uppercase letter.</p>
+        <input type="text" placeholder="Username" v-model="username" id="username"/>
+        <h3>Must begin with uppercase letter.</h3>
         <br>
 
         <label for="password">Password: </label>
-        <input type="password" placeholder="AxAx6x" v-model="thepass" id="password">
-        <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
+        <input type="password" placeholder="AxAx6x" v-model="userpassword" id="password">
+        <h3>Requires: 6 characters, uppercase letter, lowercase letter, number</h3>
+        <br>
+
+        <label for="password">Repeat password: </label>
+        <input type="password" placeholder="Password (repeat)" v-model="passwordrepeat" id="passwordrepeat">
         <br>
 
         <div class="button">
@@ -25,6 +30,7 @@
           <li v-for="e in error" v-bind:key="e.id">
             {{ e }}
           </li>
+          <p v-if="msg">{{ msg }}</p>
         </ul>
       </div>
 
@@ -35,39 +41,65 @@
 
 <script>
 
+import Nav from './Nav';
+import AuthService from '@/services/AuthService.js';
+
 export default {
   name: 'registration',
+  components: {
+    Nav
+  },
   data() {
     return {
-      thename: null,
-      thepass: null,
-      error: [],
+      username: null,
+      userpassword: null,
+      passwordrepeat: null,
+      msg: '',
+      error: []
     }
   },
   methods: {
     login(e) {
       this.error = [];
-      if (this.thename && this.thepass) {
+      if (this.username && this.userpassword) {
         console.log("no error");
-
+        console.warn("Hello", this.error);
+        this.signUp();
       }
-      if (!this.thename) {
+      if (!this.username) {
         this.error.push("ERROR! User name required.")
-      } else if (!this.validname(this.thename)) {
+      } else if (!this.validname(this.username)) {
         this.error.push('Name must begin with uppercase letter.');
-        console.log(this.thename);
+        console.log(this.username);
       }
 
-      if (!this.thepass) {
+      if (!this.userpassword) {
         this.error.push("ERROR! User password required.")
-      } else if (!this.validpass(this.thepass)) {
+      } else if (!this.validpass(this.userpassword)) {
         this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
-        console.log(this.thepass);
+        console.log(this.userpassword);
       }
 
-
-      console.warn("Hello", this.error);
       e.preventDefault();
+
+    },
+
+    async signUp()
+    {
+      try {
+        const credentials = {
+          username: this.username,
+          userpassword: this.userpassword,
+          passwordrepeat: this.passwordrepeat,
+        };
+        console.log(credentials);
+        const response = await AuthService.signUp(credentials);
+        this.msg = response.msg;
+
+
+      } catch (error) {
+        this.msg = error.response.data.msg;
+      }
     },
 
     validname: function (name) {
@@ -89,44 +121,43 @@ export default {
 
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-.back {
-  background: linear-gradient(black, #242323, black);
-  height: 700px;
-  padding-top: 30px;
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.back {
+  background: linear-gradient(to right, black, #242323);
+  height: 700px;
   min-height: 100vh;
 }
 .register {
-  background: linear-gradient(#242323, grey);
+  background: linear-gradient(#242323, dimgrey);
   width: 50%;
   margin-left: 26%;
-  margin-top: 30px;
+  margin-top: 120px;
   height: auto;
-  color: grey;
-  font-weight: bolder;
-  padding-top: 10px;
-  padding-bottom: 10px;
-
+  color: white;
+  padding: 50px 20px 50px 20px;
+  border:3px solid #ebb446 ;
+  border-radius: 7px;
   font-family: 'Monsterrat', sans-serif;
 }
 
-h1 {
-  background: linear-gradient(#cb48b7, #ebb446);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 20px;
-  font-weight: revert;
+h1, h3{
+  color: white;
+  padding: 20px;
 }
 input {
   background: linear-gradient(lightgrey, grey);
-  height: 20px;
-  font-size: 15px;
-  margin-bottom: 10px;
+  height: 45px;
+  font-size: 30px;
+  margin-bottom: 2px;
 }
-label {
-  padding-right: 10px;
+label{
+  color: white;
+  font-size: xx-large;
+  font-weight: bolder;
 }
+
 .form {
   padding: 50px 20px 20px 20px;
   flex-basis: 100px;
@@ -136,18 +167,19 @@ label {
   display: grid;
   align-items: center;
   justify-content: center;
+
 }
 button {
-  font-size: 19px;
+  font-size: 40px;
   font-weight: bold;
   border: 2px grey;
   border-radius: 2px;
   float: left;
-  background: linear-gradient(#cb48b7, #ebb446);
+  background:  linear-gradient(orange, #ebb446);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 5px;
-
+  cursor: pointer;
 }
 button:hover {
   background: linear-gradient(#ebb446, #ebb446);

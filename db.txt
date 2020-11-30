@@ -1,0 +1,15 @@
+MariaDB [(none)]> CREATE DATABASE mymovie;
+
+MariaDB [(none)]> use mymovie;
+
+MariaDB [mymovie]> create table users(
+    -> id VARCHAR(255) NOT NULL PRIMARY KEY,
+    -> username VARCHAR(255) NOT NULL,
+    -> password VARCHAR(255) NOT NULL,
+    -> registered DATETIME NOT NULL,
+    -> last_login DATETIME NOT NULL
+    -> );
+Query OK, 0 rows affected (0.073 sec)
+
+ INSERT INTO users (id, username, password, registered, last_login) 
+VALUES ('Elmeri', 'Elmeri', 'xxxxLLL', '2020-11-30 13:37:30', '2020-11-30 13:37:30');
