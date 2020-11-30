@@ -4,8 +4,8 @@
       <li v-for="element in this.elements" :key="element.id">
         <div class="search">
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
-          <button v-if="!checkList(element)" @click="addToList(element)" class="plus">+</button>
-          <button v-else @click="deleteFromList(element)" class="plus">-</button>
+          <button v-if="!checkList(element)" @click="addToList(element)" class="imgBtn">+</button>
+          <button v-else @click="deleteFromList(element)" class="imgBtn">-</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
@@ -104,7 +104,7 @@ ul li{
   background: rgb(245, 212, 122);
   transition: .2s ease-in-out;
 }
-.plus{
+.imgBtn{
   transform: scale(0);
   color: #ebb446;
   font-size: 36px;
@@ -122,14 +122,14 @@ ul li{
   right: 10px;
   transition: .2s ease-in-out;
 }
-.plus:hover{
+.imgBtn:hover{
   background-color: #ebb446;
   color: black;
 }
-.plus:active{
+.imgBtn:active{
   background-color: #3dff2b;
 }
-.plus:focus{
+.imgBtn:focus{
   outline: none;
 }
 h2{
@@ -143,7 +143,7 @@ img{
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .plus{
+li:hover .text, li:hover .imgBtn{
   transform: scale(1);
 }
 </style>

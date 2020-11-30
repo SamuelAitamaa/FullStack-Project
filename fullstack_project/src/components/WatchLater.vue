@@ -7,7 +7,7 @@
           <div class="movie">
             <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
           </div>
-          <button @click="deleteFromList(element.id)" class="plus">-</button>
+          <button @click="deleteFromList(element.id)" class="imgBtn">-</button>
           <div class="aboutMovie">
             <h3>{{ this.title }} {{ this.name }}</h3>
             <p>
@@ -99,6 +99,9 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.WatchLater{
+  display: flex;
+}
 ul{
   display: flex;
   flex-wrap: wrap;
@@ -119,9 +122,6 @@ ul{
 ul:hover{
   scroll-behavior: revert;
 }
-ul:active{
-  transform: scale(1.02);
-}
 ul::-webkit-scrollbar{
   width: 0;
 }
@@ -136,21 +136,7 @@ ul li{
   height: 375px;
   position: relative;
 }
-.text{
-  transform: scale(0);
-  display: /*flex*/none;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  text-align: center;
-  color: black;
-  background: rgb(245, 212, 122);
-  transition: .2s ease-in-out;
-}
-.plus{
+.imgBtn{
   transform: scale(0);
   color: #ebb446;
   font-size: 36px;
@@ -168,14 +154,14 @@ ul li{
   right: 10px;
   transition: .2s ease-in-out;
 }
-.plus:hover{
+.imgBtn:hover{
   background-color: #ebb446;
   color: black;
 }
-.plus:active{
+.imgBtn:active{
   background-color: #3dff2b;
 }
-.plus:focus{
+.imgBtn:focus{
   outline: none;
 }
 h2{
@@ -216,7 +202,7 @@ img.logo{
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .plus{
+li:hover .text, li:hover .imgBtn{
   transform: scale(1);
 }
 </style>

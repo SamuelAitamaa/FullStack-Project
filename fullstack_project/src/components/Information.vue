@@ -5,8 +5,8 @@
       <img v-bind:src="this.image" alt="Placeholder image" />
       <div class="titleAndDesc">
         <h2>{{ this.title }}</h2>
-        <p>{{ this.info }}</p>
-        <h3>Rating: {{this.rating}}</h3>
+        <div><p v-if="this.info.length === 0">No information found</p><p>{{ this.info }}</p></div>
+        <h3>Rating: {{ this.rating }}</h3>
         <div class="providers">
           <div class="provider" v-for="provider in this.providers" :key="provider.index">
             <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)"/>
@@ -48,14 +48,11 @@ export default {
           this.identity = res.data.id;
           this.info = res.data.overview;
           this.rating = res.data.vote_average;
-          if(this.movie) {
-            if(JSON.stringify(res.data["watch/providers"].results).includes("FI") &&
-               res.data["watch/providers"].results.FI !== undefined) {
+          if(JSON.stringify(res.data["watch/providers"].results).includes("FI") &&
+             res.data["watch/providers"].results.FI !== undefined) {
+            if(this.movie){
               this.providers = res.data["watch/providers"].results.FI.buy
-            }
-          } else {
-            if(JSON.stringify(res.data["watch/providers"].results).includes("FI") &&
-              res.data["watch/providers"].results.FI !== undefined) {
+            }else {
               this.providers = res.data["watch/providers"].results.FI.flatrate
             }
           }
@@ -116,7 +113,7 @@ img{
 }
 p{
   padding: 50px;
-  font-size: 24px;
+  font-size: 16px;
   text-align: justify;
 }
 .providers {
