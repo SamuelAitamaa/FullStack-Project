@@ -3,9 +3,10 @@
     <ul v-dragscroll.x>
       <li>
         <div class="container">
-        <div class="movie">
-          <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
-        </div>
+
+          <div class="movie">
+            <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
+          </div>
           <button @click="deleteFromList(element.id)" class="plus">-</button>
           <div class="aboutMovie">
             <h3>{{ this.title }} {{ this.name }}</h3>
@@ -18,6 +19,7 @@
               <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)" />
             </div>
           </div>
+
         </div>
       </li>
     </ul>
@@ -27,7 +29,6 @@
 <script>
 import axios from 'axios';
 import { dragscroll } from 'vue-dragscroll';
-
 export default {
   name: "WatchLater",
   components: {},
@@ -48,38 +49,35 @@ export default {
     input: String,
     element: Object,
   },
-
-    created: function() {
-      if(JSON.stringify(this.element).includes("title")) {
-        axios
-            .get(`https://api.themoviedb.org/3/movie/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
-            .then(res => {
-              this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-              this.title = res.data.title;
-              this.id = res.data.id;
-              this.rating = res.data.vote_average;
-              this.overview = res.data.overview
-              if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
-                this.providers = res.data["watch/providers"].results.FI.buy
-              }
-              //console.log(this.providers)
-            });
-      } else {
-        axios
-            .get(`https://api.themoviedb.org/3/tv/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
-            .then(res => {
-              this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-              this.name = res.data.name;
-              this.id = res.data.id;
-              this.rating = res.data.vote_average;
-              this.overview = res.data.overview
-              if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
-                this.providers = res.data["watch/providers"].results.FI.flatrate
-              }
-              //console.log(this.providers)
-            });
-      }
-    },
+  created: function() {
+    if(JSON.stringify(this.element).includes("title")) {
+      axios
+          .get(`https://api.themoviedb.org/3/movie/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
+          .then(res => {
+            this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
+            this.title = res.data.title;
+            this.id = res.data.id;
+            this.rating = res.data.vote_average;
+            this.overview = res.data.overview
+            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+              this.providers = res.data["watch/providers"].results.FI.buy
+            }
+          });
+    } else {
+      axios
+          .get(`https://api.themoviedb.org/3/tv/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
+          .then(res => {
+            this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
+            this.name = res.data.name;
+            this.id = res.data.id;
+            this.rating = res.data.vote_average;
+            this.overview = res.data.overview
+            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+              this.providers = res.data["watch/providers"].results.FI.flatrate
+            }
+          });
+    }
+  },
   methods: {
     addToList(element) {
       this.$store.commit("newId", element)
@@ -111,7 +109,6 @@ ul{
   justify-content: left;
   overflow-x: scroll;
   scroll-behavior: smooth;
-
   transition: .2s ease-in-out;
 }
 .container{
@@ -136,8 +133,7 @@ ul li{
   list-style-type: none;
   padding: 20px;
 }
-
-.element{
+.movie{
   display: flex;
   flex-direction: row;
   width: 1200px;
@@ -146,43 +142,34 @@ ul li{
 }
 .text{
   transform: scale(0);
-
   display: /*flex*/none;
   justify-content: center;
   align-items: center;
-
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 100px;
-
   text-align: center;
   color: black;
   background: rgb(245, 212, 122);
-
   transition: .2s ease-in-out;
 }
 .plus{
   transform: scale(0);
-
   color: #ebb446;
   font-size: 36px;
   font-weight: bolder;
-
   height: 50px;
   width: 50px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: black;
   border: none;
   border-radius: 50%;
   position: absolute;
   top: 10px;
   right: 10px;
-
   transition: .2s ease-in-out;
 }
 .plus:hover{
@@ -223,14 +210,12 @@ img.logo{
   width: 45px;
   height: 45px;
 }
-
 .aboutMovie{
   font-family: 'Montserrat', sans-serif;
   color: #ebb446;
   background-color: #171616;
   justify-content: center;
   width: 800vw;
-
 }
 li:hover img{
   outline: 2px solid #ebb446;
