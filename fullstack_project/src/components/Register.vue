@@ -7,13 +7,17 @@
       <form class="form" @submit="login">
 
         <label class="test" for="username">Name: </label>
-        <input type="text" placeholder="Username" v-model="thename" id="username"/>
+        <input type="text" placeholder="Username" v-model="username" id="username"/>
         <h3>Must begin with uppercase letter.</h3>
         <br>
 
         <label for="password">Password: </label>
-        <input type="password" placeholder="AxAx6x" v-model="thepass" id="password">
+        <input type="password" placeholder="AxAx6x" v-model="userpassword" id="password">
         <h3>Requires: 6 characters, uppercase letter, lowercase letter, number</h3>
+        <br>
+
+        <label for="password">Repeat password: </label>
+        <input type="password" placeholder="Password (repeat)" v-model="passwordrepeat" id="passwordrepeat">
         <br>
 
         <div class="button">
@@ -26,6 +30,7 @@
           <li v-for="e in error" v-bind:key="e.id">
             {{ e }}
           </li>
+          <p v-if="msg">{{ msg }}</p>
         </ul>
       </div>
 
@@ -37,6 +42,7 @@
 <script>
 
 import Nav from './Nav';
+import AuthService from '@/services/AuthService.js';
 
 export default {
   name: 'registration',
@@ -45,35 +51,55 @@ export default {
   },
   data() {
     return {
-      thename: null,
-      thepass: null,
-      error: [],
+      username: null,
+      userpassword: null,
+      passwordrepeat: null,
+      msg: '',
+      error: []
     }
   },
   methods: {
     login(e) {
       this.error = [];
-      if (this.thename && this.thepass) {
+      if (this.username && this.userpassword) {
         console.log("no error");
-
+        console.warn("Hello", this.error);
+        this.signUp();
       }
-      if (!this.thename) {
+      if (!this.username) {
         this.error.push("ERROR! User name required.")
-      } else if (!this.validname(this.thename)) {
+      } else if (!this.validname(this.username)) {
         this.error.push('Name must begin with uppercase letter.');
-        console.log(this.thename);
+        console.log(this.username);
       }
 
-      if (!this.thepass) {
+      if (!this.userpassword) {
         this.error.push("ERROR! User password required.")
-      } else if (!this.validpass(this.thepass)) {
+      } else if (!this.validpass(this.userpassword)) {
         this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
-        console.log(this.thepass);
+        console.log(this.userpassword);
       }
 
-
-      console.warn("Hello", this.error);
       e.preventDefault();
+
+    },
+
+    async signUp()
+    {
+      try {
+        const credentials = {
+          username: this.username,
+          userpassword: this.userpassword,
+          passwordrepeat: this.passwordrepeat,
+        };
+        console.log(credentials);
+        const response = await AuthService.signUp(credentials);
+        this.msg = response.msg;
+
+
+      } catch (error) {
+        this.msg = error.response.data.msg;
+      }
     },
 
     validname: function (name) {

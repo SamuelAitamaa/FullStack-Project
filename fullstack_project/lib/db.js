@@ -1,9 +1,17 @@
 const mysql = require('mysql');
+
 const connection = mysql.createConnection({
-  host: 'mysql.metropolia.fi',
-  user: 'erick',
-  database: 'users',
-  password: 'maiasquual1337'
+  host: 'localhost',
+  user: 'root',
+  database: 'mymovie',
+  password: 'oL50Jee'
 });
-connection.connect();
+connection.connect(function (err){
+  if(err){
+    throw err;
+  }
+  console.log('connected mysql');
+});
 module.exports = connection;
+
+
