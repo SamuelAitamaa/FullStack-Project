@@ -64,7 +64,6 @@ export default {
               if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
                 this.providers = res.data["watch/providers"].results.FI.buy
               }
-              //console.log(this.providers)
             });
       } else {
         axios
@@ -78,7 +77,6 @@ export default {
               if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
                 this.providers = res.data["watch/providers"].results.FI.flatrate
               }
-              //console.log(this.providers)
             });
       }
     },
