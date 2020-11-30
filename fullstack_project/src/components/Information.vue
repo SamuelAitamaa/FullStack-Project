@@ -7,24 +7,17 @@
         <h2>{{ this.title }}</h2>
         <ul>
           <li v-for="genre in this.genres" :key="genre">
-            <p> / {{ genre }} / </p>
+            <p>/ {{ genre }} /</p>
           </li>
         </ul>
-        <p v-if="this.info.length > 0"
-        >{{ this.info }}</p>
-        <p v-else
-        >No overview available ... :(</p>
+        <p v-if="this.info.length > 0">{{ this.info }}</p>
+        <p v-else>No overview available ... :(</p>
         <div class="date">
-          <p v-if="this.released.length > 0 && this.movie"
-          >Released: {{ this.released }}</p>
-          <p v-if="this.released.length > 0 && !this.movie"
-          >First aired: {{ this.released }}</p>
+          <p v-if="this.released.length > 0 && this.movie">Released: {{ this.released }}</p>
+          <p v-if="this.released.length > 0 && !this.movie">First aired: {{ this.released }}</p>
         </div>
         <div class="link">
-          <a v-if="this.homepage.length > 0"
-             :href="this.homepage"
-             target="_blank"
-          >Link to site</a>
+          <a v-if="this.homepage !== 'not found'" :href="this.homepage" target="_blank">Link to site</a>
         </div>
       </div>
     </div>
@@ -43,7 +36,7 @@ export default {
       image: '',
       info: '',
       released: '',
-      homepage: ''
+      homepage: 'not found'
     }
   },
   props: {
@@ -64,7 +57,7 @@ export default {
           res.data.genres.forEach(genre => this.genres.push(genre.name));
           this.info = res.data.overview;
           if(this.movie){this.released = res.data.release_date;}
-          else{this.released = res.data.first_air_date;}
+          else if(!this.movie){this.released = res.data.first_air_date;}
           if(res.data.homepage !== ""){this.homepage = res.data.homepage;}
         })
   },
@@ -141,8 +134,6 @@ export default {
 }
 ul{
   display: flex;
-  justify-content: center;
-  align-items: center;
   padding-bottom: 20px;
 }
 ul li {
@@ -151,6 +142,7 @@ ul li {
 .titleAndDesc{
   max-width: 800px;
   padding: 20px;
+  text-align: left;
 }
 img{
   width: 400px;

@@ -4,12 +4,12 @@
     <Nav @input:change="inputChange" />
     <div id="searchContainer">
       <Heading v-bind:title="this.input" v-bind:search="true" />
-      <SearchList :input=this.input />
+      <MovieList v-bind:input="this.input" v-bind:class="classes[0]"/>
     </div>
     <div id="mainContainer">
       <div v-for="(title, index) in this.titles" :key="title">
         <Heading v-bind:title="titles[index]" v-bind:search="false" />
-        <MovieList v-bind:id="titles[index]" v-bind:genre="genres[index]" />
+        <MovieList v-bind:id="titles[index]" v-bind:genre="genres[index]" v-bind:class="classes[1]"/>
       </div>
     </div>
   </div>
@@ -18,7 +18,6 @@
 <script>
 import Nav from "@/components/Nav";
 import MovieList from "@/components/MovieList";
-import SearchList from "@/components/SearchList";
 import Heading from "@/components/Heading";
 
 export default {
@@ -26,8 +25,7 @@ export default {
   components: {
     Nav,
     MovieList,
-    SearchList,
-    Heading,
+    Heading
   },
   data() {
     return {
@@ -39,7 +37,8 @@ export default {
       ],
       genres: [
           0, 27, 14, 35, 18, 28, 12, 10749, 99, 80
-      ]
+      ],
+      classes: ["search", "frontpage"]
     }
   },
   watch:{
