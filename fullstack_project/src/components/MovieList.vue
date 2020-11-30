@@ -2,7 +2,17 @@
   <div class="movieList">
     <ul>
       <li v-for="element in this.elements" :key="element.id">
+<<<<<<< HEAD
         <MediaElement v-bind:data="element" />
+=======
+        <div class="element">
+          <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)" />
+          <button v-if="!checkList(element.id)" @click="addToList(element.id)" class="imgBtn">+</button>
+          <button v-else @click="deleteFromList(element.id)" class="imgBtn">-</button>
+          <Information v-bind:id="element.id" v-bind:identity="element.id"
+                       v-bind:movie="element.hasOwnProperty('title')" @hide:info="changeInfoVisibility"/>
+        </div>
+>>>>>>> parent of e25c369... Small change
       </li>
     </ul>
   </div>
