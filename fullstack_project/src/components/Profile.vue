@@ -20,16 +20,14 @@
       <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
                    @hide:info="changeInfoVisibility"/>
     </div>
-
-    <div v-else class="container">
-      <ul>
-        <Heading v-bind:title="titles[0]" v-bind:search="false" />
-        <li>
-          <h2>It seems empty here. Get started by adding movies to your watch list!</h2>
-        </li>
-      </ul>
-    </div>
-
+  </div>
+  <div v-else class="container">
+    <ul>
+      <Heading v-bind:title="titles[0]" v-bind:search="false" />
+      <li>
+        <h2>It seems empty here. Get started by adding movies to your watch list!</h2>
+      </li>
+    </ul>
   </div>
 </div>
 </template>
