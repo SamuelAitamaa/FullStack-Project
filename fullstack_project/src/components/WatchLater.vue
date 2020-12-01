@@ -5,7 +5,7 @@
         <div class="container">
 
         <div class="movie">
-          <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(this.element.id)" />
+          <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)" />
         </div>
           <button @click="deleteFromList(element.id)" class="plus">-</button>
           <div class="aboutMovie">
@@ -43,12 +43,13 @@ export default {
       image: '',
       overview: '',
       providers: [],
-      rating: ''
+      rating: '',
+      infoVisible: false
     }
   },
   props: {
     input: String,
-    element: Object,
+    element: Object
   },
 
     created: function() {
