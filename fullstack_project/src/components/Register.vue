@@ -28,10 +28,6 @@
           </li>
         </ul>
       </div>
-
-      <div v-if="this.registry">
-        <h1>Registration OK</h1>
-      </div>
     </div>
   </div>
 
@@ -49,8 +45,7 @@ export default {
     return {
       username: null,
       userpassword: null,
-      error: [],
-      registry: false
+      error: []
     }
   },
   methods: {
@@ -62,7 +57,7 @@ export default {
       if (!this.username) {
         this.error.push("ERROR! Username required.");
       } else if (!this.validName(this.username)) {
-        this.error.push('Name must begin with uppercase letter.');
+        this.error.push('Name must begin with uppercase letter and must contain only characters.');
         console.log("Username is not valid");
       }
 
@@ -75,7 +70,6 @@ export default {
 
       if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword){
         console.log("Everything OK");
-        this.registry = true;
         this.saveToDatabase();
       }
     },
@@ -101,8 +95,9 @@ export default {
 
     async saveToDatabase() {
       console.log('Starting async');
+      let url;
       try {
-        let url = 'http://localhost:8081/register/ok'
+        url = 'http://localhost:8081/backend/register'
         console.log(url)
         axios.post(url, {
           headers: {},
@@ -111,6 +106,11 @@ export default {
           registered: this.getDate()
         }).then(res => {
           console.log(res);
+          if(res.data === "Success"){
+            this.error.push('Registration complete!');
+          }else{
+            this.error.push('Username has been taken, please use a different username.');
+          }
         }).catch(err => {
           console.log(err.response);
         });
