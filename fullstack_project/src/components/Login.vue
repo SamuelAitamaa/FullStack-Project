@@ -1,5 +1,6 @@
 <template>
   <div class="back">
+    <Nav />
     <div class="login">
       <h1>LOG IN</h1>
 
@@ -35,9 +36,13 @@
 </template>
 
 <script>
+import Nav from "@/components/Nav";
 
 export default {
   name: 'login',
+  components: {
+    Nav
+  },
   data() {
     return {
       thename: null,
@@ -91,7 +96,6 @@ export default {
 .back {
   background: linear-gradient(black, #242323, black);
   height: 700px;
-  padding-top: 30px;
   min-height: 100vh;
 }
 .login {

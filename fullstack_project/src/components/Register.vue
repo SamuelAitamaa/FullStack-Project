@@ -1,17 +1,18 @@
 <template>
   <div class="back">
+    <Nav />
     <div class="register">
       <h1>REGISTER</h1>
 
-      <form class="form" @submit="login">
+      <form class="form" @submit.prevent="register">
 
         <label class="test" for="username">Name: </label>
-        <input type="text" placeholder="Username" v-model="thename" id="username"/>
+        <input type="text" placeholder="Username" v-model="username" id="username"/>
         <p>Must begin with uppercase letter.</p>
         <br>
 
         <label for="password">Password: </label>
-        <input type="password" placeholder="AxAx6x" v-model="thepass" id="password">
+        <input type="password" placeholder="AxAx6x" v-model="userpassword" id="password">
         <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
         <br>
 
@@ -28,59 +29,97 @@
         </ul>
       </div>
 
+      <div v-if="this.registry">
+        <h1>Registration OK</h1>
+      </div>
     </div>
   </div>
 
 </template>
 
 <script>
-
+import Nav from "@/components/Nav";
+import axios from 'axios';
 export default {
   name: 'registration',
+  components: {
+    Nav
+  },
   data() {
     return {
-      thename: null,
-      thepass: null,
+      username: null,
+      userpassword: null,
       error: [],
+      registry: false
     }
   },
   methods: {
-    login(e) {
+    register() {
       this.error = [];
-      if (this.thename && this.thepass) {
-        console.log("no error");
-
+      if (this.username && this.userpassword) {
+        console.log("Username and password are present");
       }
-      if (!this.thename) {
-        this.error.push("ERROR! User name required.")
-      } else if (!this.validname(this.thename)) {
+      if (!this.username) {
+        this.error.push("ERROR! Username required.");
+      } else if (!this.validName(this.username)) {
         this.error.push('Name must begin with uppercase letter.');
-        console.log(this.thename);
+        console.log("Username is not valid");
       }
 
-      if (!this.thepass) {
+      if (!this.userpassword) {
         this.error.push("ERROR! User password required.")
-      } else if (!this.validpass(this.thepass)) {
+      } else if (!this.validPass(this.userpassword)) {
         this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
-        console.log(this.thepass);
+        console.log("Password is not valid");
       }
 
-
-      console.warn("Hello", this.error);
-      e.preventDefault();
+      if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword){
+        console.log("Everything OK");
+        this.registry = true;
+        this.saveToDatabase();
+      }
     },
 
-    validname: function (name) {
+    validName: function (name) {
       let re = /^(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[A-Za-z]{2,}$/;
       return re.test(name);
     },
 
-    validpass: function (password) {
+    validPass: function (password) {
       let re = /^(?=.*[0-9]+.*)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)[0-9a-zA-Z]{6,}$/;
       return re.test(password);
+    },
+
+    getDate: function () {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let yyyy = today.getFullYear();
+
+      return mm + '-' + dd + '-' + yyyy;
+    },
+
+    async saveToDatabase() {
+      console.log('Starting async');
+      try {
+        let url = 'http://localhost:8081/register/ok'
+        console.log(url)
+        axios.post(url, {
+          headers: {},
+          username: this.username,
+          userpassword: this.userpassword,
+          registered: this.getDate()
+        }).then(res => {
+          console.log(res);
+        }).catch(err => {
+          console.log(err.response);
+        });
+      } catch (error) {
+        console.log('Error in async: ' + error);
+      } finally {
+        console.log('Ending async');
+      }
     }
-
-
   }
 }
 
@@ -93,7 +132,6 @@ export default {
 .back {
   background: linear-gradient(black, #242323, black);
   height: 700px;
-  padding-top: 30px;
 
   min-height: 100vh;
 }
