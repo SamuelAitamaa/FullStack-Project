@@ -12,8 +12,11 @@
     <div class="navItem">
       <router-link to="/profile">Profile</router-link>
     </div>
-    <div class="navItem">
+    <div v-if="isLoggedIn" class="navItem">
       <router-link to="/login">Login</router-link>
+    </div>
+    <div v-else>
+      <router-link to="/" @click ="logout">Logout</router-link>
     </div>
   </div>
 </template>
@@ -29,6 +32,13 @@ export default {
   methods: {
     handleInput: function () {
       this.$emit('input:change', this.input);
+    },
+    logout() {
+      this.$store.dispatch('logout');
+      this.$router.push('/login');
+    },
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn === ''
     }
   }
 }

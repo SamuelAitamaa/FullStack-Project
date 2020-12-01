@@ -6,8 +6,10 @@
     <SearchList :input=this.input />
   </div>
 
-  <h1>User</h1>
   <h2>Settings</h2>
+  <div>
+    <h1>Welcome to MyMovie,  {{ username }} !</h1>
+  </div>
 
   <div v-if="elements.length>0">
     <ul>
@@ -41,6 +43,7 @@ import Nav from "@/components/Nav";
 import Heading from "@/components/Heading";
 import Information from "@/components/Information";
 import SearchList from "@/components/SearchList";
+import AuthService from "@/services/AuthService";
 
 export default {
   name: "Profile",
@@ -55,12 +58,19 @@ export default {
     return {
       input: '',
       elements: {},
+      username: '',
       titles: [
           'Watch Later'
       ]
     }
   },
   created() {
+    if (!this.$store.getters.isLoggedIn) {
+      //await this.$router.push('/login');
+    }
+    this.username = this.$store.getters.getUser.username;
+    this.secretMessage = AuthService.getSecretContent();
+
     this.elements = this.$store.state.movies
   },
   methods: {
