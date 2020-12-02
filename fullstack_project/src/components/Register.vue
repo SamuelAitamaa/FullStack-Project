@@ -1,23 +1,19 @@
 <template>
   <div class="back">
-    <Nav></Nav>
+    <Nav />
     <div class="register">
       <h1>REGISTER</h1>
 
-      <form class="form" @submit="login">
+      <form class="form" @submit.prevent="register">
 
         <label class="test" for="username">Name: </label>
         <input type="text" placeholder="Username" v-model="username" id="username"/>
-        <h3>Must begin with uppercase letter.</h3>
+        <p>Must begin with uppercase letter.</p>
         <br>
 
         <label for="password">Password: </label>
         <input type="password" placeholder="AxAx6x" v-model="userpassword" id="password">
-        <h3>Requires: 6 characters, uppercase letter, lowercase letter, number</h3>
-        <br>
-
-        <label for="password">Repeat password: </label>
-        <input type="password" placeholder="Password (repeat)" v-model="passwordrepeat" id="passwordrepeat">
+        <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
         <br>
 
         <div class="button">
@@ -30,20 +26,16 @@
           <li v-for="e in error" v-bind:key="e.id">
             {{ e }}
           </li>
-          <p v-if="msg">{{ msg }}</p>
         </ul>
       </div>
-
     </div>
   </div>
 
 </template>
 
 <script>
-
-import Nav from './Nav';
-import AuthService from '@/services/AuthService.js';
-
+import Nav from "@/components/Nav";
+import axios from 'axios';
 export default {
   name: 'registration',
   components: {
@@ -53,66 +45,81 @@ export default {
     return {
       username: null,
       userpassword: null,
-      passwordrepeat: null,
-      msg: '',
       error: []
     }
   },
   methods: {
-    login(e) {
+    register() {
       this.error = [];
       if (this.username && this.userpassword) {
-        console.log("no error");
-        console.warn("Hello", this.error);
-        this.signUp();
+        console.log("Username and password are present");
       }
       if (!this.username) {
-        this.error.push("ERROR! User name required.")
-      } else if (!this.validname(this.username)) {
-        this.error.push('Name must begin with uppercase letter.');
-        console.log(this.username);
+        this.error.push("ERROR! Username required.");
+      } else if (!this.validName(this.username)) {
+        this.error.push('Name must begin with uppercase letter and must contain only characters.');
+        console.log("Username is not valid");
       }
 
       if (!this.userpassword) {
         this.error.push("ERROR! User password required.")
-      } else if (!this.validpass(this.userpassword)) {
+      } else if (!this.validPass(this.userpassword)) {
         this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
-        console.log(this.userpassword);
+        console.log("Password is not valid");
       }
 
-      e.preventDefault();
-
-    },
-
-    async signUp()
-    {
-      try {
-        const credentials = {
-          username: this.username,
-          userpassword: this.userpassword,
-          passwordrepeat: this.passwordrepeat,
-        };
-        console.log(credentials);
-        const response = await AuthService.signUp(credentials);
-        this.msg = response.msg;
-
-
-      } catch (error) {
-        this.msg = error.response.data.msg;
+      if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword){
+        console.log("Everything OK");
+        this.saveToDatabase();
       }
     },
 
-    validname: function (name) {
+    validName: function (name) {
       let re = /^(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[A-Za-z]{2,}$/;
       return re.test(name);
     },
 
-    validpass: function (password) {
+    validPass: function (password) {
       let re = /^(?=.*[0-9]+.*)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)[0-9a-zA-Z]{6,}$/;
       return re.test(password);
+    },
+
+    getDate: function () {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, '0');
+      let mm = String(today.getMonth() + 1).padStart(2, '0');
+      let yyyy = today.getFullYear();
+
+      return mm + '-' + dd + '-' + yyyy;
+    },
+
+    async saveToDatabase() {
+      console.log('Starting async');
+      let url;
+      try {
+        url = 'http://localhost:8081/backend/register'
+        console.log(url)
+        axios.post(url, {
+          headers: {},
+          username: this.username,
+          userpassword: this.userpassword,
+          registered: this.getDate()
+        }).then(res => {
+          console.log(res);
+          if(res.data === "Success"){
+            this.error.push('Registration complete!');
+          }else{
+            this.error.push('Username has been taken, please use a different username.');
+          }
+        }).catch(err => {
+          console.log(err.response);
+        });
+      } catch (error) {
+        console.log('Error in async: ' + error);
+      } finally {
+        console.log('Ending async');
+      }
     }
-
-
   }
 }
 
@@ -121,43 +128,43 @@ export default {
 
 
 <style scoped>
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
 .back {
-  background: linear-gradient(to right, black, #242323);
+  background: linear-gradient(black, #242323, black);
   height: 700px;
+
   min-height: 100vh;
 }
 .register {
-  background: linear-gradient(#242323, dimgrey);
+  background: linear-gradient(#242323, grey);
   width: 50%;
   margin-left: 26%;
-  margin-top: 120px;
+  margin-top: 30px;
   height: auto;
-  color: white;
-  padding: 50px 20px 50px 20px;
-  border:3px solid #ebb446 ;
-  border-radius: 7px;
+  color: grey;
+  font-weight: bolder;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
   font-family: 'Monsterrat', sans-serif;
 }
 
-h1, h3{
-  color: white;
-  padding: 20px;
+h1 {
+  background: linear-gradient(#cb48b7, #ebb446);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  font-weight: revert;
 }
 input {
   background: linear-gradient(lightgrey, grey);
-  height: 45px;
-  font-size: 30px;
-  margin-bottom: 2px;
+  height: 20px;
+  font-size: 15px;
+  margin-bottom: 10px;
 }
-label{
-  color: white;
-  font-size: xx-large;
-  font-weight: bolder;
+label {
+  padding-right: 10px;
 }
-
 .form {
   padding: 50px 20px 20px 20px;
   flex-basis: 100px;
@@ -167,19 +174,18 @@ label{
   display: grid;
   align-items: center;
   justify-content: center;
-
 }
 button {
-  font-size: 40px;
+  font-size: 19px;
   font-weight: bold;
   border: 2px grey;
   border-radius: 2px;
   float: left;
-  background:  linear-gradient(orange, #ebb446);
+  background: linear-gradient(#cb48b7, #ebb446);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 5px;
-  cursor: pointer;
+
 }
 button:hover {
   background: linear-gradient(#ebb446, #ebb446);

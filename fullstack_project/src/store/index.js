@@ -1,48 +1,40 @@
+import Vue from "vue";
+import Vuex from "vuex";
+//import createPersistedState from "vuex-persistedstate";
 
-import Vue from 'vue';
-import Vuex from 'vuex';
-import Axios from 'axios';
-import createPersistedState from 'vuex-persistedstate';
 Vue.use(Vuex);
-const getDefaultState = () => {
-    return {
-        token: '',
-        user: {}
-    };
-};
+
 export default new Vuex.Store({
-    strict: true,
-    plugins: [createPersistedState()],
-    state: getDefaultState(),
-    getters: {
-        isLoggedIn: state => {
-            return state.token;
-        },
-        getUser: state => {
-            return state.user;
-        }
+    state: {
+        movies: [],
     },
+    //plugins: [createPersistedState()],
+    getters: {},
     mutations: {
-        SET_TOKEN: (state, token) => {
-            state.token = token;
+        newId(state, payload) {
+            state.movies.push(payload)
         },
-        SET_USER: (state, user) => {
-            state.user = user;
+        deleteID(state, payload) {
+            let index
+            state.movies.find(function(item, i){
+                if(item.id === payload.id){
+                    index = i;
+                    return i;
+                }
+            });
+            state.movies.splice(index, 1)
         },
-        RESET: state => {
-            Object.assign(state, getDefaultState());
+
+        deleteFromProfile(state, payload) {
+            let index
+            state.movies.find(function(item, i){
+                if(item.id === payload){
+                    index = i;
+                    return i;
+                }
+            });
+            state.movies.splice(index, 1)
         }
     },
-    actions: {
-        login: ({ commit, dispatch }, { token, user }) => {
-            commit('SET_TOKEN', token);
-            commit('SET_USER', user);
-            // set auth header
-            Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            console.log(dispatch);
-        },
-        logout: ({ commit }) => {
-            commit('RESET', '');
-        }
-    }
+    actions: {}
 });

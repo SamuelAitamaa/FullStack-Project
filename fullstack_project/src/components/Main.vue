@@ -1,4 +1,3 @@
-
 <template>
   <div class="main">
     <Nav @input:change="inputChange" />
@@ -8,7 +7,7 @@
     </div>
     <div class="mainContainer" v-if="this.input.length === 0">
       <div v-for="(title, index) in this.titles" :key="title">
-        <Heading v-bind:title="titles[index]" v-bind:search="false" />
+        <Heading v-bind:title="titles[index]" v-bind:search="false" v-bind:profile="false" />
         <MovieList v-bind:id="titles[index]" v-bind:genre="genres[index]" />
       </div>
     </div>
@@ -20,7 +19,6 @@ import Nav from "@/components/Nav";
 import MovieList from "@/components/MovieList";
 import SearchList from "@/components/SearchList";
 import Heading from "@/components/Heading";
-
 export default {
   name: "Main",
   components: {
@@ -33,12 +31,12 @@ export default {
     return {
       input: '',
       titles: [
-          "Trending", "Horror", "Fantasy", "Comedy",
-          "Drama", "Action", "Adventure",
-          "Romance", "Documentary", "Crime"
+        "Trending", "Horror", "Fantasy", "Comedy",
+        "Drama", "Action", "Adventure",
+        "Romance", "Documentary", "Crime"
       ],
       genres: [
-          0, 27, 14, 35, 18, 28, 12, 10749, 99, 80
+        0, 27, 14, 35, 18, 28, 12, 10749, 99, 80
       ]
     }
   },
@@ -59,5 +57,4 @@ export default {
   padding: 20px;
   transition: .2s ease-in-out;
 }
-
 </style>

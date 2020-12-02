@@ -3,8 +3,8 @@
     <div class="heading">
       <div class="headingItem" v-if="search"><h1>Searching: {{ this.title }}</h1></div>
       <div class="headingItem" v-else><h1>{{ this.title }}</h1></div>
-      <div class="headingItem" v-if="!search"><button v-on:click="scrollLeft">&lt;</button></div>
-      <div class="headingItem" v-if="!search"><button v-on:click="scrollRight">&gt;</button></div>
+      <div class="headingItem" v-if="!search && !profile"><button v-on:click="scrollLeft">&lt;</button></div>
+      <div class="headingItem" v-if="!search && !profile"><button v-on:click="scrollRight">&gt;</button></div>
     </div>
   </header>
 </template>
@@ -16,16 +16,19 @@ export default {
   name: "Heading",
   props: {
     title: String,
-    search: Boolean
+    search: Boolean,
+    profile: Boolean
   },
   methods: {
     scrollRight: function () {
+      console.log('Scrolling right...');
       let list = document.getElementById(this.title);
-      list.firstChild.scrollLeft += 2000;
+      list.firstChild.scrollLeft += window.innerWidth;
     },
     scrollLeft: function () {
+      console.log('Scrolling left...');
       let list = document.getElementById(this.title);
-      list.firstChild.scrollLeft -= 2000;
+      list.firstChild.scrollLeft -= window.innerWidth;
     }
   }
 }
