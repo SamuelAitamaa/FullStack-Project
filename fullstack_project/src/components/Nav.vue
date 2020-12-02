@@ -93,11 +93,31 @@ input:focus{
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
+
 }
 #nav a.router-link-exact-active {
   color: #ebb446;
 }
 #nav a:hover{
   color: #bf4b91;
+}
+
+button {
+  font-size: 19px;
+  font-weight: bold;
+  border: 2px grey;
+  border-radius: 2px;
+  background: #ebb446;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 5px;
+  cursor: pointer;
+  padding-top: 8px;
+
+}
+button:hover {
+  background: #bf4b91;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>
