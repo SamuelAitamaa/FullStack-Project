@@ -28,6 +28,36 @@ con.connect(function (err){
     console.log("Connected to MySQL!")
 });
 
+// http://localhost:8081/backend/getList
+app.get("/backend/getList", function (req, res){
+    console.log('Get request on /backend/getList');
+    console.log('params: %j', req.query);
+    let json = req.query;
+    let sql;
+    (async () => {
+        console.log('Starting async');
+        try{
+            sql = `SELECT media_id, media_type FROM list WHERE user_id LIKE "${json.user_id}"`;
+            let resultList = await query(sql);
+
+            resultList = JSON.parse(JSON.stringify(resultList));
+            console.log(resultList)
+
+            let medias = []
+            resultList.forEach(element => {
+                medias.push(element.media_id + element.media_type);
+            })
+
+            res.send(`${medias}`);
+        }catch(err){
+            console.log("Database error: " + err);
+            res.send('Error');
+        }finally {
+            console.log('Ending async');
+        }
+    })()
+})
+
 // http://localhost:8081/backend/login
 app.post("/backend/login", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/login');

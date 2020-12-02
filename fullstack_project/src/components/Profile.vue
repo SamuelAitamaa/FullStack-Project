@@ -38,6 +38,7 @@ import Nav from "@/components/Nav";
 import Heading from "@/components/Heading";
 import Information from "@/components/Information";
 import SearchList from "@/components/SearchList";
+import axios from 'axios';
 export default {
   name: "Profile",
   components: {
@@ -56,11 +57,31 @@ export default {
       ]
     }
   },
-  created() {
+  mounted() {
     if(this.$store.state.user === null){
       this.$router.push("/login");
     }
-    this.elements = this.$store.state.movies
+    let list = this.$store.state.dbList;
+    console.log('list: '+ list)
+    let url, movies = [];
+    for(let i = 0; i < list.length; i++) {
+      console.log(list[i].replace(/[0-9]/g, "") === "tv")
+      if(list[i].replace(/[0-9]/g, "") === "tv"){
+        console.log('TEEVEE')
+        url = `https://api.themoviedb.org/3/tv/${list[i].replace(/\D/g, "")}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`;
+      } else {
+        console.log('MUUVII')
+        url = `https://api.themoviedb.org/3/movie/${list[i].replace(/\D/g, "")}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`;
+      }
+      axios.get(url).then(res => {
+        movies.push(res.data);
+      }).catch(err => {
+        console.log('Error ' + err);
+      })
+    }
+    console.log('movies: '+movies)
+    this.elements = movies;
+    this.$store.state.movies = movies
   },
   methods: {
     inputChange(emit){

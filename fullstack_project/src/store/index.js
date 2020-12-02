@@ -8,6 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         movies: [],
+        dbList: Array,
         user: Object
     },
     plugins: [createPersistedState({
@@ -23,12 +24,20 @@ export default new Vuex.Store({
             state.user = null;
             console.log(state.user)
         },
+        saveMediaList(state, payload){
+            state.dbList = payload
+        },
         saveMedia(state, payload) {
             state.movies.push(payload)
             let url;
             try {
                 url = 'http://localhost:8081/backend/savetodb'
                 console.log(url)
+                if(payload.media_type === undefined && payload.title === undefined){
+                    payload.media_type = "tv";
+                }else if(payload.media_type === undefined && payload.name === undefined){
+                    payload.media_type = "movie";
+                }
                 axios.post(url, {
                     headers: {},
                     media_id: payload.id,
