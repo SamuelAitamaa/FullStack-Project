@@ -70,7 +70,7 @@ export default {
 
       if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword){
         console.log("Everything OK");
-        this.saveToDatabase();
+        this.saveUserToDatabase();
       }
     },
 
@@ -93,8 +93,7 @@ export default {
       return mm + '-' + dd + '-' + yyyy;
     },
 
-    async saveToDatabase() {
-      console.log('Starting async');
+    async saveUserToDatabase() {
       let url;
       try {
         url = 'http://localhost:8081/backend/register'
@@ -116,8 +115,6 @@ export default {
         });
       } catch (error) {
         console.log('Error in async: ' + error);
-      } finally {
-        console.log('Ending async');
       }
     }
   }
