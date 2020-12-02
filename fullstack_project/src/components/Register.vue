@@ -71,6 +71,7 @@ export default {
       if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword){
         console.log("Everything OK");
         this.saveUserToDatabase();
+
       }
     },
 
@@ -107,6 +108,7 @@ export default {
           console.log(res);
           if(res.data === "Success"){
             this.error.push('Registration complete!');
+            this.$router.push("/login");
           }else{
             this.error.push('Username has been taken, please use a different username.');
           }
