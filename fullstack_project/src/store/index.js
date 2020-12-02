@@ -8,6 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         movies: [],
+        dbList: Array,
         user: Object
     },
     plugins: [createPersistedState({
@@ -23,12 +24,20 @@ export default new Vuex.Store({
             state.user = null;
             console.log(state.user)
         },
+        saveMediaList(state, payload){
+            state.dbList = payload
+        },
         saveMedia(state, payload) {
             state.movies.push(payload)
             let url;
             try {
                 url = 'http://localhost:8081/backend/savetodb'
                 console.log(url)
+                if(payload.media_type === undefined && payload.title === undefined){
+                    payload.media_type = "tv";
+                }else if(payload.media_type === undefined && payload.name === undefined){
+                    payload.media_type = "movie";
+                }
                 axios.post(url, {
                     headers: {},
                     media_id: payload.id,
@@ -79,14 +88,34 @@ export default new Vuex.Store({
             }
         },
         deleteFromProfile(state, payload) {
-            let index
+            let index, id;
             state.movies.find(function(item, i){
                 if(item.id === payload){
+                    id = item.id;
                     index = i;
                     return i;
                 }
             });
             state.movies.splice(index, 1)
+            let url;
+            try {
+                url = 'http://localhost:8081/backend/deletefromdb'
+                console.log(url)
+                axios.delete(url, {
+                    data: { media_id: id }
+                }).then(res => {
+                    console.log(res);
+                    if(res.data === "Success"){
+                        console.log('Deleting media from db complete!');
+                    }else{
+                        console.log('Deleting media from db was unsuccessful.');
+                    }
+                }).catch(err => {
+                    console.log(err.response);
+                });
+            } catch (error) {
+                console.log('Error in async: ' + error);
+            }
         }
     },
     actions: {}

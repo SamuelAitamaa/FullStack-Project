@@ -47,7 +47,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&display=swap');
 #nav {
   padding: 10px;
-  background: #171616;
+  background: linear-gradient(black, #171616);
 
   display: flex;
   justify-content: flex-end;
