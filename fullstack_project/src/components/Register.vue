@@ -8,7 +8,7 @@
 
         <label class="test" for="username">Name: </label>
         <input type="text" placeholder="Username" v-model="username" id="username"/>
-        <p>Must begin with uppercase letter. No special characters.</p>
+        <p>Must begin with uppercase letter. Must contain at least two letters. No special characters.</p>
         <br>
 
         <label for="password">Password: </label>
@@ -57,7 +57,7 @@ export default {
       if (!this.username) {
         this.error.push("ERROR! Username required.");
       } else if (!this.validName(this.username)) {
-        this.error.push('Name must begin with uppercase letter and must contain only characters and numbers.');
+        this.error.push('Name must begin with uppercase letter. Must contain at least two characters. NO SPECIAL CHARACTERS.');
         console.log("Username is not valid");
       }
 
@@ -76,7 +76,7 @@ export default {
     },
 
     validName: function (name) {
-      let re = /^(?=.*[0-9]+.*)(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[0-9A-Za-z]{2,}$/;
+      let re = /^(?=.*[A-Z]+.*)[0-9A-Za-z]{2,}$/;
       return re.test(name);
     },
 
