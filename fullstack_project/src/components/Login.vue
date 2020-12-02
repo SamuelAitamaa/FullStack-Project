@@ -127,31 +127,39 @@ export default {
   min-height: 100vh;
 }
 .login {
-  background: linear-gradient(#242323, grey);
+  background-color: #171616;
+  border: 2px solid #ebb446 ;
+  border-radius: 3px;
   width: 50%;
   margin-left: 26%;
-  margin-top: 30px;
+  margin-top: 20vh;
   height: auto;
-  color: grey;
-  font-weight: bolder;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 
   font-family: 'Monsterrat', sans-serif;
 }
+label{
+  color:  #ebb446;
+  font-size: 28px;
+}
+
 h1 {
-  background: linear-gradient(#cb48b7, #ebb446);
+  background: linear-gradient(#ebb446 , #ebb442);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 20px;
+  font-size: 35px;
   font-weight: revert;
 }
 input {
-  background: linear-gradient(lightgrey, grey);
-  height: 20px;
-  font-size: 15px;
+  color:#ebb446;
+  background-color: #242323;
+  height: 30px;
+  font-size: 25px;
   margin-bottom: 2px;
+  border-bottom: 2px solid white;
 }
+
 .form {
   padding: 50px 20px 5px 20px;
   flex-basis: 100px;
@@ -161,6 +169,7 @@ input {
   display: grid;
   align-items: center;
   justify-content: center;
+  margin-top: 30px;
 }
 button {
   font-size: 19px;
@@ -168,14 +177,15 @@ button {
   border: 2px grey;
   border-radius: 2px;
   float: left;
-  background: linear-gradient(#cb48b7, #ebb446);
+  background: #ebb446;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 5px;
+  cursor: pointer;
 
 }
 button:hover {
-  background: linear-gradient(#ebb446, #ebb446);
+  background: #bf4b91;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -185,20 +195,21 @@ button:hover {
   border: 2px grey;
   border-radius: 2px;
   float: left;
-  background: linear-gradient(#cb48b7, #ebb446);
+  background: linear-gradient(#ebb446, #ebb442);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: none;
 }
 #link:hover {
-  background: linear-gradient(#ebb446, #ebb446);
+  background: #bf4b91;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 p {
-  font-size: small;
-  color: darkgray;
+  font-size: 20px;
+  color:#ebb446;
   font-weight: lighter;
+
 }
 ul.no-bullets {
   list-style-type: none;
