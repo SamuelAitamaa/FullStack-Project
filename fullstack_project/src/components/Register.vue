@@ -8,12 +8,12 @@
 
         <label class="test" for="username">Name: </label>
         <input type="text" placeholder="Username" v-model="username" id="username"/>
-        <p>Must begin with uppercase letter.</p>
+        <p>Must begin with uppercase letter. No special characters.</p>
         <br>
 
         <label for="password">Password: </label>
         <input type="password" placeholder="AxAx6x" v-model="userpassword" id="password">
-        <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
+        <p>Requires: 6 characters, uppercase letter, lowercase letter, number. No special characters.</p>
         <br>
 
         <div class="button">
@@ -57,14 +57,14 @@ export default {
       if (!this.username) {
         this.error.push("ERROR! Username required.");
       } else if (!this.validName(this.username)) {
-        this.error.push('Name must begin with uppercase letter and must contain only characters.');
+        this.error.push('Name must begin with uppercase letter and must contain only characters and numbers.');
         console.log("Username is not valid");
       }
 
       if (!this.userpassword) {
         this.error.push("ERROR! User password required.")
       } else if (!this.validPass(this.userpassword)) {
-        this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
+        this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters. NO SPECIAL CHARACTERS.');
         console.log("Password is not valid");
       }
 
@@ -75,7 +75,7 @@ export default {
     },
 
     validName: function (name) {
-      let re = /^(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[A-Za-z]{2,}$/;
+      let re = /^(?=.*[0-9]+.*)(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[0-9A-Za-z]{2,}$/;
       return re.test(name);
     },
 
@@ -120,7 +120,7 @@ export default {
   }
 }
 
-
+//  color: rgba(180, 151, 43, 0.83);
 </script>
 
 
@@ -161,10 +161,19 @@ h1 {
 input {
   color:#ebb446;
   background-color: #242323;
-  height: 30px;
+  height: 35px;
   font-size: 25px;
   margin-bottom: 2px;
-  border-bottom: 2px solid white;
+  border-radius: 5px;
+  outline: none;
+  transition: .2s ease-in-out;
+  padding-left: 5px;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ebb446;
+  -webkit-box-shadow: 0 0 0px 1000px #242323 inset;
 }
 .form {
   padding: 50px 20px 20px 20px;
@@ -204,8 +213,9 @@ ul.no-bullets {
   -webkit-text-fill-color: transparent;
 }
 p {
-  font-size: 20px;
-  color:#ebb446;
+  margin-top: 10px;
+  font-size: 15px;
+  color: rgba(180, 151, 43, 0.83);
   font-weight: lighter;
 
 }
