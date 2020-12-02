@@ -160,8 +160,11 @@ input {
   height: 30px;
   font-size: 25px;
   margin-bottom: 2px;
-  border-bottom: 2px solid white;
+  border-radius: 5px;
+  outline: none;
+  transition: .2s ease-in-out;
 }
+
 
 .form {
   padding: 50px 20px 5px 20px;
@@ -208,12 +211,7 @@ button:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-p {
-  font-size: 20px;
-  color:#ebb446;
-  font-weight: lighter;
 
-}
 ul.no-bullets {
   list-style-type: none;
   padding: 0;
@@ -221,5 +219,13 @@ ul.no-bullets {
   background: linear-gradient(to right, #ebb446, orange);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+p {
+  margin-top: 10px;
+  font-size: 15px;
+  color: rgba(180, 151, 43, 0.83);
+  font-weight: lighter;
+
 }
 </style>
