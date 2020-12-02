@@ -4,8 +4,8 @@
       <li v-for="element in this.elements" :key="element.id">
         <div class="movie">
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
-          <button v-if="!checkList(element)" @click="addToList(element)" class="imgBtn">+</button>
-          <button v-else @click="deleteFromList(element)" class="imgBtn">-</button>
+          <button v-if="!checkList(element) && !hideBtn()" @click="addToList(element)" class="imgBtn">+</button>
+          <button v-if="checkList(element) && !hideBtn()" @click="deleteFromList(element)" class="imgBtn">-</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
@@ -94,8 +94,11 @@ export default {
       this.$store.commit("saveMedia", element)
     },
     checkList(element) {
-      let store = JSON.stringify(this.$store.state.movies)
+      let store = JSON.stringify(this.$store.state.movies);
       return store.includes(JSON.stringify(element.id)) && (store.includes(JSON.stringify(element.title)) || (store.includes(JSON.stringify(element.name))))
+    },
+    hideBtn: function () {
+      return this.$store.state.user === null;
     },
     deleteFromList(element) {
       this.$store.commit("deleteMedia", element)
