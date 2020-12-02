@@ -24,15 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/lib/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/lib/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/index2.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/index2.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +97,8 @@
       <workItem from="1606372971571" duration="215000" />
       <workItem from="1606375653525" duration="15081000" />
       <workItem from="1606461077094" duration="16484000" />
-      <workItem from="1606735914194" duration="10097000" />
+      <workItem from="1606735914194" duration="10411000" />
+      <workItem from="1606807240514" duration="1757000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
