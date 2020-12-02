@@ -44,12 +44,12 @@ app.post("/backend/login", urlEncodedParser, function (req, res){
             let resultPassword = await query(sql);
 
             if(resultUser.length === 1 && resultPassword.length === 1){
-                sql = `SELECT id FROM users WHERE password LIKE "${json.userpassword}"`;
-                let resultId = await query(sql);
-                resultId = JSON.parse(JSON.stringify(resultId));
-                console.log(resultId)
+                sql = `SELECT id, username FROM users WHERE password LIKE "${json.userpassword}"`;
+                let result = await query(sql);
+                result = JSON.parse(JSON.stringify(result));
+                console.log(result)
 
-                res.send('User ID: ' + resultId[0].id);
+                res.send(`${result[0].id} ${result[0].username}`);
             }else{
                 res.send('Error');
             }

@@ -12,8 +12,11 @@
     <div class="navItem">
       <router-link to="/profile">Profile</router-link>
     </div>
-    <div class="navItem">
+    <div class="navItem" v-if="this.$store.state.user === null">
       <router-link to="/login">Login</router-link>
+    </div>
+    <div class="navItem" v-if="this.$store.state.user !== null">
+      <button @click="logout">Logout</button>
     </div>
   </div>
 </template>
@@ -29,6 +32,9 @@ export default {
   methods: {
     handleInput: function () {
       this.$emit('input:change', this.input);
+    },
+    logout: function () {
+      this.$store.commit('delUser');
     }
   }
 }

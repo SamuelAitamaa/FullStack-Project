@@ -1,7 +1,7 @@
 <template>
   <div class="back">
     <Nav />
-    <div class="login">
+    <div class="login" v-if="this.$store.state.user === null">
       <h1>LOG IN</h1>
 
       <form class="form" @submit.prevent="login">
@@ -30,7 +30,9 @@
           </li>
         </ul>
       </div>
-
+    </div>
+    <div class="loggedIn" v-if="this.$store.state.user !== null">
+      <h1>You're logged in!</h1>
     </div>
   </div>
 </template>
@@ -49,6 +51,7 @@ export default {
       username: null,
       userpassword: null,
       error: [],
+      id: ''
     }
   },
   methods: {
@@ -102,8 +105,10 @@ export default {
           if(res.data === "Error"){
             this.error.push('Login unsuccessful, please check your username or password...');
           }else{
-            let id = res.data;
-            this.error.push('Login successful! ' + id);
+            let result = res.data;
+            result = result.split(" ");
+            this.error.push('Login successful! Your ID is: ' + result[0]);
+            this.$store.commit("user", JSON.parse(JSON.stringify(result)));
           }
         }).catch(err => {
           console.log(err.response);
