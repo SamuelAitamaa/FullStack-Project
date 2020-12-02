@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.back {
+  background: linear-gradient(black, #242323, black);
+  height: 700px;
+
+  min-height: 100vh;
+}
+.register {
+  background-color: #171616;
+  border: 2px solid #ebb446 ;
+  border-radius: 3px;
+  width: 50%;
+  margin-left: 26%;
+  margin-top: 20vh;
+  height: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  font-family: 'Monsterrat', sans-serif;
+}
+
+label{
+  color:  #ebb446;
+  font-size: 28px;
+}
+
+h1 {
+  background: linear-gradient(#ebb446 , #ebb442);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 35px;
+  font-weight: revert;
+}
+input {
+  color:#ebb446;
+  background-color: #242323;
+  height: 30px;
+  font-size: 25px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  outline: none;
+  transition: .2s ease-in-out;
+}
+
+.form {
+  padding: 50px 20px 20px 20px;
+  flex-basis: 100px;
+  font-size: 19px;
+}
+.button {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+button {
+  font-size: 19px;
+  font-weight: bold;
+  border: 2px grey;
+  border-radius: 2px;
+  float: left;
+  background: #ebb446;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 5px;
+  cursor: pointer;
+
+}
+button:hover {
+  background: #bf4b91;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+ul.no-bullets {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #ebb446, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+p {
+  margin-top: 10px;
+  font-size: 15px;
+  color: rgba(180, 151, 43, 0.83);
+  font-weight: lighter;
+
+}
+
+
+-------------login---------------
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.back {
+  background: linear-gradient(black, #242323, black);
+  height: 700px;
+  min-height: 100vh;
+}
+.login {
+  background-color: #171616;
+  border: 2px solid #ebb446 ;
+  border-radius: 3px;
+  width: 50%;
+  margin-left: 26%;
+  margin-top: 20vh;
+  height: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  font-family: 'Monsterrat', sans-serif;
+}
+label{
+  color:  #ebb446;
+  font-size: 28px;
+}
+
+h1 {
+  background: linear-gradient(#ebb446 , #ebb442);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 35px;
+  font-weight: revert;
+}
+input {
+  color:#ebb446;
+  background-color: #242323;
+  height: 30px;
+  font-size: 25px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  outline: none;
+  transition: .2s ease-in-out;
+}
+
+
+.form {
+  padding: 50px 20px 5px 20px;
+  flex-basis: 100px;
+  font-size: 19px;
+}
+.button {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+button {
+  font-size: 19px;
+  font-weight: bold;
+  border: 2px grey;
+  border-radius: 2px;
+  float: left;
+  background: #ebb446;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-bottom: 5px;
+  cursor: pointer;
+
+}
+button:hover {
+  background: #bf4b91;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#link {
+  font-size: 19px;
+  font-weight: bold;
+  border: 2px grey;
+  border-radius: 2px;
+  float: left;
+  background: linear-gradient(#ebb446, #ebb442);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+#link:hover {
+  background: #bf4b91;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+ul.no-bullets {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #ebb446, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  margin-top: 10px;
+     font-size: 15px;
+     color: rgba(180, 151, 43, 0.83);
+     font-weight: lighter;
+
+   }

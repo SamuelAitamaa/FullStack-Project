@@ -8,12 +8,12 @@
 
         <label for="username">Name: </label>
         <input type="text" placeholder="Username" v-model="username" id="username"/>
-        <p>Must begin with uppercase letter.</p>
+        <p class="requires">Must begin with uppercase letter.</p>
         <br>
 
         <label for="password">Password: </label>
         <input type="password" placeholder="AxAx6x" v-model="userpassword" id="password">
-        <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
+        <p class="requires">Requires: 6 characters, uppercase letter, lowercase letter, number</p>
         <br>
 
         <div class="button">
@@ -157,8 +157,11 @@ input {
   height: 30px;
   font-size: 25px;
   margin-bottom: 2px;
-  border-bottom: 2px solid white;
+  border-radius: 5px;
+  outline: none;
+  transition: .2s ease-in-out;
 }
+
 
 .form {
   padding: 50px 20px 5px 20px;
@@ -205,12 +208,7 @@ button:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-p {
-  font-size: 20px;
-  color:#ebb446;
-  font-weight: lighter;
 
-}
 ul.no-bullets {
   list-style-type: none;
   padding: 0;
@@ -219,4 +217,12 @@ ul.no-bullets {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+p {
+  margin-top: 10px;
+     font-size: 15px;
+     color: rgba(180, 151, 43, 0.83);
+     font-weight: lighter;
+
+   }
 </style>
