@@ -57,6 +57,9 @@ export default {
     }
   },
   created() {
+    if(this.$store.state.user === null){
+      this.$router.push("/login");
+    }
     this.elements = this.$store.state.movies
   },
   methods: {
@@ -71,9 +74,7 @@ export default {
       }else{
         element.style.display = 'none';
       }
-    },
-    clearList() {
-    },
+    }
   }
 }
 </script>

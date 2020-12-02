@@ -1,7 +1,7 @@
 <template>
   <div class="back">
     <Nav />
-    <div class="login" v-if="this.$store.state.user === null">
+    <div class="login">
       <h1>LOG IN</h1>
 
       <form class="form" @submit.prevent="login">
@@ -31,9 +31,6 @@
         </ul>
       </div>
     </div>
-    <div class="loggedIn" v-if="this.$store.state.user !== null">
-      <h1>You're logged in!</h1>
-    </div>
   </div>
 </template>
 
@@ -50,9 +47,12 @@ export default {
     return {
       username: null,
       userpassword: null,
-      error: [],
-      id: ''
+      error: []
     }
+  },
+  created: function () {
+    if (this.$store.state.user !== null)
+      this.$router.push("/profile");
   },
   methods: {
     login() {
@@ -91,7 +91,6 @@ export default {
     },
 
     async logIntoSite() {
-      console.log('Starting async');
       let url;
       try {
         url = 'http://localhost:8081/backend/login'
@@ -109,14 +108,13 @@ export default {
             result = result.split(" ");
             this.error.push('Login successful! Your ID is: ' + result[0]);
             this.$store.commit("user", JSON.parse(JSON.stringify(result)));
+            this.$router.push("/profile");
           }
         }).catch(err => {
           console.log(err.response);
         });
       } catch (error) {
         console.log('Error in async: ' + error);
-      } finally {
-        console.log('Ending async');
       }
     }
   }

@@ -76,7 +76,7 @@ export default {
     },
   methods: {
     addToList(element) {
-      this.$store.commit("newId", element)
+      this.$store.commit("saveMedia", element)
     },
     deleteFromList(id) {
       this.$store.commit("deleteFromProfile", id)

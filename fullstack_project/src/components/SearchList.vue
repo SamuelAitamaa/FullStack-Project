@@ -60,14 +60,14 @@ export default {
       }
     },
     addToList(element) {
-      this.$store.commit("newId", element)
+      this.$store.commit("saveMedia", element)
     },
     checkList(element) {
       let store = JSON.stringify(this.$store.state.movies)
       return store.includes(JSON.stringify(element.id)) && (store.includes(JSON.stringify(element.title)) || (store.includes(JSON.stringify(element.name))))
     },
     deleteFromList(element) {
-      this.$store.commit("deleteID", element)
+      this.$store.commit("deleteMedia", element)
     }
   }
 }

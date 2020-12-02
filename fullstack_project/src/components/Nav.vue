@@ -35,6 +35,9 @@ export default {
     },
     logout: function () {
       this.$store.commit('delUser');
+      if(this.$router.currentRoute.path !== "/"){
+        this.$router.push("/");
+      }
     }
   }
 }
