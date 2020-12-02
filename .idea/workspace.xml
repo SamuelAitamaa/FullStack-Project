@@ -24,19 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/fullstack_project/lib/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/lib/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/views/Home.vue" afterDir="false" />
->>>>>>> frontend
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +37,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -64,16 +55,25 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../vuemainpage" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/AMK/Web-sovelluskehitys/WebstormExercises/WebstormExercises" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Node.js.index2.js">
-    <configuration name="index2.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/fullstack_project/src/index2.js" working-dir="$PROJECT_DIR$/fullstack_project/src">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Vue Apps\fullstack_project\FullStack-Project\fullstack_project\src\backend" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Node.js.server.js">
+    <configuration name="db.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/fullstack_project/src/backend/db.js" working-dir="$PROJECT_DIR$/fullstack_project/src">
       <method v="2" />
     </configuration>
-    <configuration name="main.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/fullstack_project/src/main.js" working-dir="$PROJECT_DIR$/fullstack_project/src">
+    <configuration name="server.js (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/fullstack_project/server.js" working-dir="$PROJECT_DIR$/fullstack_project">
+      <method v="2" />
+    </configuration>
+    <configuration name="server.js (2)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/fullstack_project/src/backend/server.js" working-dir="$PROJECT_DIR$/fullstack_project/src/backend">
       <method v="2" />
     </configuration>
     <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/fullstack_project/src/server.js" working-dir="$PROJECT_DIR$/fullstack_project/src">
@@ -81,13 +81,14 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.index2.js" />
-        <item itemvalue="Node.js.main.js" />
         <item itemvalue="Node.js.server.js" />
+        <item itemvalue="Node.js.server.js (2)" />
+        <item itemvalue="Node.js.db.js" />
+        <item itemvalue="Node.js.server.js (1)" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -107,13 +108,20 @@
       <workItem from="1606201760698" duration="10110000" />
       <workItem from="1606331281172" duration="1598000" />
       <workItem from="1606372971571" duration="215000" />
-<<<<<<< HEAD
-      <workItem from="1606374320029" duration="13497000" />
-=======
-      <workItem from="1606375653525" duration="15081000" />
-      <workItem from="1606461077094" duration="16484000" />
-      <workItem from="1606735914194" duration="10097000" />
->>>>>>> frontend
+      <workItem from="1606374320029" duration="20267000" />
+      <workItem from="1606412455137" duration="9112000" />
+      <workItem from="1606422112787" duration="3445000" />
+      <workItem from="1606727253089" duration="7968000" />
+      <workItem from="1606412455137" duration="8913000" />
+      <workItem from="1606412455137" duration="8913000" />
+      <workItem from="1606412455137" duration="8913000" />
+      <workItem from="1606746713291" duration="75000" />
+      <workItem from="1606751970510" duration="904000" />
+      <workItem from="1606753631766" duration="1260000" />
+      <workItem from="1606813111547" duration="17114000" />
+      <workItem from="1606838066962" duration="8138000" />
+      <workItem from="1606858506130" duration="326000" />
+      <workItem from="1606896506350" duration="3808000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
@@ -135,20 +143,19 @@
     <option name="startingDirectory" value="$PROJECT_DIR$/fullstack_project" />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Vue Router" />
@@ -156,42 +163,41 @@
     <option name="LAST_COMMIT_MESSAGE" value="grey div" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606830969426">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606830969426" />
     <state x="265" y="0" key="CommitChangelistDialog2" timestamp="1605779221284">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="265" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1605779221284" />
-<<<<<<< HEAD
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606383279573">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606841455017">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606383279573" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1605771966690">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606841455017" />
+    <state width="1899" height="172" key="GridCell.Tab.0.bottom" timestamp="1606901628778">
       <screen x="0" y="0" width="1920" height="1040" />
-=======
-    <state width="716" height="138" key="GridCell.Tab.0.bottom" timestamp="1606746636803">
-      <screen x="0" y="0" width="1280" height="680" />
->>>>>>> frontend
     </state>
-    <state width="716" height="138" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1606746636803" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1605771966690" />
-    <state width="716" height="138" key="GridCell.Tab.0.center" timestamp="1606746636803">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1899" height="172" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606901628778" />
+    <state width="1899" height="172" key="GridCell.Tab.0.center" timestamp="1606901628778">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="716" height="138" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1606746636803" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1605771966690" />
-    <state width="716" height="138" key="GridCell.Tab.0.left" timestamp="1606746636803">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1899" height="172" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606901628778" />
+    <state width="1899" height="172" key="GridCell.Tab.0.left" timestamp="1606901628777">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="716" height="138" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1606746636803" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1605771966690" />
-    <state width="716" height="138" key="GridCell.Tab.0.right" timestamp="1606746636803">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1899" height="172" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606901628777" />
+    <state width="1899" height="172" key="GridCell.Tab.0.right" timestamp="1606901628778">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="716" height="138" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1606746636803" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1605771966690" />
+    <state width="1899" height="172" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606901628778" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605772289753">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1605772289753" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1606819725890">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606819725890" />
   </component>
 </project>

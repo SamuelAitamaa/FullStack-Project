@@ -1,40 +1,23 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import createPersistedState from "vuex-persistedstate";
-import Axios from 'axios';
+//import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
-const getDefaultState = () => {
-    return {
-        token: '',
-        user: {},
-        movies: []
-    };
-};
 export default new Vuex.Store({
-    state: getDefaultState,
-    plugins: [createPersistedState({
-        //storage: window.sessionStorage,
-        key: 'lol'
-    })],
-    getters: {
-        isLoggedIn: state => {
-            return state.token;
-        },
-        getUser: state => {
-            return state.user;
-        }
+    state: {
+        movies: [],
+        user: Object
     },
+    //plugins: [createPersistedState()],
+    getters: {},
     mutations: {
-        SET_TOKEN: (state, token) => {
-            state.token = token;
+        user(state, payload){
+            state.user = payload;
+            console.log(state.user)
         },
-        SET_USER: (state, user) => {
-            state.user = user;
-        },
-        RESET: state => {
-            Object.assign(state, getDefaultState());
+        delUser(state){
+            state.user = null;
         },
         newId(state, payload) {
             state.movies.push(payload)
@@ -60,16 +43,5 @@ export default new Vuex.Store({
             state.movies.splice(index, 1)
         }
     },
-    actions: {
-        login: ({ commit, dispatch }, { token, user }) => {
-            commit('SET_TOKEN', token);
-            commit('SET_USER', user);
-            // set auth header
-            Axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            console.log(dispatch);
-        },
-        logout: ({ commit }) => {
-            commit('RESET', '');
-        }
-    }
+    actions: {}
 });

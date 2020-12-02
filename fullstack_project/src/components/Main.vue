@@ -1,4 +1,3 @@
-
 <template>
   <div class="main">
     <Nav @input:change="inputChange" />
@@ -20,7 +19,6 @@ import Nav from "@/components/Nav";
 import MovieList from "@/components/MovieList";
 import SearchList from "@/components/SearchList";
 import Heading from "@/components/Heading";
-
 export default {
   name: "Main",
   components: {
@@ -33,12 +31,12 @@ export default {
     return {
       input: '',
       titles: [
-          "Trending", "Horror", "Fantasy", "Comedy",
-          "Drama", "Action", "Adventure",
-          "Romance", "Documentary", "Crime"
+        "Trending", "Horror", "Fantasy", "Comedy",
+        "Drama", "Action", "Adventure",
+        "Romance", "Documentary", "Crime"
       ],
       genres: [
-          0, 27, 14, 35, 18, 28, 12, 10749, 99, 80
+        0, 27, 14, 35, 18, 28, 12, 10749, 99, 80
       ]
     }
   },
@@ -59,5 +57,4 @@ export default {
   padding: 20px;
   transition: .2s ease-in-out;
 }
-
 </style>

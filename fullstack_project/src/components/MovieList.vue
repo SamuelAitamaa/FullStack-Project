@@ -1,36 +1,29 @@
 <template>
   <div class="movieList">
-    <ul v-dragscroll.x>
+    <ul>
       <li v-for="element in this.elements" :key="element.id">
         <div class="movie">
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
-          <button v-if="!checkList(element)" @click="addToList(element)" class="plus">+</button>
-          <button v-else @click="deleteFromList(element)" class="plus">-</button>
+          <button v-if="!checkList(element)" @click="addToList(element)" class="imgBtn">+</button>
+          <button v-else @click="deleteFromList(element)" class="imgBtn">-</button>
           <div class="text">
             <h2>{{ element.title }} {{ element.name }}</h2>
           </div>
+          <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
+                       @hide:info="changeInfoVisibility"/>
         </div>
       </li>
     </ul>
-    <div v-for="element in this.elements" :key="element.id">
-      <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
-                   @hide:info="changeInfoVisibility"/>
-    </div>
   </div>
 </template>
 
 <script>
 import Information from "@/components/Information";
-import { dragscroll } from 'vue-dragscroll';
 import axios from "axios";
-
 export default {
   name: "MovieList",
   components: {
     Information
-  },
-  directives: {
-    dragscroll
   },
   data(){
     return {
@@ -118,14 +111,10 @@ ul{
   justify-content: left;
   overflow-x: scroll;
   scroll-behavior: smooth;
-
   transition: .2s ease-in-out;
 }
 ul:hover{
   scroll-behavior: revert;
-}
-ul:active{
-  transform: scale(1.02);
 }
 ul::-webkit-scrollbar{
   width: 0;
@@ -134,7 +123,6 @@ ul li{
   list-style-type: none;
   padding: 20px;
 }
-
 .movie{
   display: flex;
   flex-direction: column;
@@ -144,53 +132,44 @@ ul li{
 }
 .text{
   transform: scale(0);
-
   display: /*flex*/none;
   justify-content: center;
   align-items: center;
-
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 100px;
-
   text-align: center;
   color: black;
   background: rgb(245, 212, 122);
-
   transition: .2s ease-in-out;
 }
-.plus{
+.imgBtn{
   transform: scale(0);
-
   color: #ebb446;
   font-size: 36px;
   font-weight: bolder;
-
   height: 50px;
   width: 50px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: black;
   border: none;
   border-radius: 50%;
   position: absolute;
   top: 10px;
   right: 10px;
-
   transition: .2s ease-in-out;
 }
-.plus:hover{
+.imgBtn:hover{
   background-color: #ebb446;
   color: black;
 }
-.plus:active{
+.imgBtn:active{
   background-color: #3dff2b;
 }
-.plus:focus{
+.imgBtn:focus{
   outline: none;
 }
 h2{
@@ -199,13 +178,12 @@ h2{
 img{
   width: 100%;
   height: 100%;
-
   transition: .2s ease-in-out;
 }
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .plus{
+li:hover .text, li:hover .imgBtn{
   transform: scale(1);
 }
 </style>

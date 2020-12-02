@@ -6,10 +6,8 @@
     <SearchList :input=this.input />
   </div>
 
-  <h2>Settings</h2>
-  <div>
-    <h1>Welcome to MyMovie,  {{ username }} !</h1>
-  </div>
+    <h1>User</h1>
+    <h2>Settings</h2>
 
   <div v-if="elements.length>0">
     <ul>
@@ -23,7 +21,6 @@
                    @hide:info="changeInfoVisibility"/>
     </div>
   </div>
-
   <div v-else class="container">
     <ul>
       <Heading v-bind:title="titles[0]" v-bind:search="false" />
@@ -32,19 +29,15 @@
       </li>
     </ul>
   </div>
-
 </div>
 </template>
 
 <script>
-
 import WatchLater from "@/components/WatchLater";
 import Nav from "@/components/Nav";
 import Heading from "@/components/Heading";
 import Information from "@/components/Information";
 import SearchList from "@/components/SearchList";
-import AuthService from "@/services/AuthService";
-
 export default {
   name: "Profile",
   components: {
@@ -58,19 +51,12 @@ export default {
     return {
       input: '',
       elements: {},
-      username: '',
       titles: [
-          'Watch Later'
+        'Watch Later'
       ]
     }
   },
   created() {
-    if (!this.$store.getters.isLoggedIn) {
-      //await this.$router.push('/login');
-    }
-    this.username = this.$store.getters.getUser.username;
-    this.secretMessage = AuthService.getSecretContent();
-
     this.elements = this.$store.state.movies
   },
   methods: {
@@ -87,7 +73,6 @@ export default {
       }
     },
     clearList() {
-
     },
   }
 }
@@ -104,17 +89,14 @@ export default {
   min-height: 100%;
   background-color: #242323;
 }
-
 header{
   text-align: left;
   color: white;
   padding: 20px;
 }
-
 h1, h2{
   text-align: left;
   color: white;
   padding: 20px;
 }
-
 </style>

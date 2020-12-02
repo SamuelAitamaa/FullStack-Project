@@ -1,13 +1,13 @@
 <template>
   <div class="WatchLater">
-    <ul v-dragscroll.x>
+    <ul>
       <li>
         <div class="container">
 
-        <div class="movie">
-          <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)" />
-        </div>
-          <button @click="deleteFromList(element.id)" class="plus">-</button>
+          <div class="movie">
+            <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
+          </div>
+          <button @click="deleteFromList(element.id)" class="imgBtn">-</button>
           <div class="aboutMovie">
             <h3>{{ this.title }} {{ this.name }}</h3>
             <p>
@@ -28,14 +28,9 @@
 
 <script>
 import axios from 'axios';
-import { dragscroll } from 'vue-dragscroll';
-
 export default {
   name: "WatchLater",
   components: {},
-  directives: {
-    dragscroll
-  },
   data(){
     return {
       title: '',
@@ -43,15 +38,13 @@ export default {
       image: '',
       overview: '',
       providers: [],
-      rating: '',
-      infoVisible: false
+      rating: ''
     }
   },
   props: {
     input: String,
-    element: Object
+    element: Object,
   },
-
     created: function() {
       if(JSON.stringify(this.element).includes("title")) {
         axios
@@ -106,13 +99,15 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.WatchLater{
+  display: flex;
+}
 ul{
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
   overflow-x: scroll;
   scroll-behavior: smooth;
-
   transition: .2s ease-in-out;
 }
 .container{
@@ -127,9 +122,6 @@ ul{
 ul:hover{
   scroll-behavior: revert;
 }
-ul:active{
-  transform: scale(1.02);
-}
 ul::-webkit-scrollbar{
   width: 0;
 }
@@ -137,7 +129,6 @@ ul li{
   list-style-type: none;
   padding: 20px;
 }
-
 .movie{
   display: flex;
   flex-direction: row;
@@ -145,55 +136,32 @@ ul li{
   height: 375px;
   position: relative;
 }
-.text{
+.imgBtn{
   transform: scale(0);
-
-  display: /*flex*/none;
-  justify-content: center;
-  align-items: center;
-
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-
-  text-align: center;
-  color: black;
-  background: rgb(245, 212, 122);
-
-  transition: .2s ease-in-out;
-}
-.plus{
-  transform: scale(0);
-
   color: #ebb446;
   font-size: 36px;
   font-weight: bolder;
-
   height: 50px;
   width: 50px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: black;
   border: none;
   border-radius: 50%;
   position: absolute;
   top: 10px;
   right: 10px;
-
   transition: .2s ease-in-out;
 }
-.plus:hover{
+.imgBtn:hover{
   background-color: #ebb446;
   color: black;
 }
-.plus:active{
+.imgBtn:active{
   background-color: #3dff2b;
 }
-.plus:focus{
+.imgBtn:focus{
   outline: none;
 }
 h2{
@@ -224,19 +192,17 @@ img.logo{
   width: 45px;
   height: 45px;
 }
-
 .aboutMovie{
   font-family: 'Montserrat', sans-serif;
   color: #ebb446;
   background-color: #171616;
   justify-content: center;
   width: 800vw;
-
 }
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .plus{
+li:hover .text, li:hover .imgBtn{
   transform: scale(1);
 }
 </style>

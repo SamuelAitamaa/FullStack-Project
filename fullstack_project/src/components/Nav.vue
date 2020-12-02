@@ -12,11 +12,11 @@
     <div class="navItem">
       <router-link to="/profile">Profile</router-link>
     </div>
-    <div v-if="isLoggedIn" class="navItem">
+    <div class="navItem" v-if="this.$store.state.user === null">
       <router-link to="/login">Login</router-link>
     </div>
-    <div v-else>
-      <router-link to="/" @click ="logout">Logout</router-link>
+    <div class="navItem" v-if="this.$store.state.user !== null">
+      <button @click="logout">Logout</button>
     </div>
   </div>
 </template>
@@ -33,12 +33,8 @@ export default {
     handleInput: function () {
       this.$emit('input:change', this.input);
     },
-    logout() {
-      this.$store.dispatch('logout');
-      this.$router.push('/login');
-    },
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn === ''
+    logout: function () {
+      this.$store.commit('delUser');
     }
   }
 }
@@ -48,7 +44,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,100&display=swap');
 #nav {
   padding: 10px;
-  background: linear-gradient(black, #171616);
+  background: #171616;
 
   display: flex;
   justify-content: flex-end;
