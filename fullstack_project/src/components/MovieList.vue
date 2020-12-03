@@ -6,9 +6,6 @@
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
           <button v-if="!checkList(element) && !hideBtn()" @click="addToList(element)" class="imgBtn">+</button>
           <button v-if="checkList(element) && !hideBtn()" @click="deleteFromList(element)" class="imgBtn">-</button>
-          <div class="text">
-            <h2>{{ element.title }} {{ element.name }}</h2>
-          </div>
           <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
                        @hide:info="changeInfoVisibility"/>
         </div>
@@ -124,7 +121,6 @@ export default {
             let alteredResult = [];
             result.forEach(element => alteredResult.push(element))
             console.log('Altered result ' + alteredResult)
-            //this.$router.push("/profile");
             this.$store.commit("saveMediaList", alteredResult)
           }
         }).catch(err => {
@@ -163,20 +159,6 @@ ul li{
   width: 250px;
   height: 375px;
   position: relative;
-}
-.text{
-  transform: scale(0);
-  display: /*flex*/none;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  text-align: center;
-  color: black;
-  background: rgb(245, 212, 122);
-  transition: .2s ease-in-out;
 }
 .imgBtn{
   transform: scale(0);
@@ -217,7 +199,7 @@ img{
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .imgBtn{
+li:hover .imgBtn{
   transform: scale(1);
 }
 </style>

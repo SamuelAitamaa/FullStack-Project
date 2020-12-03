@@ -1,6 +1,7 @@
 <template>
 <div class="profile" v-on:load="renderList()">
   <Nav @input:change="inputChange" />
+
   <div class="searchContainer" v-if="this.input.length >= 1">
     <Heading v-bind:title="this.input" v-bind:search="true" v-bind:profile="true" />
     <SearchList :input=this.input @del:element="renderList()" @add:element="renderList()"/>
@@ -9,8 +10,8 @@
   <h1 v-if="this.$store.state.user !== null">Welcome, {{ this.$store.state.user[1] }}</h1>
 
   <div v-if="elements.length > 0">
+    <Heading v-bind:title="this.title" v-bind:search="false" v-bind:profile="true" />
     <ul>
-      <Heading v-bind:title="titles[0]" v-bind:search="false" v-bind:profile="true" />
       <li v-for="element in elements" v-bind:key="element.id">
         <WatchLater class="WatchLater" v-bind:element=element @del:element="renderList()"/>
       </li>
@@ -20,14 +21,16 @@
                    @hide:info="changeInfoVisibility"/>
     </div>
   </div>
+
   <div v-else class="container">
     <ul>
-      <Heading v-bind:title="titles[0]" v-bind:search="false" v-bind:profile="true" />
+      <Heading v-bind:title="this.title" v-bind:search="false" v-bind:profile="true" />
       <li>
         <h2>It seems empty here. Get started by adding movies to your watch list!</h2>
       </li>
     </ul>
   </div>
+
 </div>
 </template>
 
@@ -51,9 +54,7 @@ export default {
     return {
       input: '',
       elements: {},
-      titles: [
-        'Watch Later'
-      ]
+      title: 'Watch Later'
     }
   },
   mounted() {

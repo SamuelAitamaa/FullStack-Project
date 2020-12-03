@@ -6,7 +6,7 @@
 
       <form class="form" @submit.prevent="register">
 
-        <label class="test" for="username">Name: </label>
+        <label for="username">Name: </label>
         <input type="text" placeholder="Username" v-model="username" id="username"/>
         <p>Must begin with uppercase letter.</p>
         <br>
@@ -99,7 +99,6 @@ export default {
         url = 'http://localhost:8081/backend/register'
         console.log(url)
         axios.post(url, {
-          headers: {},
           username: this.username,
           userpassword: this.userpassword,
           registered: this.getDate()
