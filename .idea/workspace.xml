@@ -25,11 +25,8 @@
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/server.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/store/index.js" afterDir="false" />
     </list>
@@ -115,7 +112,7 @@
       <workItem from="1606858506130" duration="326000" />
       <workItem from="1606896506350" duration="24631000" />
       <workItem from="1606936135680" duration="687000" />
-      <workItem from="1606980934830" duration="9999000" />
+      <workItem from="1606980934830" duration="14717000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
@@ -173,22 +170,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606841455017" />
-    <state width="1899" height="176" key="GridCell.Tab.0.bottom" timestamp="1606986409332">
+    <state width="1899" height="176" key="GridCell.Tab.0.bottom" timestamp="1606996743418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="176" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606986409332" />
-    <state width="1899" height="176" key="GridCell.Tab.0.center" timestamp="1606986409332">
+    <state width="1899" height="176" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606996743418" />
+    <state width="1899" height="176" key="GridCell.Tab.0.center" timestamp="1606996743418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="176" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606986409332" />
-    <state width="1899" height="176" key="GridCell.Tab.0.left" timestamp="1606986409332">
+    <state width="1899" height="176" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606996743418" />
+    <state width="1899" height="176" key="GridCell.Tab.0.left" timestamp="1606996743418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="176" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606986409332" />
-    <state width="1899" height="176" key="GridCell.Tab.0.right" timestamp="1606986409332">
+    <state width="1899" height="176" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606996743418" />
+    <state width="1899" height="176" key="GridCell.Tab.0.right" timestamp="1606996743418">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="176" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606986409332" />
+    <state width="1899" height="176" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606996743418" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605772289753">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

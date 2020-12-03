@@ -4,8 +4,15 @@ let util = require('util');
 let cors = require('cors');
 let app = express();
 
+let whitelist = ['http://localhost:8080', 'http://localhost:8082', 'http://localhost:8083', 'http://localhost:8084', 'http://localhost:8085']
 let corsOptions = {
-    origin: "http://localhost:8080"
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }
 };
 app.use(cors(corsOptions));
 
@@ -41,15 +48,19 @@ app.get("/backend/getList", function (req, res){
             let resultList = await query(sql);
 
             resultList = JSON.parse(JSON.stringify(resultList));
-            console.log('Result below')
-            console.log(resultList)
+            if(resultList.length === 0){
+                res.send('Error')
+            }else{
+                console.log('Result below')
+                console.log(resultList)
 
-            let medias = []
-            resultList.forEach(element => {
-                medias.push(element.media_id + element.media_type);
-            })
+                let medias = []
+                resultList.forEach(element => {
+                    medias.push(element.media_id + element.media_type);
+                })
 
-            res.send(`${medias}`);
+                res.send(`${medias}`);
+            }
         }catch(err){
             console.log("Database error: " + err);
             res.send('Error');

@@ -108,16 +108,13 @@ export default {
       console.log('Rendering list...')
       let list = this.$store.state.dbList;
       let url, movies = [];
-      //console.log('dbList length: ' + this.$store.state.dbList.length)
       for(let i = 0; i < this.$store.state.dbList.length; i++) {
-        //console.log("dbList element after deleting nums: "+list[i].replace(/[0-9]/g, ""))
         if(list[i].replace(/[0-9]/g, "") === "tv"){
           url = `https://api.themoviedb.org/3/tv/${list[i].replace(/\D/g, "")}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`;
         }
         if (list[i].replace(/[0-9]/g, "") === "movie") {
           url = `https://api.themoviedb.org/3/movie/${list[i].replace(/\D/g, "")}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`;
         }
-        //console.log("url: "+url)
         axios.get(url).then(res => {
           movies.push(res.data);
         }).catch(err => {
@@ -127,7 +124,7 @@ export default {
         console.log('List render result: '+ movies)
       }
       this.elements = movies;
-      //this.$store.state.movies = movies
+      this.$store.state.movies = movies
     }
   }
 }

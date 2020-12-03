@@ -64,8 +64,8 @@ export default new Vuex.Store({
                     return i;
                 }
             });
-            state.dbList.splice(index, 1);
             state.movies.splice(index, 1)
+            state.dbList.splice(index, 1);
             let url;
             try {
                 url = 'http://localhost:8081/backend/deletefromdb'
@@ -85,7 +85,6 @@ export default new Vuex.Store({
             }
         },
         deleteFromProfile(state, payload) {
-
             let index, id;
             state.movies.find(function(item, i){
                 if(item.id === payload){
@@ -94,8 +93,8 @@ export default new Vuex.Store({
                     return i;
                 }
             });
-            state.dbList.splice(index, 1)
             state.movies.splice(index, 1)
+            state.dbList.splice(index, 1)
             let url;
             try {
                 url = 'http://localhost:8081/backend/deletefromdb'

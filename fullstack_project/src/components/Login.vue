@@ -109,6 +109,7 @@ export default {
             result = result.split(" ");
             this.error.push('Login successful! Your ID is: ' + result[0]);
             this.$store.commit("user", JSON.parse(JSON.stringify(result)));
+            this.$store.state.movies = []
             this.$router.push("/profile");
             //this.getListFromDb(result[0]);
           }
