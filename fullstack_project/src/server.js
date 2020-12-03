@@ -135,6 +135,32 @@ app.post("/backend/register", urlEncodedParser, function (req, res){
     })()
 });
 
+// http://localhost:8081/backend/changepassword
+app.post("/backend/changepassword", urlEncodedParser, function (req, res){
+    console.log('Post request on /backend/changepassword');
+    console.log('body: %j', req.body);
+    let json = req.body;
+    let sql;
+    (async () => {
+        console.log('Starting async');
+        try{
+            sql = `SELECT password FROM users WHERE username LIKE "${json.username}" AND password LIKE "${json.userpassword}"`;
+            let result = await query(sql);
+            if (result.length > 0) {
+                sql = `UPDATE users SET password = "${json.newPassword}" WHERE username LIKE "${json.username}" AND password LIKE "${json.userpassword}"`;
+                result = await query(sql);
+                res.send('Success');
+            } else {
+                res.send('Error');
+            }
+        }catch(err){
+            console.log("Database error: " + err);
+        }finally {
+            console.log('Ending async');
+        }
+    })()
+});
+
 // http://localhost:8081/backend/savetodb
 app.post("/backend/savetodb", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/savetodb');
