@@ -101,6 +101,8 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .WatchLater{
   display: flex;
+  justify-content: left;
+  margin-left: 40px;
 }
 ul{
   display: flex;
@@ -115,10 +117,15 @@ ul{
   flex-direction: row;
   justify-content: left;
   width: 60vw;
-  height: 375px;
+  height: auto;
+  min-height: 475px;
   position:relative;
   outline: 2px solid #ebb446;
+  margin: 20px;
+  background: black;
+
 }
+
 ul:hover{
   scroll-behavior: revert;
 }
@@ -135,14 +142,15 @@ ul li{
   width: 1200px;
   height: 375px;
   position: relative;
+
 }
 .imgBtn{
   transform: scale(0);
   color: #ebb446;
   font-size: 36px;
   font-weight: bolder;
-  height: 50px;
-  width: 50px;
+  height: 55px;
+  width: 55px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,8 +158,8 @@ ul li{
   border: none;
   border-radius: 50%;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   transition: .2s ease-in-out;
 }
 .imgBtn:hover{
@@ -173,19 +181,21 @@ h3{
   padding: 20px 10px;
   text-align: center;
   color: white;
+  font-size: 25px;
 }
 p{
   padding: 10px 10px;
   line-height: 140%;
+  font-size: 20px;
 }
+
 .providers {
   display: inline-block;
   padding: 10px 10px;
   line-height: 100%;
 }
 img{
-  width: 250px;
-  height: 375px;
+  height: 475px;
   transition: .2s ease-in-out;
 }
 img.logo{
@@ -195,9 +205,12 @@ img.logo{
 .aboutMovie{
   font-family: 'Montserrat', sans-serif;
   color: #ebb446;
-  background-color: #171616;
+  background: linear-gradient(to right, black, #242323);
   justify-content: center;
   width: 800vw;
+  height: auto;
+  padding: 45px;
+
 }
 li:hover img{
   outline: 2px solid #ebb446;

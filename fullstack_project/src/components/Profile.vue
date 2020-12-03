@@ -83,7 +83,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .profile {
   font-family: 'Montserrat', sans-serif;
-  background-color: #242323;
+  background: linear-gradient(to right, #171616, #242323, #171616);
   min-height: 100vh;
 }
 .container {
