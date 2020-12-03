@@ -80,6 +80,7 @@ export default {
     },
     deleteFromList(id) {
       this.$store.commit("deleteFromProfile", id)
+      this.$emit("del:element");
     },
     changeInfoVisibility: function (id) {
       this.infoVisible = !this.infoVisible;

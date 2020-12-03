@@ -41,6 +41,7 @@ app.get("/backend/getList", function (req, res){
             let resultList = await query(sql);
 
             resultList = JSON.parse(JSON.stringify(resultList));
+            console.log('Result below')
             console.log(resultList)
 
             let medias = []
@@ -77,6 +78,7 @@ app.post("/backend/login", urlEncodedParser, function (req, res){
                 sql = `SELECT id, username FROM users WHERE password LIKE "${json.userpassword}"`;
                 let result = await query(sql);
                 result = JSON.parse(JSON.stringify(result));
+                console.log('Result below')
                 console.log(result)
 
                 res.send(`${result[0].id} ${result[0].username}`);

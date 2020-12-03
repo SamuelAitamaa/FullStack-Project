@@ -61,6 +61,7 @@ export default {
     },
     addToList(element) {
       this.$store.commit("saveMedia", element)
+      this.$emit("add:element");
     },
     checkList(element) {
       let store = JSON.stringify(this.$store.state.movies)
@@ -68,6 +69,8 @@ export default {
     },
     deleteFromList(element) {
       this.$store.commit("deleteMedia", element)
+      this.getListFromDb(this.$store.state.user[0]);
+      this.$emit("del:element");
     }
   }
 }
