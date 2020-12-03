@@ -61,6 +61,7 @@ export default {
     },
     addToList(element) {
       this.$store.commit("saveMedia", element)
+      this.getListFromDb(this.$store.state.user[0]);
     },
     checkList(element) {
       let store = JSON.stringify(this.$store.state.movies)
@@ -68,7 +69,39 @@ export default {
     },
     deleteFromList(element) {
       this.$store.commit("deleteMedia", element)
-    }
+      this.getListFromDb(this.$store.state.user[0]);
+      this.$emit("del:element");
+    },
+    getListFromDb(id) {
+      let url;
+      try {
+        url = 'http://localhost:8081/backend/getList'
+        console.log(url)
+        axios.get(url, {
+          params: {
+            user_id: id
+          }
+        }).then(res => {
+          console.log(res);
+          if(res.data === "Error"){
+            console.log('Didn\'t get anything from db');
+          }else{
+            console.log(res.data);
+            let result = res.data;
+            result = result.split(",");
+            let alteredResult = [];
+            result.forEach(element => alteredResult.push(element))
+            console.log('Altered result ' + alteredResult)
+            //this.$router.push("/profile");
+            this.$store.commit("saveMediaList", alteredResult)
+          }
+        }).catch(err => {
+          console.log(err.response);
+        });
+      } catch (error) {
+        console.log('Error in async: ' + error);
+      }
+    },
   }
 }
 </script>

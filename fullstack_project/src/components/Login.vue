@@ -109,8 +109,9 @@ export default {
             result = result.split(" ");
             this.error.push('Login successful! Your ID is: ' + result[0]);
             this.$store.commit("user", JSON.parse(JSON.stringify(result)));
-            //this.$router.push("/profile");
-            this.getListFromDb(result[0]);
+            this.$store.state.movies = []
+            this.$router.push("/profile");
+            //this.getListFromDb(result[0]);
           }
         }).catch(err => {
           console.log(err.response);
@@ -119,7 +120,7 @@ export default {
         console.log('Error in async: ' + error);
       }
     },
-
+    /*
     async getListFromDb(id) {
       let url;
       try {
@@ -150,6 +151,7 @@ export default {
         console.log('Error in async: ' + error);
       }
     }
+    */
   }
 }
 
