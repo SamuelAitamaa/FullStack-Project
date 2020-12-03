@@ -8,6 +8,11 @@
   </div>
 
   <h1 v-if="this.$store.state.user !== null">Welcome, {{ this.$store.state.user[1] }}</h1>
+  <div id="nav">
+    <div class="navItem">
+      <router-link to="/changepassword">Change password</router-link>
+    </div>
+  </div>
 
   <div v-if="elements.length > 0">
     <Heading v-bind:title="this.title" v-bind:search="false" v-bind:profile="true" />
@@ -137,6 +142,30 @@ export default {
   font-family: 'Montserrat', sans-serif;
   background-color: #242323;
   min-height: 100vh;
+}
+#nav {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+}
+.navItem{
+  margin: 0 20px;
+}
+.navItem:first-child{
+  margin-right: auto;
+}
+#nav a {
+  font-weight: bold;
+  color: #ebb446;
+  text-decoration: none;
+}
+#nav a.router-link-exact-active {
+  color: #ebb446;
+}
+#nav a:hover{
+  color: #bf4b91;
 }
 .container {
   min-height: 100%;

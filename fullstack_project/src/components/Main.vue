@@ -54,7 +54,7 @@ export default {
 
 <style scoped>
 .main{
-  background: #242323;
+  background: linear-gradient(to right, black, #242323);;
   min-height: 100vh;
 }
 .mainContainer, .searchContainer{
