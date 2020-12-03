@@ -102,6 +102,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .WatchLater{
   display: flex;
+  font-family: 'Montserrat', sans-serif;
 }
 ul{
   display: flex;
@@ -194,7 +195,6 @@ img.logo{
   height: 45px;
 }
 .aboutMovie{
-  font-family: 'Montserrat', sans-serif;
   color: #ebb446;
   background-color: #171616;
   justify-content: center;

@@ -24,10 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/store/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +112,7 @@
       <workItem from="1606858506130" duration="326000" />
       <workItem from="1606896506350" duration="24631000" />
       <workItem from="1606936135680" duration="687000" />
-      <workItem from="1606980934830" duration="14717000" />
+      <workItem from="1606980934830" duration="17446000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>

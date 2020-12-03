@@ -9,12 +9,11 @@ export default new Vuex.Store({
     state: {
         movies: [],
         dbList: [],
-        user: Object
+        user: null
     },
     plugins: [createPersistedState({
             storage: window.localStorage
     })],
-    getters: {},
     mutations: {
         user(state, payload){
             state.user = payload;
@@ -113,6 +112,5 @@ export default new Vuex.Store({
                 console.log('Error in async: ' + error);
             }
         }
-    },
-    actions: {}
+    }
 });

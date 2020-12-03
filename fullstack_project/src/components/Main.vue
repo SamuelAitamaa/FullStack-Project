@@ -44,6 +44,9 @@ export default {
     inputChange(emit){
       this.input = emit;
     }
+  },
+  created() {
+    console.log('STATE IS ' + this.$store.state.user)
   }
 }
 </script>

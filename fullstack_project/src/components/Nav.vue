@@ -91,7 +91,7 @@ input:focus{
 }
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ebb446;
   text-decoration: none;
 }
 #nav a.router-link-exact-active {
@@ -99,5 +99,20 @@ input:focus{
 }
 #nav a:hover{
   color: #bf4b91;
+}
+button {
+  font-size: 17px;
+  font-weight: bold;
+  font-family: inherit;
+  color: #ebb446;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+button:hover {
+  color: #bf4b91;
+}
+button:active{
+  outline: none;
 }
 </style>

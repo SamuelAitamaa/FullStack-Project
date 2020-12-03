@@ -6,7 +6,7 @@
     <SearchList :input=this.input @del:element="renderList()" @add:element="renderList()"/>
   </div>
 
-    <h1 v-if="this.$store.state.user !== null">{{ this.$store.state.user[1] }}</h1>
+  <h1 v-if="this.$store.state.user !== null">Welcome, {{ this.$store.state.user[1] }}</h1>
 
   <div v-if="elements.length > 0">
     <ul>
@@ -22,7 +22,7 @@
   </div>
   <div v-else class="container">
     <ul>
-      <Heading v-bind:title="titles[0]" v-bind:search="false" />
+      <Heading v-bind:title="titles[0]" v-bind:search="false" v-bind:profile="true" />
       <li>
         <h2>It seems empty here. Get started by adding movies to your watch list!</h2>
       </li>
@@ -149,6 +149,6 @@ header{
 h1, h2{
   text-align: left;
   color: white;
-  padding: 20px;
+  padding: 30px;
 }
 </style>
