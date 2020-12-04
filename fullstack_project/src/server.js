@@ -148,6 +148,7 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
             let result = await query(sql);
             if (result.length > 0) {
                 sql = `UPDATE users SET password = "${json.newPassword}" WHERE username LIKE "${json.username}" AND password LIKE "${json.userpassword}"`;
+                await query(sql);
                 res.send('Success');
             } else {
                 res.send('Error');
