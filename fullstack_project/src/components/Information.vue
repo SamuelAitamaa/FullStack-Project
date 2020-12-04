@@ -1,29 +1,35 @@
 <template>
 
-  <div  class="information">
+  <div  class="container">
 
-    <div class="background-image">
-      <img class="imgbg" v-bind:src="this.imagebg" alt="image2"/>
+    <div class="backgroundImage">
+      <img class="imageBg" v-bind:src="this.imagebg" alt="Background image"/>
     </div>
 
     <button v-on:click="hideInfo">X</button>
-    <div class="container">
-        <img class="coverimg" v-bind:src="this.image" alt="Placeholder image"  />
-      <div class="titleAndDesc">
+
+    <div class="information">
+
+      <img class="mediaImg" v-bind:src="this.image" alt="Image of the selected media"  />
+
+      <div class="column">
         <h2>{{ this.title }}</h2>
         <h3>Rating: {{ this.rating }}</h3>
-        <div class="info">
-          <p v-if="this.info.length === 0">No information found</p><p>{{ this.info }}</p>
+
+        <div class="overview">
+          <p v-if="this.info.length === 0">No information found</p>
+          <p>{{ this.info }}</p>
         </div>
+
         <div class="providers">
           <div class="provider" v-for="provider in this.providers" :key="provider.index">
-            <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)"/>
+            <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Logo of provider"
+                 @click="openProvider(provider.provider_name)"/>
             <p @click="openProvider(provider.provider_name)">{{provider.provider_name}}</p>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -52,7 +58,7 @@ export default {
     axios
         .get(url)
         .then(res => {
-          this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
+          this.image = `http://image.tmdb.org/t/p/original/${res.data.poster_path}`;
           if(res.data.backdrop_path !== null){
             this.imagebg = `http://image.tmdb.org/t/p/original/${res.data.backdrop_path}`;
           }
@@ -80,190 +86,176 @@ export default {
     }
   }
 }
-//<div.background-image>
 </script>
 
 <style scoped>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.container{
+  font-family: 'Montserrat', sans-serif;
+  color: White;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: none;
+}
+.information{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  .imgbg{
-    filter: brightness(40%);
-    z-index: -1;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 1980px;
-    min-height: 1080px;
-    max-width: 1980px;
-    max-height: 1080px;
-    user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mediaImg, .column{
+  height: 700px;
+}
+.mediaImg{
+  width: 450px;
+  outline: 1px solid #ebb446;
+  user-select: none;
+}
+.column{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+h3, .overview{
+  margin: 20px;
+  padding-left: 30px;
+}
+h2{
+  margin: 20px 20px 20px 50px;
+  font-size: 36px;
+  border-bottom: 2px solid #ebb446;
+}
+h3{
+  font-size: 24px;
+}
+p{
+  font-size: 20px;
+  line-height: 1.6;
+}
+.overview{
+  width: 800px;
+  height: 300px;
+  overflow-y: scroll;
+  padding-right: 5px;
+}
+::-webkit-scrollbar{
+  display: inline-block;
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #171616;
+}
+::-webkit-scrollbar-thumb {
+  background: #ebb446;
+}
+.providers{
+  display: flex;
+  flex-direction: row;
+}
+.logo{
+  width: 30px;
+  height: 30px;
+}
+.imageBg{
+  filter: brightness(40%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 1980px;
+  min-height: 1080px;
+  max-width: 1980px;
+  max-height: 1080px;
+
+  user-select: none;
+}
+.backgroundImage:after{
+  position: absolute;
+  content:"";
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+button{
+  color: #ebb446;
+  font-size: 24px;
+  font-weight: bolder;
+
+  height: 55px;
+  width: 55px;
+
+  background-color: black;
+  border: 2px solid black;
+  border-radius: 50%;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+}
+button:hover{
+  background-color: #ebb446;
+  color: black;
+}
+button:focus{
+  outline: none;
+}
+@media screen and (max-width: 1300px){
+  .mediaImg, .column{
+    height: 500px;
   }
-  .background-image:after{
-    position: absolute;
-    content:"";
-    height:100%;
-    width:100%;
-    top:0;
-    left:0;
-    background: linear-gradient(to bottom, transparent 0%, black 100%);
+  h3, .overview{
+    margin: 15px;
   }
-  .information{
-    font-family: 'Montserrat', sans-serif;
-    color: White;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    display: none;
+  .overview{
+    width: 300px;
+    height: 200px;
   }
-  .container{
-    width: 70%;
-    min-height: 70%;
-    height: auto;
-    max-height: 600px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 10px 120px 10px;
-    margin-top: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .info{
-    width: 800px;
-    height: 300px;
-    overflow-y: scroll;
+  .mediaImg{
+    width: 300px;
   }
   h2{
-    text-align: left;
-    padding-left: 50px;
-    font-size: 40px;
-    font-weight: bold;
+    font-size: 24px;
   }
   h3{
-    text-align: left;
-    padding: 20px 0 20px 50px;
-    font-weight: bold;
-  }
-  .titleAndDesc{
-    max-width: 1100px;
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    margin-left: 50px;
-  }
-  .coverimg{
-    width: 550px;
-    outline: 1px solid #ebb446;
-    user-select: none;
+    font-size: 20px;
   }
   p{
-    padding: 20px 50px;
-    font-size: 24px;
+    font-size: 18px;
     line-height: 1.6;
-    text-align: justify;
   }
-  .providers {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 50px;
-  }
-  .provider{
-    min-width: 300px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .providers p{
-    padding: 20px;
-  }
-  .logo{
-    width: 45px;
-    height: 45px;
-    max-width: 45px;
-    min-width: 45px;
-  }
-  @media screen and (max-width: 1200px){
-    .container{
+  @media screen and (max-width: 700px){
+    .information{
       flex-direction: column;
-      padding-top: 200px;
     }
-    .coverimg{
-      width: 180px;
+    h2, h3, .overview{
+      margin: 10px;
+      padding-left: 0;
     }
-    .titleAndDesc{
-      width: 600px;
+    .mediaImg{
+      display: none;
     }
-    .titleAndDesc p{
-      font-size: 16px;
-      padding-top: 25px;
-    }
-    .titleAndDesc h2{
-      font-size: 28px;
-      padding-top: 12px;
-    }
-    .info{
-      width: 500px;
-    }
-    @media screen and (max-width: 600px){
-      .coverimg{
-        width: 150px;
-      }
-      .titleAndDesc{
-        width: 400px;
-      }
-      .titleAndDesc p{
-        font-size: 12px;
-        padding-top: 12px;
-      }
-      .titleAndDesc h2{
-        font-size: 14px;
-      }
-      .titleAndDesc h3{
-        font-size: 12px;
-      }
-      .info{
-        width: 350px;
-      }
-    }
-  }
+    button{
+      font-size: 20px;
+      height: 40px;
+      width: 40px;
 
-  button{
-    color: #ebb446;
-    font-size: 24px;
-    font-weight: bolder;
-    height: 55px;
-    width: 55px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    border: none;
-    border-radius: 50%;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 101;
+      top: 40px;
+      right: 40px;
+    }
   }
-  button:hover{
-    background-color: #ebb446;
-    color: black;
-  }
-  button:active{
-    background-color: #ff724f;
-  }
-  button:focus{
-    outline: none;
-  }
+}
 </style>

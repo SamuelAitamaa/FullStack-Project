@@ -83,9 +83,19 @@ export default {
       let element = document.getElementById(id);
       if(this.infoVisible){
         element.style.display = 'block';
+        this.disableScrolling();
       }else{
         element.style.display = 'none';
+        this.enableScrolling();
       }
+    },
+    disableScrolling(){
+      let x = window.scrollX;
+      let y = window.scrollY;
+      window.onscroll = function(){window.scrollTo(x, y);};
+    },
+    enableScrolling(){
+      window.onscroll = function(){};
     },
     addToList(element) {
       this.$store.commit("saveMedia", element)
@@ -167,9 +177,6 @@ ul li{
   font-weight: bolder;
   height: 50px;
   width: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: black;
   border: none;
   border-radius: 50%;

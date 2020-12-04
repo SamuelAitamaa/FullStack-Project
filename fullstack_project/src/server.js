@@ -94,8 +94,8 @@ app.get("/backend/login", function (req, res){
             let resultUser = await query(sql, [json.username, json.userpassword]);
 
             if(resultUser.length === 1){
-                sql = `SELECT id, username FROM users WHERE password LIKE ?`;
-                let result = await query(sql, [json.userpassword]);
+                sql = `SELECT id, username FROM users WHERE username LIKE ? AND password LIKE ?`;
+                let result = await query(sql, [json.username, json.userpassword]);
                 result = JSON.parse(JSON.stringify(result));
                 console.log('Result below')
                 console.log(result)
@@ -155,11 +155,12 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
     (async () => {
         console.log('Starting async');
         try{
-            sql = `SELECT password FROM users WHERE username LIKE "${json.username}" AND password LIKE "${json.userpassword}"`;
-            let result = await query(sql);
+            sql = `SELECT password FROM users WHERE username LIKE ? AND password LIKE ?`;
+            let result = await query(sql, [json.username, json.userpassword]);
+
             if (result.length > 0) {
-                sql = `UPDATE users SET password = "${json.newPassword}" WHERE username LIKE "${json.username}" AND password LIKE "${json.userpassword}"`;
-                result = await query(sql);
+                sql = `UPDATE users SET password = ? WHERE username LIKE ? AND password LIKE ?`;
+                await query(sql, [json.newPassword, json.username, json.userpassword]);
                 res.send('Success');
             } else {
                 res.send('Error');
