@@ -46,7 +46,7 @@ export default {
     element: Object,
   },
     created: function() {
-      if(JSON.stringify(this.element).includes("title")) {
+      if(Object.prototype.hasOwnProperty.call(this.element, 'title')) {
         axios
             .get(`https://api.themoviedb.org/3/movie/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
             .then(res => {

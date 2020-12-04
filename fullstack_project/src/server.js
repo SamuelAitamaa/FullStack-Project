@@ -148,7 +148,6 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
             let result = await query(sql);
             if (result.length > 0) {
                 sql = `UPDATE users SET password = "${json.newPassword}" WHERE username LIKE "${json.username}" AND password LIKE "${json.userpassword}"`;
-                result = await query(sql);
                 res.send('Success');
             } else {
                 res.send('Error');
@@ -160,6 +159,54 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
         }
     })()
 });
+
+// http://localhost:8081/backend/changeusername
+app.post("/backend/changeusername", urlEncodedParser, function (req, res){
+    console.log('Post request on /backend/changeusername');
+    console.log('body: %j', req.body);
+    let json = req.body;
+    (async () => {
+        console.log('Starting async');
+        try{
+            let sql = `UPDATE users SET username = "${json.newUsername}" WHERE username LIKE "${json.username}"`;
+            await query(sql);
+            res.send('Success');
+        }catch(err){
+            res.send('Error');
+            console.log("Database error: " + err);
+        }finally {
+            console.log('Ending async');
+        }
+    })()
+});
+
+// http://localhost:8081/backend/checkavailability
+app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
+    console.log('Get request on /backend/checkavailability');
+    console.log('body: %j', req.query);
+    let json = req.query;
+    let sql
+    (async () => {
+        console.log('Starting async');
+        try{
+            sql = `SELECT username FROM users WHERE username LIKE "${json.newUsername}"`;
+            let result = await query(sql);
+            if (result.length === 0) {
+                res.send('Success');
+                console.log('Success')
+            } else {
+                res.send('Error');
+                console.log('No success')
+            }
+        }catch(err){
+            console.log("Database error: " + err);
+        }finally {
+            console.log('Ending async');
+        }
+    })()
+});
+
+
 
 // http://localhost:8081/backend/savetodb
 app.post("/backend/savetodb", urlEncodedParser, function (req, res){
