@@ -16,6 +16,10 @@
         <p>Requires: 6 characters, uppercase letter, lowercase letter, number. No special characters.</p>
         <br>
 
+        <label for="passwordRepeat">Repeat New Password: </label>
+        <input type="password" placeholder="Repeat password..." v-model="repeatPassword" id="passwordRepeat">
+        <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
+
         <div class="button">
           <button type="submit">Register</button>
         </div>
@@ -45,6 +49,7 @@ export default {
     return {
       username: null,
       userpassword: null,
+      repeatPassword: null,
       error: []
     }
   },
@@ -68,7 +73,15 @@ export default {
         console.log("Password is not valid");
       }
 
-      if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword){
+      if (!this.repeatPassword) {
+        this.error.push("ERROR! Password must be repeated.")
+      } else if (this.repeatPassword !== this.userpassword) {
+        this.error.push('Repeated password must match the with the password.');
+        console.log("Password is not valid");
+        console.log("?1")
+      }
+
+      if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword &&  this.validPass(this.repeatPassword) && this.repeatPassword && this.error.length === 0){
         console.log("Everything OK");
         this.saveUserToDatabase();
 
