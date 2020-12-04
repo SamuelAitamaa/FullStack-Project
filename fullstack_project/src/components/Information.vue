@@ -97,12 +97,15 @@ export default {
     filter: brightness(40%);
     z-index: -1;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    border: 2px solid #ebb446;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 99vw;
+    height: 99vh;
+    outline: 3px solid #ebb446;
     min-height: 70%;
+
+
 
   }
 
