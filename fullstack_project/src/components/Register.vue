@@ -143,8 +143,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .back {
   background: linear-gradient(black, #242323, black);
-  height: 700px;
-
+  width: 100vw;
   min-height: 100vh;
 }
 .register {

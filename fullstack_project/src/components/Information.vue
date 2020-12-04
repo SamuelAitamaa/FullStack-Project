@@ -93,6 +93,7 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     min-width: 1980px;
     min-height: 1080px;
     max-width: 1980px;
