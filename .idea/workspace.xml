@@ -25,7 +25,6 @@
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +111,7 @@
       <workItem from="1606980934830" duration="27726000" />
       <workItem from="1607015349962" duration="1464000" />
       <workItem from="1607018409631" duration="1369000" />
-      <workItem from="1607073514900" duration="7865000" />
+      <workItem from="1607073514900" duration="8975000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>

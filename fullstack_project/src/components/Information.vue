@@ -97,6 +97,7 @@ export default {
     min-height: 1080px;
     max-width: 1980px;
     max-height: 1080px;
+    user-select: none;
   }
   .background-image:after{
     position: absolute;
@@ -128,7 +129,7 @@ export default {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 40px 10px 40px 10px;
+    padding: 40px 10px 120px 10px;
     margin-top: 20px;
     position: absolute;
     top: 50%;
@@ -139,7 +140,6 @@ export default {
     width: 800px;
     height: 300px;
     overflow-y: scroll;
-    padding-bottom: 80px;
   }
   h2{
     text-align: left;
@@ -163,6 +163,7 @@ export default {
   .coverimg{
     width: 550px;
     outline: 1px solid #ebb446;
+    user-select: none;
   }
   p{
     padding: 20px 50px;
