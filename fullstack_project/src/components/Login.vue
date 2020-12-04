@@ -4,7 +4,7 @@
     <div class="login">
       <h1>LOG IN</h1>
 
-      <form class="form" @submit.prevent="login">
+      <form class="form" @submit.prevent="validation">
 
         <label for="username">Name: </label>
         <input type="text" placeholder="Username" v-model="username" id="username"/>
@@ -51,11 +51,12 @@ export default {
     }
   },
   created: function () {
-    if (this.$store.state.user !== null)
+    if (this.$store.state.user !== null){
       this.$router.push("/profile");
+    }
   },
   methods: {
-    login() {
+    validation() {
       this.error = [];
       if (this.username && this.userpassword) {
         console.log("Username and password are present");
@@ -95,10 +96,11 @@ export default {
       try {
         url = 'http://localhost:8081/backend/login'
         console.log(url)
-        axios.post(url, {
-          headers: {},
-          username: this.username,
-          userpassword: this.userpassword,
+        axios.get(url, {
+          params: {
+            username: this.username,
+            userpassword: this.userpassword,
+          }
         }).then(res => {
           console.log(res);
           if(res.data === "Error"){
@@ -108,6 +110,7 @@ export default {
             result = result.split(" ");
             this.error.push('Login successful! Your ID is: ' + result[0]);
             this.$store.commit("user", JSON.parse(JSON.stringify(result)));
+            this.$store.state.movies = []
             this.$router.push("/profile");
           }
         }).catch(err => {

@@ -1,16 +1,20 @@
 <template>
   <div class="main">
+
     <Nav @input:change="inputChange" />
+
     <div class="searchContainer" v-if="this.input.length >= 1">
       <Heading v-bind:title="this.input" v-bind:search="true" />
       <SearchList :input=this.input />
     </div>
+
     <div class="mainContainer" v-if="this.input.length === 0">
       <div v-for="(title, index) in this.titles" :key="title">
         <Heading v-bind:title="titles[index]" v-bind:search="false" v-bind:profile="false" />
         <MovieList v-bind:id="titles[index]" v-bind:genre="genres[index]" />
       </div>
     </div>
+
   </div>
 </template>
 
@@ -50,7 +54,9 @@ export default {
 
 <style scoped>
 .main{
+
   background: linear-gradient(to right, #171616, #242323, #171616);
+
   min-height: 100vh;
 }
 .mainContainer, .searchContainer{

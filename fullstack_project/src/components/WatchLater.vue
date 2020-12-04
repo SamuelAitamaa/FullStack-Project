@@ -7,12 +7,12 @@
           <div class="movie">
             <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
           </div>
+
           <button @click="deleteFromList(element.id)" class="imgBtn">-</button>
+
           <div class="aboutMovie">
             <h3>{{ this.title }} {{ this.name }}</h3>
-            <p>
-              {{this.overview}}
-            </p>
+            <p>{{ this.overview }}</p>
             <h3>Rating: {{this.rating}}</h3>
             <div class="providers" v-for="provider in this.providers" :key="provider.index">
               <p>{{provider.provider_name}}</p>
@@ -45,41 +45,42 @@ export default {
     input: String,
     element: Object,
   },
-    created: function() {
-      if(JSON.stringify(this.element).includes("title")) {
-        axios
-            .get(`https://api.themoviedb.org/3/movie/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
-            .then(res => {
-              this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-              this.title = res.data.title;
-              this.id = res.data.id;
-              this.rating = res.data.vote_average;
-              this.overview = res.data.overview
-              if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
-                this.providers = res.data["watch/providers"].results.FI.buy
-              }
-            });
-      } else {
-        axios
-            .get(`https://api.themoviedb.org/3/tv/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
-            .then(res => {
-              this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-              this.name = res.data.name;
-              this.id = res.data.id;
-              this.rating = res.data.vote_average;
-              this.overview = res.data.overview
-              if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
-                this.providers = res.data["watch/providers"].results.FI.flatrate
-              }
-            });
-      }
-    },
+  created: function() {
+    if(JSON.stringify(this.element).includes("title")) {
+      axios
+          .get(`https://api.themoviedb.org/3/movie/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
+          .then(res => {
+            this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
+            this.title = res.data.title;
+            this.id = res.data.id;
+            this.rating = res.data.vote_average;
+            this.overview = res.data.overview
+            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+              this.providers = res.data["watch/providers"].results.FI.buy
+            }
+          });
+    } else {
+      axios
+          .get(`https://api.themoviedb.org/3/tv/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
+          .then(res => {
+            this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
+            this.name = res.data.name;
+            this.id = res.data.id;
+            this.rating = res.data.vote_average;
+            this.overview = res.data.overview
+            if(JSON.stringify(res.data["watch/providers"].results).includes("FI")) {
+              this.providers = res.data["watch/providers"].results.FI.flatrate
+            }
+          });
+    }
+  },
   methods: {
     addToList(element) {
       this.$store.commit("saveMedia", element)
     },
     deleteFromList(id) {
       this.$store.commit("deleteFromProfile", id)
+      this.$emit("del:element");
     },
     changeInfoVisibility: function (id) {
       this.infoVisible = !this.infoVisible;
@@ -103,6 +104,8 @@ export default {
   display: flex;
   justify-content: left;
   margin-left: 40px;
+  font-family: 'Montserrat', sans-serif;
+
 }
 ul{
   display: flex;
@@ -203,7 +206,6 @@ img.logo{
   height: 45px;
 }
 .aboutMovie{
-  font-family: 'Montserrat', sans-serif;
   color: #ebb446;
   background: linear-gradient(to right, black, #242323);
   justify-content: center;

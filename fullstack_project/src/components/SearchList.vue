@@ -6,9 +6,6 @@
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
           <button v-if="!checkList(element)" @click="addToList(element)" class="imgBtn">+</button>
           <button v-else @click="deleteFromList(element)" class="imgBtn">-</button>
-          <div class="text">
-            <h2>{{ element.title }} {{ element.name }}</h2>
-          </div>
           <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
                        @hide:info="changeInfoVisibility"/>
         </div>
@@ -61,6 +58,7 @@ export default {
     },
     addToList(element) {
       this.$store.commit("saveMedia", element)
+      this.getListFromDb(this.$store.state.user[0]);
     },
     checkList(element) {
       let store = JSON.stringify(this.$store.state.movies)
@@ -68,7 +66,38 @@ export default {
     },
     deleteFromList(element) {
       this.$store.commit("deleteMedia", element)
-    }
+      this.getListFromDb(this.$store.state.user[0]);
+      this.$emit("del:element");
+    },
+    getListFromDb(id) {
+      let url;
+      try {
+        url = 'http://localhost:8081/backend/getList'
+        console.log(url)
+        axios.get(url, {
+          params: {
+            user_id: id
+          }
+        }).then(res => {
+          console.log(res);
+          if(res.data === "Error"){
+            console.log('Didn\'t get anything from db');
+          }else{
+            console.log(res.data);
+            let result = res.data;
+            result = result.split(",");
+            let alteredResult = [];
+            result.forEach(element => alteredResult.push(element))
+            console.log('Altered result ' + alteredResult)
+            this.$store.commit("saveMediaList", alteredResult)
+          }
+        }).catch(err => {
+          console.log(err.response);
+        });
+      } catch (error) {
+        console.log('Error in async: ' + error);
+      }
+    },
   }
 }
 </script>
@@ -89,20 +118,6 @@ ul li{
   width: 250px;
   height: 375px;
   position: relative;
-}
-.text{
-  transform: scale(0);
-  display: /*flex*/none;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  text-align: center;
-  color: black;
-  background: rgb(245, 212, 122);
-  transition: .2s ease-in-out;
 }
 .imgBtn{
   transform: scale(0);
@@ -143,7 +158,7 @@ img{
 li:hover img{
   outline: 2px solid #ebb446;
 }
-li:hover .text, li:hover .imgBtn{
+li:hover .imgBtn{
   transform: scale(1);
 }
 </style>

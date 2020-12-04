@@ -8,41 +8,47 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         movies: [],
-        user: Object
+        dbList: [],
+        user: null
     },
     plugins: [createPersistedState({
             storage: window.localStorage
     })],
-    getters: {},
     mutations: {
         user(state, payload){
             state.user = payload;
-            console.log(state.user)
+            console.log('Mutation in user: ' + state.user)
         },
         delUser(state){
             state.user = null;
-            console.log(state.user)
+            console.log('Mutation in user: ' + state.user)
+        },
+        saveMediaList(state, payload){
+            state.dbList = payload
         },
         saveMedia(state, payload) {
             state.movies.push(payload)
             let url;
             try {
                 url = 'http://localhost:8081/backend/savetodb'
-                console.log(url)
+                if(payload.media_type === undefined && payload.title === undefined){
+                    payload.media_type = "tv";
+                }else if(payload.media_type === undefined && payload.name === undefined){
+                    payload.media_type = "movie";
+                }
                 axios.post(url, {
                     headers: {},
                     media_id: payload.id,
                     media_type: payload.media_type,
                     user_id: state.user[0]
                 }).then(res => {
-                    console.log(res);
                     if(res.data === "Success"){
                         console.log('Saving media to db complete!');
                     }else{
                         console.log('Saving media to db was unsuccessful.');
                     }
                 }).catch(err => {
-                    console.log(err.response);
+                    console.log('Error in axios.post (savetodb): ' + err);
                 });
             } catch (error) {
                 console.log('Error in async: ' + error);
@@ -57,22 +63,21 @@ export default new Vuex.Store({
                     return i;
                 }
             });
-            state.movies.splice(index, 1);
+            state.movies.splice(index, 1)
+            state.dbList.splice(index, 1);
             let url;
             try {
                 url = 'http://localhost:8081/backend/deletefromdb'
-                console.log(url)
                 axios.delete(url, {
                     data: { media_id: id }
                 }).then(res => {
-                    console.log(res);
                     if(res.data === "Success"){
                         console.log('Deleting media from db complete!');
                     }else{
                         console.log('Deleting media from db was unsuccessful.');
                     }
                 }).catch(err => {
-                    console.log(err.response);
+                    console.log('Error in axios.delete (deletefromdb): ' + err);
                 });
             } catch (error) {
                 console.log('Error in async: ' + error);
@@ -88,26 +93,24 @@ export default new Vuex.Store({
                 }
             });
             state.movies.splice(index, 1)
+            state.dbList.splice(index, 1)
             let url;
             try {
                 url = 'http://localhost:8081/backend/deletefromdb'
-                console.log(url)
                 axios.delete(url, {
                     data: { media_id: id }
                 }).then(res => {
-                    console.log(res);
                     if(res.data === "Success"){
                         console.log('Deleting media from db complete!');
                     }else{
                         console.log('Deleting media from db was unsuccessful.');
                     }
                 }).catch(err => {
-                    console.log(err.response);
+                    console.log('Error in axios.delete (deletefromdb): ' + err);
                 });
             } catch (error) {
                 console.log('Error in async: ' + error);
             }
         }
-    },
-    actions: {}
+    }
 });

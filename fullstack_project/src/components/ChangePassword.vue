@@ -1,23 +1,31 @@
 <template>
   <div class="back">
     <Nav />
-    <div class="register">
-      <h1>REGISTER</h1>
+    <div class="changepassword">
+      <h1>Change Password</h1>
 
       <form class="form" @submit.prevent="register">
-
-        <label for="username">Name: </label>
-        <input type="text" placeholder="Username" v-model="username" id="username"/>
-        <p>Must begin with uppercase letter. Must contain at least two letters. No special characters.</p>
-        <br>
-
+    <div class="textfields">
         <label for="password">Password: </label>
-        <input type="password" placeholder="AxAx6x" v-model="userpassword" id="password">
-        <p>Requires: 6 characters, uppercase letter, lowercase letter, number. No special characters.</p>
         <br>
+        <input type="password" placeholder="Current password" v-model="userpassword" id="password">
+        <br>
+
+        <label for="newPassword">New Password: </label>
+        <br>
+        <input type="password" placeholder="New password" v-model="newPassword" id="newPassword">
+        <br>
+
+        <label for="passwordRepeat">Repeat New Password: </label>
+        <br>
+        <input type="password" placeholder="Repeat new password..." v-model="repeatPassword" id="passwordRepeat">
+        <br>
+        <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
+        <br>
+    </div>
 
         <div class="button">
-          <button type="submit">Register</button>
+          <button type="submit">Change Password</button>
         </div>
       </form>
 
@@ -37,7 +45,7 @@
 import Nav from "@/components/Nav";
 import axios from 'axios';
 export default {
-  name: 'registration',
+  name: 'ChangePassword',
   components: {
     Nav
   },
@@ -45,39 +53,51 @@ export default {
     return {
       username: null,
       userpassword: null,
+      newPassword: null,
+      repeatPassword: null,
       error: []
+    }
+  },
+  created: function () {
+    if (this.$store.state.user === null) {
+      this.$router.push("/login");
+    } else {
+      this.username = this.$store.state.user[1]
     }
   },
   methods: {
     register() {
       this.error = [];
-      if (this.username && this.userpassword) {
+      if (this.userpassword && this.newPassword && this.repeatPassword) {
         console.log("Username and password are present");
-      }
-      if (!this.username) {
-        this.error.push("ERROR! Username required.");
-      } else if (!this.validName(this.username)) {
-        this.error.push('Name must begin with uppercase letter. Must contain at least two characters. NO SPECIAL CHARACTERS.');
-        console.log("Username is not valid");
       }
 
       if (!this.userpassword) {
         this.error.push("ERROR! User password required.")
       } else if (!this.validPass(this.userpassword)) {
-        this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters. NO SPECIAL CHARACTERS.');
+        this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
         console.log("Password is not valid");
       }
 
-      if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword){
-        console.log("Everything OK");
-        this.saveUserToDatabase();
-
+      if (!this.newPassword) {
+        this.error.push("ERROR! New password required.")
+      } else if (!this.validPass(this.newPassword)) {
+        this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
+        console.log("Password is not valid");
       }
-    },
 
-    validName: function (name) {
-      let re = /^(?=.*[A-Z]+.*)[0-9A-Za-z]{2,}$/;
-      return re.test(name);
+      if (!this.repeatPassword) {
+        this.error.push("ERROR! Password must be repeated.")
+      } else if (this.repeatPassword !== this.newPassword) {
+        this.error.push('Repeated password must match the with the new password.');
+        console.log("Password is not valid");
+        console.log("?1")
+      }
+
+      if (this.validPass(this.userpassword) && this.userpassword && this.validPass(this.newPassword) && this.newPassword && this.validPass(this.repeatPassword) && this.repeatPassword && this.error.length === 0) {
+        console.log("Everything OK");
+        this.saveNewPasswordToDb();
+      }
     },
 
     validPass: function (password) {
@@ -85,31 +105,22 @@ export default {
       return re.test(password);
     },
 
-    getDate: function () {
-      let today = new Date();
-      let dd = String(today.getDate()).padStart(2, '0');
-      let mm = String(today.getMonth() + 1).padStart(2, '0');
-      let yyyy = today.getFullYear();
-
-      return mm + '-' + dd + '-' + yyyy;
-    },
-
-    async saveUserToDatabase() {
+    async saveNewPasswordToDb() {
       let url;
       try {
-        url = 'http://localhost:8081/backend/register'
+        url = 'http://localhost:8081/backend/changepassword'
         console.log(url)
         axios.post(url, {
+          headers: {},
           username: this.username,
           userpassword: this.userpassword,
-          registered: this.getDate()
+          newPassword: this.newPassword,
         }).then(res => {
           console.log(res);
-          if(res.data === "Success"){
-            this.error.push('Registration complete!');
-            this.$router.push("/login");
-          }else{
-            this.error.push('Username has been taken, please use a different username.');
+          if (res.data === "Success") {
+            this.error.push('Changing password complete!');
+          } else {
+            this.error.push('Something went wrong. Check your current password.');
           }
         }).catch(err => {
           console.log(err.response);
@@ -121,10 +132,7 @@ export default {
   }
 }
 
-//  color: rgba(180, 151, 43, 0.83);
 </script>
-
-
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .back {
@@ -133,7 +141,8 @@ export default {
 
   min-height: 100vh;
 }
-.register {
+
+.changepassword {
   background-color: #171616;
   border: 2px solid #ebb446 ;
   border-radius: 3px;
@@ -150,6 +159,7 @@ export default {
 label{
   color:  #ebb446;
   font-size: 28px;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -162,19 +172,10 @@ h1 {
 input {
   color:#ebb446;
   background-color: #242323;
-  height: 35px;
+  height: 30px;
   font-size: 25px;
-  margin-bottom: 2px;
-  border-radius: 5px;
-  outline: none;
-  transition: .2s ease-in-out;
-  padding-left: 5px;
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus {
-  -webkit-text-fill-color: #ebb446;
-  -webkit-box-shadow: 0 0 0px 1000px #242323 inset;
+  margin-bottom: 30px;
+  border-bottom: 2px solid white;
 }
 .form {
   padding: 50px 20px 20px 20px;
@@ -214,9 +215,8 @@ ul.no-bullets {
   -webkit-text-fill-color: transparent;
 }
 p {
-  margin-top: 10px;
-  font-size: 15px;
-  color: rgba(180, 151, 43, 0.83);
+  font-size: 20px;
+  color:#ebb446;
   font-weight: lighter;
 
 }

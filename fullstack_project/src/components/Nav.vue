@@ -91,7 +91,7 @@ input:focus{
 }
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #ebb446;
   text-decoration: none;
 
 }
@@ -103,21 +103,19 @@ input:focus{
 }
 
 button {
-  font-size: 19px;
+  font-size: 17px;
   font-weight: bold;
-  border: 2px grey;
-  border-radius: 2px;
-  background: #ebb446;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding-bottom: 5px;
+  font-family: inherit;
+  color: #ebb446;
+  border: none;
+  background: none;
   cursor: pointer;
-  padding-top: 8px;
-
 }
 button:hover {
-  background: #bf4b91;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #bf4b91;
+}
+button:active{
+  outline: none;
+
 }
 </style>

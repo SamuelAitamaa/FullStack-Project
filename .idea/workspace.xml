@@ -23,8 +23,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
+      <change afterPath="$PROJECT_DIR$/fullstack_project/src/components/ChangePassword.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fullstack_project/src/views/ChangePasswordView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Information.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/assets/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/assets/lotr.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/HelloWorld.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/views/About.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
