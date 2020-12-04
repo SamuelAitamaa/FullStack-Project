@@ -12,6 +12,16 @@
     <div class="navItem">
       <router-link to="/changepassword">Change password</router-link>
     </div>
+    <div class="navItem">
+      <button @click="hideAreYouSure" v-if="!areyousure">Delete user</button>
+      <div class="areyousure" v-if="areyousure">
+        <p >Are you sure?</p>
+          <div class="areyousurebtn">
+        <button id="yesbtn" @click="deleteUser">Yes</button>
+        <button @click="hideAreYouSure">No</button>
+          </div>
+      </div>
+    </div>
   </div>
 
   <div v-if="elements.length > 0">
@@ -59,7 +69,8 @@ export default {
     return {
       input: '',
       elements: {},
-      title: 'Watch Later'
+      title: 'Watch Later',
+      areyousure: false
     }
   },
   mounted() {
@@ -131,6 +142,32 @@ export default {
       }
       this.elements = movies;
       this.$store.state.movies = movies
+    },
+    hideAreYouSure(){
+      console.log("Deleting user..")
+      this.areyousure=!this.areyousure;
+    },
+    deleteUser(){
+      try{
+        let url='http://localhost:8081/backend/deleteuser'
+        axios.delete(url, {
+          data: { user_id: this.$store.state.user[0]
+        }}).then(res => {
+          console.log(res)
+          if(res.data === 'Success'){
+            console.log('User deleted successfully.')
+            this.$store.commit('delUser')
+            this.$router.push('/')
+          }else{
+            console.log('Failed to delete user.')
+          }
+        }).catch(err => {
+          console.log('Error in axios.delete. (deleteuser): '+err)
+        })
+      }catch(err) {
+        console.log('Error in async: '+err)
+      }
+
     }
   }
 }
@@ -140,7 +177,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .profile {
   font-family: 'Montserrat', sans-serif;
-  background-color: #242323;
+  background: linear-gradient(to right, #171616, #242323, #171616);
   min-height: 100vh;
 }
 #nav {
@@ -181,4 +218,34 @@ h1, h2{
   color: white;
   padding: 30px;
 }
+button {
+  font-size: 19px;
+  font-weight: bold;
+  border: 2px grey;
+  border-radius: 2px;
+  float: left;
+  background: #ebb446;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  padding: 10px;
+
+}
+button:hover {
+  background: #bf4b91;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+p {
+  margin-top: 10px;
+  font-size: 20px;
+  color: rgba(180, 151, 43, 0.83);
+  font-weight: bold;
+}
+  .areyousurebtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
 </style>

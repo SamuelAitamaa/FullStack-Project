@@ -221,6 +221,33 @@ app.delete("/backend/deletefromdb", urlEncodedParser, function (req, res){
     })()
 });
 
+app.delete("/backend/deleteuser", urlEncodedParser, function (req, res){
+    console.log('Post reguest on /backend/deleteuser');
+    console.log('body: %j', req.body);
+    let json = req.body;
+    let sql;
+    (async () => {
+        console.log('Starting async');
+        try{
+            sql = "DELETE FROM list WHERE user_id LIKE ?";
+            let resultList= await query(sql, [json.user_id]);
+            sql = "DELETE FROM users WHERE id LIKE ?";
+            let resultUser = await query(sql, [json.user_id]);
+
+            console.log('Deleting user and list from db result: ')
+            console.log(resultUser.protocol41)
+            console.log(resultList.protocol41)
+            res.send('Success');
+        }catch(err){
+            console.log("Database error: " + err);
+            res.send('Error');
+        }finally {
+            console.log('Ending async');
+        }
+    })()
+});
+
+
 // Open the server to the port 8081
 let server = app.listen(8081, function () {
     let host = server.address().address;

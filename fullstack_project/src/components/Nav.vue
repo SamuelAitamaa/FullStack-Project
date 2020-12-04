@@ -93,6 +93,7 @@ input:focus{
   font-weight: bold;
   color: #ebb446;
   text-decoration: none;
+
 }
 #nav a.router-link-exact-active {
   color: #ebb446;
@@ -100,6 +101,7 @@ input:focus{
 #nav a:hover{
   color: #bf4b91;
 }
+
 button {
   font-size: 17px;
   font-weight: bold;
@@ -114,5 +116,6 @@ button:hover {
 }
 button:active{
   outline: none;
+
 }
 </style>

@@ -8,12 +8,12 @@
 
         <label for="username">Name: </label>
         <input type="text" placeholder="Username" v-model="username" id="username"/>
-        <p>Must begin with uppercase letter.</p>
+        <p>Must begin with uppercase letter. Must contain at least two letters. No special characters.</p>
         <br>
 
         <label for="password">Password: </label>
         <input type="password" placeholder="AxAx6x" v-model="userpassword" id="password">
-        <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
+        <p>Requires: 6 characters, uppercase letter, lowercase letter, number. No special characters.</p>
         <br>
 
         <div class="button">
@@ -64,14 +64,14 @@ export default {
       if (!this.username) {
         this.error.push("ERROR! Username required.")
       } else if (!this.validName(this.username)) {
-        this.error.push('Name must begin with uppercase letter and must contain only characters.');
+        this.error.push('Name must begin with uppercase letter. Must contain at least two characters. NO SPECIAL CHARACTERS.');
         console.log("Username is not valid");
       }
 
       if (!this.userpassword) {
         this.error.push("ERROR! User password required.")
       } else if (!this.validPass(this.userpassword)) {
-        this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
+        this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters. NO SPECIAL CHARACTERS.');
         console.log("Password is not valid");
       }
 
@@ -82,7 +82,7 @@ export default {
     },
 
     validName: function (name) {
-      let re = /^(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[A-Za-z]{2,}$/;
+      let re = /^(?=.*[A-Z]+.*)[0-9A-Za-z]{2,}$/;
       return re.test(name);
     },
 
@@ -160,14 +160,20 @@ h1 {
 input {
   color:#ebb446;
   background-color: #242323;
-  height: 30px;
+  height: 35px;
   font-size: 25px;
   margin-bottom: 2px;
   border-radius: 5px;
   outline: none;
   transition: .2s ease-in-out;
+  padding-left: 5px;
 }
-
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ebb446;
+  -webkit-box-shadow: 0 0 0px 1000px #242323 inset;
+}
 
 .form {
   padding: 50px 20px 5px 20px;
