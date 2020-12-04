@@ -23,12 +23,12 @@ export default {
     scrollRight: function () {
       console.log('Scrolling right...');
       let list = document.getElementById(this.title);
-      list.firstChild.scrollLeft += window.innerWidth;
+      list.firstChild.scrollLeft += window.innerWidth - 200;
     },
     scrollLeft: function () {
       console.log('Scrolling left...');
       let list = document.getElementById(this.title);
-      list.firstChild.scrollLeft -= window.innerWidth;
+      list.firstChild.scrollLeft -= window.innerWidth - 200;
     }
   }
 }

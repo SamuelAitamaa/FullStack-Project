@@ -6,34 +6,25 @@
       <img class="imgbg" v-bind:src="this.imagebg" alt="image2"/>
     </div>
 
-    <div class="container"   >
-
-
-
-      <button v-on:click="hideInfo">X</button>
-
-
+    <button v-on:click="hideInfo">X</button>
+    <div class="container">
         <img class="coverimg" v-bind:src="this.image" alt="Placeholder image"  />
-
       <div class="titleAndDesc">
-
-
         <h2>{{ this.title }}</h2>
-        <div><p v-if="this.info.length === 0">No information found</p><p>{{ this.info }}</p></div>
         <h3>Rating: {{ this.rating }}</h3>
+        <div class="info">
+          <p v-if="this.info.length === 0">No information found</p><p>{{ this.info }}</p>
+        </div>
         <div class="providers">
           <div class="provider" v-for="provider in this.providers" :key="provider.index">
             <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)"/>
             <p @click="openProvider(provider.provider_name)">{{provider.provider_name}}</p>
           </div>
         </div>
-
       </div>
-
     </div>
 
   </div>
-
 </template>
 
 <script>
@@ -44,7 +35,7 @@ export default {
     return {
       title: '',
       image: '',
-      imagebg:'',
+      imagebg: null,
       info: '',
       rating: '',
       providers: []
@@ -62,7 +53,9 @@ export default {
         .get(url)
         .then(res => {
           this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-       this.imagebg = `http://image.tmdb.org/t/p/original/${res.data.backdrop_path}`;
+          if(res.data.backdrop_path !== null){
+            this.imagebg = `http://image.tmdb.org/t/p/original/${res.data.backdrop_path}`;
+          }
           if(this.movie){this.title = res.data.title;}
           else{this.title = res.data.name;}
           this.identity = res.data.id;
@@ -100,15 +93,20 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 99vw;
-    height: 99vh;
-    outline: 3px solid #ebb446;
-    min-height: 70%;
-
-
-
+    min-width: 1980px;
+    min-height: 1080px;
+    max-width: 1980px;
+    max-height: 1080px;
   }
-
+  .background-image:after{
+    position: absolute;
+    content:"";
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    background: linear-gradient(to bottom, transparent 0%, black 100%);
+  }
   .information{
     font-family: 'Montserrat', sans-serif;
     color: White;
@@ -120,8 +118,6 @@ export default {
     transform: translate(-50%, -50%);
     z-index: 100;
     display: none;
-
-
   }
   .container{
     width: 70%;
@@ -138,20 +134,23 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+  }
+  .info{
+    width: 800px;
+    height: 300px;
+    overflow-y: scroll;
+    padding-bottom: 80px;
   }
   h2{
     text-align: left;
     padding-left: 50px;
     font-size: 40px;
     font-weight: bold;
-
   }
   h3{
     text-align: left;
-    padding-left: 50px;
+    padding: 20px 0 20px 50px;
     font-weight: bold;
-
   }
   .titleAndDesc{
     max-width: 1100px;
@@ -166,8 +165,9 @@ export default {
     outline: 1px solid #ebb446;
   }
   p{
-    padding: 50px;
-    font-size: 30px;
+    padding: 20px 50px;
+    font-size: 24px;
+    line-height: 1.6;
     text-align: justify;
   }
   .providers {
@@ -196,6 +196,7 @@ export default {
   @media screen and (max-width: 1200px){
     .container{
       flex-direction: column;
+      padding-top: 200px;
     }
     .coverimg{
       width: 180px;
@@ -210,6 +211,9 @@ export default {
     .titleAndDesc h2{
       font-size: 28px;
       padding-top: 12px;
+    }
+    .info{
+      width: 500px;
     }
     @media screen and (max-width: 600px){
       .coverimg{
@@ -228,6 +232,9 @@ export default {
       .titleAndDesc h3{
         font-size: 12px;
       }
+      .info{
+        width: 350px;
+      }
     }
   }
 
@@ -244,8 +251,8 @@ export default {
     border: none;
     border-radius: 50%;
     position: fixed;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
     z-index: 101;
   }
   button:hover{

@@ -24,7 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +75,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -106,10 +108,12 @@
       <workItem from="1606813111547" duration="17114000" />
       <workItem from="1606838066962" duration="8138000" />
       <workItem from="1606858506130" duration="326000" />
-      <workItem from="1606896506350" duration="12805000" />
-      <workItem from="1606989203204" duration="5387000" />
-      <workItem from="1606995185719" duration="22965000" />
-      <workItem from="1607072706316" duration="412000" />
+      <workItem from="1606896506350" duration="24631000" />
+      <workItem from="1606936135680" duration="687000" />
+      <workItem from="1606980934830" duration="27726000" />
+      <workItem from="1607015349962" duration="1464000" />
+      <workItem from="1607018409631" duration="1369000" />
+      <workItem from="1607073514900" duration="7865000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
@@ -138,13 +142,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Vue Router" />
@@ -168,6 +171,7 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606841455017" />
+
     <state width="1259" height="163" key="GridCell.Tab.0.bottom" timestamp="1607084862760">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -188,6 +192,7 @@
     </state>
     <state width="1259" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607084862760" />
     <state width="1899" height="199" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606915781331" />
+
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605772289753">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
