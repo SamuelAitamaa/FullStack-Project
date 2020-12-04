@@ -63,4 +63,5 @@ export default {
   padding: 20px;
   transition: .2s ease-in-out;
 }
+
 </style>
