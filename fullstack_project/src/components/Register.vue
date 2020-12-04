@@ -16,7 +16,7 @@
         <p>Requires: 6 characters, uppercase letter, lowercase letter, number. No special characters.</p>
         <br>
 
-        <label for="passwordRepeat">Repeat New Password: </label>
+        <label for="passwordRepeat">Repeat Password: </label>
         <input type="password" placeholder="Repeat password..." v-model="repeatPassword" id="passwordRepeat">
         <p>Requires: 6 characters, uppercase letter, lowercase letter, number</p>
 
@@ -77,6 +77,7 @@ export default {
         this.error.push("ERROR! Password must be repeated.")
       } else if (this.repeatPassword !== this.userpassword) {
         this.error.push('Repeated password must match the with the password.');
+        this.repeatPassword='';
         console.log("Password is not valid");
         console.log("?1")
       }
