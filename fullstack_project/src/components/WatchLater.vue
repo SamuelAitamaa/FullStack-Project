@@ -1,28 +1,29 @@
 <template>
-  <div class="WatchLater">
-    <ul>
-      <li>
-        <div class="container">
+  <div class="container">
 
-          <div class="movie">
-            <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
-          </div>
+    <div class="backgroundGradient">
+      <img class="backgroundImage" v-bind:src="this.image" alt="Background image"/>
+    </div>
 
-          <button @click="deleteFromList(element.id)" class="imgBtn">-</button>
+    <div class="mediaImg">
+      <img v-bind:src="this.image" alt="Placeholder image" v-on:click="changeInfoVisibility(id)" />
+    </div>
 
-          <div class="aboutMovie">
-            <h3>{{ this.title }} {{ this.name }}</h3>
-            <p>{{ this.overview }}</p>
-            <h3>Rating: {{this.rating}}</h3>
-            <div class="providers" v-for="provider in this.providers" :key="provider.index">
-              <p>{{provider.provider_name}}</p>
-              <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)" />
-            </div>
-          </div>
+    <button @click="deleteFromList(element.id)" class="imgBtn">-</button>
 
+    <div class="aboutMedia">
+      <h2>{{ this.title }} {{ this.name }}</h2>
+      <h3>Rating: {{ this.rating }}</h3>
+      <p>{{ this.overview }}</p>
+      <h3 v-if="providers !== null">Available in:</h3>
+      <div class="providers">
+        <div class="provider" v-for="provider in this.providers" :key="provider.index">
+          <!--p>{{provider.provider_name}}</p-->
+          <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)" />
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -37,7 +38,7 @@ export default {
       name: '',
       image: '',
       overview: '',
-      providers: [],
+      providers: null,
       rating: ''
     }
   },
@@ -100,60 +101,59 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-.WatchLater{
-  display: flex;
-  justify-content: left;
-  margin-left: 40px;
-  font-family: 'Montserrat', sans-serif;
-
-}
-ul{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  transition: .2s ease-in-out;
-}
 .container{
   display: flex;
-  flex-direction: row;
-  justify-content: left;
-  width: 60vw;
-  height: auto;
-  min-height: 475px;
-  position:relative;
-  outline: 2px solid #ebb446;
-  margin: 20px;
-  background: black;
-
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-align: left;
+  color: white;
 }
-
-ul:hover{
-  scroll-behavior: revert;
+.mediaImg{
+  min-width: 300px;
+  min-height: 450px;
 }
-ul::-webkit-scrollbar{
-  width: 0;
+.mediaImg img {
+  width: 100%;
+  height: 100%;
 }
-ul li{
-  list-style-type: none;
-  padding: 20px;
+h2, h3, p{
+  margin: 10px 0;
+  z-index: 2;
 }
-.movie{
+h2{
+  border-bottom: 2px solid #ebb446;
+}
+p{
+  width: 80%;
+  height: 150px;
+  overflow-y: scroll;
+  padding-right: 5px;
+  line-height: 1.6;
+}
+.aboutMedia{
+  padding: 20px 80px 20px 20px;
+}
+.providers{
   display: flex;
   flex-direction: row;
-  width: 1200px;
-  height: 375px;
-  position: relative;
-
+  flex-wrap: wrap;
+}
+.provider{
+  margin-right: 10px;
+}
+.logo{
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
 }
 .imgBtn{
   transform: scale(0);
   color: #ebb446;
   font-size: 36px;
   font-weight: bolder;
-  height: 55px;
-  width: 55px;
+  height: 50px;
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,60 +164,68 @@ ul li{
   top: 15px;
   right: 15px;
   transition: .2s ease-in-out;
+  z-index: 2;
 }
 .imgBtn:hover{
   background-color: #ebb446;
   color: black;
 }
-.imgBtn:active{
-  background-color: #3dff2b;
-}
 .imgBtn:focus{
   outline: none;
 }
-h2{
-  padding: 5px 10px;
-  text-align: left;
-  color: white;
-}
-h3{
-  padding: 20px 10px;
-  text-align: center;
-  color: white;
-  font-size: 25px;
-}
-p{
-  padding: 10px 10px;
-  line-height: 140%;
-  font-size: 20px;
-}
-
-.providers {
-  display: inline-block;
-  padding: 10px 10px;
-  line-height: 100%;
-}
-img{
-  height: 475px;
-  transition: .2s ease-in-out;
-}
-img.logo{
-  width: 45px;
-  height: 45px;
-}
-.aboutMovie{
-  color: #ebb446;
-  background: linear-gradient(to right, black, #242323);
-  justify-content: center;
-  width: 800vw;
-  height: auto;
-  padding: 45px;
-
-}
-li:hover img{
-  outline: 2px solid #ebb446;
-}
-li:hover .text, li:hover .imgBtn{
+li:hover .imgBtn{
   transform: scale(1);
+}
+.backgroundImage{
+  display: none;
+  filter: brightness(50%);
+  position: absolute;
+
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+
+  user-select: none;
+  background: #242323;
+}
+.backgroundGradient:after{
+  display: none;
+  position: absolute;
+  content:"";
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;
+  background: linear-gradient(to bottom, transparent 0%, black 100%);
+}
+@media screen and (max-width: 800px){
+  .mediaImg{
+    display: none;
+  }
+  .backgroundImage, .backgroundGradient::after{
+    display: block;
+  }
+  .aboutMedia{
+    position: absolute;
+    width: 250px;
+  }
+  p{
+    width: 100%;
+  }
+  .logo{
+    width: 40px;
+    height: 40px;
+  }
+}
+::-webkit-scrollbar{
+  display: inline-block;
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #171616;
+}
+::-webkit-scrollbar-thumb {
+  background: #ebb446;
 }
 </style>

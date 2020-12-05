@@ -2,7 +2,7 @@
   <div class="movieList">
     <ul>
       <li v-for="element in this.elements" :key="element.id">
-        <div class="movie">
+        <div class="mediaImg">
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
           <button v-if="!checkList(element) && !hideBtn()" @click="addToList(element)" class="imgBtn">+</button>
           <button v-if="checkList(element) && !hideBtn()" @click="deleteFromList(element)" class="imgBtn">-</button>
@@ -163,7 +163,7 @@ ul li{
   list-style-type: none;
   padding: 20px;
 }
-.movie{
+.mediaImg{
   display: flex;
   flex-direction: column;
   width: 250px;

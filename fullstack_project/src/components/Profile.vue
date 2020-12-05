@@ -14,11 +14,11 @@
     </div>
     <div class="navItem">
       <button @click="hideAreYouSure" v-if="!areyousure">Delete user</button>
-      <div class="areyousure" v-if="areyousure">
-        <p >Are you sure?</p>
-          <div class="areyousurebtn">
-        <button id="yesbtn" @click="deleteUser">Yes</button>
-        <button @click="hideAreYouSure">No</button>
+      <div class="areYouSure" v-if="areyousure">
+        <p>Are you sure?</p>
+          <div class="confirmUserDel">
+            <button id="yesBtn" @click="deleteUser">Yes</button>
+            <button @click="hideAreYouSure">No</button>
           </div>
       </div>
     </div>
@@ -28,7 +28,7 @@
     <Heading v-bind:title="this.title" v-bind:search="false" v-bind:profile="true" />
     <ul>
       <li v-for="element in elements" v-bind:key="element.id">
-        <WatchLater class="WatchLater" v-bind:element=element @del:element="renderList()"/>
+        <WatchLater class="watchLater" v-bind:element=element @del:element="renderList()"/>
       </li>
     </ul>
     <div v-for="element in this.elements" :key="element.id">
@@ -185,10 +185,10 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-family: 'Montserrat', sans-serif;
 }
 .navItem{
   margin: 0 20px;
+  font-size: 18px;
 }
 .navItem:first-child{
   margin-right: auto;
@@ -206,7 +206,36 @@ export default {
 }
 .container {
   min-height: 100%;
-  background-color: #242323;
+}
+.areYouSure{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px grey;
+  border-radius: 2px;
+  float: left;
+  color: #ebb446;
+  background: none;
+  cursor: pointer;
+  padding: 10px;
+}
+button:hover {
+  color: #bf4b91;
+  background: none;
+}
+button:active{
+  outline: none;
+}
+p{
+  color: #ebb446;
+}
+.confirmUserDel{
+  display: flex;
 }
 header{
   text-align: left;
@@ -218,34 +247,24 @@ h1, h2{
   color: white;
   padding: 30px;
 }
-button {
-  font-size: 19px;
-  font-weight: bold;
-  border: 2px grey;
-  border-radius: 2px;
-  float: left;
-  background: #ebb446;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  cursor: pointer;
-  padding: 10px;
-
+ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
 }
-button:hover {
-  background: #bf4b91;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+li{
+  width: 95%;
+  height: 450px;
+  padding: 30px;
 }
-p {
-  margin-top: 10px;
-  font-size: 20px;
-  color: rgba(180, 151, 43, 0.83);
-  font-weight: bold;
-}
-  .areyousurebtn{
-    display: flex;
-    align-items: center;
+@media screen and (max-width: 800px){
+  ul{
     justify-content: center;
-
+    align-items: center;
   }
+  li{
+    height: 500px;
+    width: 300px;
+  }
+}
 </style>
