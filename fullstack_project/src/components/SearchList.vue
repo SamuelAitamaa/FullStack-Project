@@ -4,8 +4,8 @@
       <li v-for="element in this.elements" :key="element.id">
         <div class="search">
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
-          <button v-if="!checkList(element)" @click="addToList(element)" class="imgBtn">+</button>
-          <button v-else @click="deleteFromList(element)" class="imgBtn">-</button>
+          <button v-if="!checkList(element) && !hideBtn()" @click="addToList(element)" class="imgBtn">+</button>
+          <button v-if="checkList(element) && !hideBtn()" @click="deleteFromList(element)" class="imgBtn">-</button>
           <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
                        @hide:info="changeInfoVisibility"/>
         </div>
@@ -33,17 +33,17 @@ export default {
   watch: {
     input: function() {
       axios
-          .get(`http://api.themoviedb.org/3/search/multi?query=${this.input}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
-          .then(res => {
-            this.elements = res.data.results;
-            this.elements.reduceRight(function (acc, element, index, elements) {
-              if(element.poster_path === null || element.poster_path === undefined){
-                elements.splice(index, 1);
-              }else{
-                element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
-              }
-            }, []);
-          });
+      .get(`http://api.themoviedb.org/3/search/multi?query=${this.input}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
+      .then(res => {
+        this.elements = res.data.results;
+        this.elements.reduceRight(function (acc, element, index, elements) {
+          if(element.poster_path === null || element.poster_path === undefined){
+            elements.splice(index, 1);
+          }else{
+            element.poster_path = `http://image.tmdb.org/t/p/w300/${element.poster_path}`;
+          }
+        }, []);
+      });
     }
   },
   methods: {
@@ -52,11 +52,14 @@ export default {
       let element = document.getElementById(id);
       if(this.infoVisible){
         element.style.display = 'block';
+        this.disableScrolling();
       }else{
         element.style.display = 'none';
+        this.enableScrolling();
       }
     },
     addToList(element) {
+      this.$emit("update:list");
       this.$store.commit("saveMedia", element)
       this.getListFromDb(this.$store.state.user[0]);
     },
@@ -65,9 +68,9 @@ export default {
       return store.includes(JSON.stringify(element.id)) && (store.includes(JSON.stringify(element.title)) || (store.includes(JSON.stringify(element.name))))
     },
     deleteFromList(element) {
+      this.$emit("update:list");
       this.$store.commit("deleteMedia", element)
       this.getListFromDb(this.$store.state.user[0]);
-      this.$emit("del:element");
     },
     getListFromDb(id) {
       let url;
@@ -98,6 +101,17 @@ export default {
         console.log('Error in async: ' + error);
       }
     },
+    hideBtn: function () {
+      return this.$store.state.user === null;
+    },
+    disableScrolling(){
+      let x = window.scrollX;
+      let y = window.scrollY;
+      window.onscroll = function(){window.scrollTo(x, y);};
+    },
+    enableScrolling(){
+      window.onscroll = function(){};
+    }
   }
 }
 </script>

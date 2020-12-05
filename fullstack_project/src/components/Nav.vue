@@ -4,13 +4,16 @@
       <router-link to="/"><img src="../assets/logos.png" alt="Logo of the application"></router-link>
     </div>
     <div class="navItem">
-      <router-link to="/">Search</router-link>
+      <input type="text" v-model="input" @input.prevent="handleInput" placeholder="Search..." />
     </div>
-    <div class="navItem">
-      <input type="text" v-model="input" @input.prevent="handleInput" />
-    </div>
-    <div class="navItem">
+    <div class="navItem" v-if="this.width > 800">
       <router-link to="/profile">Profile</router-link>
+    </div>
+    <div class="navItem" v-if="this.width < 800 && this.$router.currentRoute.path === '/'">
+      <router-link to="/profile">Profile</router-link>
+    </div>
+    <div class="navItem" v-if="this.width < 800 && this.$router.currentRoute.path === '/profile'">
+      <router-link to="/">Home</router-link>
     </div>
     <div class="navItem" v-if="this.$store.state.user === null">
       <router-link to="/login">Login</router-link>
@@ -26,7 +29,8 @@ export default {
   name: "Nav",
   data() {
     return {
-      input: ''
+      input: '',
+      width: ''
     }
   },
   methods: {
@@ -38,7 +42,14 @@ export default {
       if(this.$router.currentRoute.path !== "/"){
         this.$router.push("/");
       }
+    },
+    handleResize: function () {
+      this.width = window.innerWidth;
     }
+  },
+  created: function () {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
   }
 }
 </script>
@@ -60,7 +71,6 @@ export default {
 .navItem:first-child{
   margin-right: auto;
 }
-
 img{
   width: 80px;
   height: 80px;
@@ -72,28 +82,28 @@ img{
 img:hover{
   transform: rotateZ(360deg);
 }
-
 input{
-  height: 30px;
-  width: 200px;
-  padding-left: 5px;
+  height: 50px;
+  width: 400px;
+  padding-left: 10px;
   outline: none;
-  border-radius: 5px;
-  background: #fffdbf;
+  background: black;
+  color: #ebb446;
+  border: none;
+  border-bottom: 2px solid #ebb446;
 
   font-size: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: inherit;
 
   transition: .2s ease-in-out;
 }
 input:focus{
-  width: 300px;
+  background: #171616;
 }
 #nav a {
   font-weight: bold;
   color: #ebb446;
   text-decoration: none;
-
 }
 #nav a.router-link-exact-active {
   color: #ebb446;
@@ -101,7 +111,6 @@ input:focus{
 #nav a:hover{
   color: #bf4b91;
 }
-
 button {
   font-size: 17px;
   font-weight: bold;
@@ -116,6 +125,13 @@ button:hover {
 }
 button:active{
   outline: none;
-
+}
+@media screen and (max-width: 800px){
+  img{
+    transform: scale(0);
+  }
+  input{
+    width: 220px;
+  }
 }
 </style>

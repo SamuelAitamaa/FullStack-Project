@@ -1,7 +1,7 @@
 <template>
   <div class="movieList">
     <ul>
-      <li v-for="element in this.elements" :key="element.id">
+      <li v-for="(element, index) in this.elements" :key="index">
         <div class="mediaImg">
           <img v-bind:src="element.poster_path" alt="Placeholder image" v-on:click="changeInfoVisibility(element.id)"/>
           <button v-if="!checkList(element) && !hideBtn()" @click="addToList(element)" class="imgBtn">+</button>

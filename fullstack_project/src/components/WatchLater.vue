@@ -19,7 +19,9 @@
       <div class="providers">
         <div class="provider" v-for="provider in this.providers" :key="provider.index">
           <!--p>{{provider.provider_name}}</p-->
-          <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Placeholder image" @click="openProvider(provider.provider_name)" />
+          <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`"
+               alt="Placeholder image"
+               @click="openProvider(provider.provider_name)" />
         </div>
       </div>
     </div>
@@ -81,7 +83,6 @@ export default {
     },
     deleteFromList(id) {
       this.$store.commit("deleteFromProfile", id)
-      this.$emit("del:element");
     },
     changeInfoVisibility: function (id) {
       this.infoVisible = !this.infoVisible;

@@ -1,10 +1,12 @@
 <template>
-<div class="profile" v-on:load="renderList()">
+<div class="profile">
   <Nav @input:change="inputChange" />
 
   <div class="searchContainer" v-if="this.input.length >= 1">
     <Heading v-bind:title="this.input" v-bind:search="true" v-bind:profile="true" />
-    <SearchList :input=this.input @del:element="renderList()" @add:element="renderList()"/>
+    <SearchList :input=this.input
+                @update:list="renderList()"
+    />
   </div>
 
   <h1 v-if="this.$store.state.user !== null">Welcome, {{ this.$store.state.user[1] }}</h1>
@@ -28,18 +30,20 @@
     <Heading v-bind:title="this.title" v-bind:search="false" v-bind:profile="true" />
     <ul>
       <li v-for="element in elements" v-bind:key="element.id">
-        <WatchLater class="watchLater" v-bind:element=element @del:element="renderList()"/>
+        <WatchLater v-bind:element=element @del:element="getListFromDb(this.$store.state.user[0])"/>
       </li>
     </ul>
     <div v-for="element in this.elements" :key="element.id">
-      <Information v-bind:id="element.id" v-bind:identity="element.id" v-bind:movie="element.hasOwnProperty('title')"
-                   @hide:info="changeInfoVisibility"/>
+      <Information v-bind:id="element.id" v-bind:identity="element.id"
+                   v-bind:movie="element.hasOwnProperty('title')"
+                   @hide:info="changeInfoVisibility"
+      />
     </div>
   </div>
 
-  <div v-else class="container">
+  <div v-else>
+    <Heading v-bind:title="this.title" v-bind:search="false" v-bind:profile="true" />
     <ul>
-      <Heading v-bind:title="this.title" v-bind:search="false" v-bind:profile="true" />
       <li>
         <h2>It seems empty here. Get started by adding movies to your watch list!</h2>
       </li>
@@ -204,9 +208,7 @@ export default {
 #nav a:hover{
   color: #bf4b91;
 }
-.container {
-  min-height: 100%;
-}
+
 .areYouSure{
   display: flex;
   justify-content: center;
@@ -232,7 +234,7 @@ button:active{
   outline: none;
 }
 p{
-  color: #ebb446;
+  color: white;
 }
 .confirmUserDel{
   display: flex;
