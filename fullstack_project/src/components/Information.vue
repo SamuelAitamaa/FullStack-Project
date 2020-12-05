@@ -2,8 +2,8 @@
 
   <div  class="container">
 
-    <div class="backgroundImage">
-      <img class="imageBg" v-bind:src="this.imagebg" alt="Background image"/>
+    <div class="backgroundGradient">
+      <img class="backgroundImage" v-bind:src="this.imagebg" alt="Background image"/>
     </div>
 
     <button v-on:click="hideInfo">X</button>
@@ -21,11 +21,12 @@
           <p>{{ this.info }}</p>
         </div>
 
-        <div class="providers">
+        <h3 v-if="providers !== null">Available in:</h3>
+        <div class="providers" v-if="providers !== null">
           <div class="provider" v-for="provider in this.providers" :key="provider.index">
             <img class="logo" v-bind:src="`http://image.tmdb.org/t/p/original/${provider.logo_path}`" alt="Logo of provider"
                  @click="openProvider(provider.provider_name)"/>
-            <p @click="openProvider(provider.provider_name)">{{provider.provider_name}}</p>
+            <!--p @click="openProvider(provider.provider_name)">{{provider.provider_name}}</p-->
           </div>
         </div>
       </div>
@@ -44,7 +45,7 @@ export default {
       imagebg: null,
       info: '',
       rating: '',
-      providers: []
+      providers: null
     }
   },
   props: {
@@ -58,9 +59,9 @@ export default {
     axios
         .get(url)
         .then(res => {
-          this.image = `http://image.tmdb.org/t/p/original/${res.data.poster_path}`;
+          this.image = `http://image.tmdb.org/t/p/w500/${res.data.poster_path}`;
           if(res.data.backdrop_path !== null){
-            this.imagebg = `http://image.tmdb.org/t/p/original/${res.data.backdrop_path}`;
+            this.imagebg = `http://image.tmdb.org/t/p/w1280/${res.data.backdrop_path}`;
           }
           if(this.movie){this.title = res.data.title;}
           else{this.title = res.data.name;}
@@ -114,9 +115,11 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+/* Height */
 .mediaImg, .column{
   height: 700px;
 }
+/* Left side image */
 .mediaImg{
   width: 450px;
   outline: 1px solid #ebb446;
@@ -127,9 +130,14 @@ export default {
   flex-direction: column;
   text-align: left;
 }
-h3, .overview{
+/* Margins and paddings */
+h3, .overview, .providers{
   margin: 20px;
   padding-left: 30px;
+}
+/* Width */
+h2, .overview, .providers{
+  width: 800px;
 }
 h2{
   margin: 20px 20px 20px 50px;
@@ -139,35 +147,26 @@ h2{
 h3{
   font-size: 24px;
 }
-p{
-  font-size: 20px;
-  line-height: 1.6;
-}
 .overview{
-  width: 800px;
   height: 300px;
   overflow-y: scroll;
   padding-right: 5px;
-}
-::-webkit-scrollbar{
-  display: inline-block;
-  width: 3px;
-}
-::-webkit-scrollbar-track {
-  background: #171616;
-}
-::-webkit-scrollbar-thumb {
-  background: #ebb446;
+  font-size: 20px;
+  line-height: 1.6;
 }
 .providers{
   display: flex;
-  flex-direction: row;
+  justify-content: flex-start;
+}
+.provider{
+  margin-right: 20px;
 }
 .logo{
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
 }
-.imageBg{
+.backgroundImage{
   filter: brightness(40%);
   position: absolute;
   top: 50%;
@@ -180,8 +179,9 @@ p{
   max-height: 1080px;
 
   user-select: none;
+  background: #242323;
 }
-.backgroundImage:after{
+.backgroundGradient:after{
   position: absolute;
   content:"";
   height:100%;
@@ -221,11 +221,19 @@ button:focus{
     margin: 15px;
   }
   .overview{
-    width: 300px;
+    width: 400px;
     height: 200px;
+    font-size: 18px;
+    line-height: 1.6;
   }
   .mediaImg{
     width: 300px;
+  }
+  h2, .providers{
+    width: 400px;
+  }
+  .providers{
+    flex-wrap: wrap;
   }
   h2{
     font-size: 24px;
@@ -233,23 +241,26 @@ button:focus{
   h3{
     font-size: 20px;
   }
-  p{
-    font-size: 18px;
-    line-height: 1.6;
-  }
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 800px){
     .information{
       flex-direction: column;
     }
-    h2, h3, .overview{
+    h2, h3, .overview, .providers{
+      width: 250px;
       margin: 10px;
       padding-left: 0;
     }
     .mediaImg{
       display: none;
     }
+    .overview, button{
+      font-size: 16px;
+    }
+    .logo{
+      width: 40px;
+      height: 40px;
+    }
     button{
-      font-size: 20px;
       height: 40px;
       width: 40px;
 
@@ -257,5 +268,15 @@ button:focus{
       right: 40px;
     }
   }
+}
+::-webkit-scrollbar{
+  display: inline-block;
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: #171616;
+}
+::-webkit-scrollbar-thumb {
+  background: #ebb446;
 }
 </style>
