@@ -124,7 +124,7 @@ ul{
 }
 ul li{
   list-style-type: none;
-  padding: 20px;
+  padding: 15px;
 }
 .search{
   display: flex;
