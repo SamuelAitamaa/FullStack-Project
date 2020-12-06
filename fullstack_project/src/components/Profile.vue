@@ -12,7 +12,7 @@
   <h1 v-if="this.$store.state.user !== null">Welcome, {{ this.$store.state.user[1] }}</h1>
   <div id="nav">
     <div class="navItem">
-      <router-link to="/changepassword">Change password</router-link> |
+      <router-link to="/changepassword">Change password</router-link><span> | </span>
       <router-link to="/changeusername">Change username</router-link>
     </div>
     <div class="navItem">
@@ -271,6 +271,13 @@ li{
   li{
     height: 500px;
     width: 300px;
+  }
+  .navItem:first-child{
+    display: flex;
+    flex-direction: column;
+  }
+  span{
+    display: none;
   }
 }
 </style>

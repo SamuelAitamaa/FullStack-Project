@@ -25,11 +25,11 @@
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/ChangePassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/ChangePassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Heading.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Heading.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/ChangeUsername.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/ChangeUsername.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/WatchLater.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Register.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +121,7 @@
       <workItem from="1607122471934" duration="345000" />
       <workItem from="1607168987797" duration="8726000" />
       <workItem from="1607189000514" duration="6799000" />
-      <workItem from="1607251045883" duration="9821000" />
+      <workItem from="1607251045883" duration="12055000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>

@@ -141,7 +141,6 @@ export default {
 
   min-height: 100vh;
 }
-
 .changepassword {
 
   background-color: #171616;
@@ -149,20 +148,18 @@ export default {
   border-radius: 3px;
   width: 50%;
   margin-left: 26%;
-  margin-top: 10vh;
+  margin-top: 2vh;
   height: auto;
   padding-top: 40px;
   padding-bottom: 40px;
 
   font-family: 'Monsterrat', sans-serif;
 }
-
 label{
   color:  #ebb446;
   font-size: 28px;
   margin-bottom: 20px;
 }
-
 h1 {
   background: linear-gradient(#ebb446 , #ebb442);
   -webkit-background-clip: text;
@@ -179,7 +176,7 @@ input {
   border-bottom: 2px solid white;
 }
 .form {
-  padding: 50px 20px 20px 20px;
+  padding-top: 20px;
   flex-basis: 100px;
   font-size: 19px;
 }
@@ -200,7 +197,6 @@ button {
   -webkit-text-fill-color: transparent;
   padding-bottom: 5px;
   cursor: pointer;
-
 }
 button:hover {
   background: #bf4b91;
@@ -219,6 +215,35 @@ p {
   font-size: 20px;
   color:#ebb446;
   font-weight: lighter;
-
+}
+ul li{
+  font-size: 12px;
+}
+@media screen and (max-width: 800px){
+  h1{
+    padding-top: 0;
+  }
+  input{
+    width: 180px;
+    height: 20px;
+    font-size: 12px;
+  }
+  label{
+    font-size: 16px;
+  }
+  p{
+    font-size: 12px;
+  }
+  @media all and (max-width: 500px) {
+    input{
+      width: 100px;
+    }
+    .back{
+      min-height: 150vh;
+    }
+    h1{
+      font-size: 20px;
+    }
+  }
 }
 </style>
