@@ -173,6 +173,54 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
     })()
 });
 
+// http://localhost:8081/backend/changeusername
+app.post("/backend/changeusername", urlEncodedParser, function (req, res){
+    console.log('Post request on /backend/changeusername');
+    console.log('body: %j', req.body);
+    let json = req.body;
+    (async () => {
+        console.log('Starting async');
+        try{
+            let sql = `UPDATE users SET username = ? WHERE username LIKE ?`;
+            await query(sql, [json.newUsername, json.username]);
+            res.send('Success');
+        }catch(err){
+            res.send('Error');
+            console.log("Database error: " + err);
+        }finally {
+            console.log('Ending async');
+        }
+    })()
+});
+
+// http://localhost:8081/backend/checkavailability
+app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
+    console.log('Get request on /backend/checkavailability');
+    console.log('body: %j', req.query);
+    let json = req.query;
+    let sql
+    (async () => {
+        console.log('Starting async');
+        try{
+            sql = `SELECT username FROM users WHERE username LIKE ?`;
+            let result = await query(sql, [json.newUsername]);
+            if (result.length === 0) {
+                res.send('Success');
+                console.log('Success')
+            } else {
+                res.send('Error');
+                console.log('No success')
+            }
+        }catch(err){
+            console.log("Database error: " + err);
+        }finally {
+            console.log('Ending async');
+        }
+    })()
+});
+
+
+
 // POST request for saving media information into database. The post need the id and type ('movie' or 'tv') of the media
 // and the id of the user. To save media the user need to be logged in, that way the users id is always present.
 // http://localhost:8081/backend/savetodb

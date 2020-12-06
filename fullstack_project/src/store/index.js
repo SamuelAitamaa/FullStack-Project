@@ -12,7 +12,7 @@ export default new Vuex.Store({
         user: null
     },
     plugins: [createPersistedState({
-            storage: window.localStorage
+            storage: window.sessionStorage
     })],
     mutations: {
         user(state, payload){
@@ -112,5 +112,5 @@ export default new Vuex.Store({
                 console.log('Error in async: ' + error);
             }
         }
-    }
+    },
 });

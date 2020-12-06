@@ -13,6 +13,8 @@
   <div id="nav">
     <div class="navItem">
       <router-link to="/changepassword">Change password</router-link>
+      <br>
+      <router-link to="/changeusername">Change username</router-link>
     </div>
     <div class="navItem">
       <button @click="hideAreYouSure" v-if="!areyousure">Delete user</button>
@@ -74,14 +76,16 @@ export default {
       input: '',
       elements: {},
       title: 'Watch Later',
-      areyousure: false
+      areyousure: false,
+      username: ''
     }
   },
-  mounted() {
+  created() {
     if(this.$store.state.user === null){
       this.$router.push("/login");
     }else{
       this.getListFromDb(this.$store.state.user[0]);
+      this.username = this.$store.state.user[1]
     }
   },
   methods: {
