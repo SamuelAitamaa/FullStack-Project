@@ -178,12 +178,20 @@ app.post("/backend/changeusername", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/changeusername');
     console.log('body: %j', req.body);
     let json = req.body;
+    let sql
     (async () => {
         console.log('Starting async');
         try{
-            let sql = `UPDATE users SET username = ? WHERE username LIKE ?`;
-            await query(sql, [json.newUsername, json.username]);
-            res.send('Success');
+            sql = `SELECT username FROM users WHERE username LIKE ? AND password LIKE ?`;
+            let result = await query(sql, [json.username, json.password]);
+
+            if (result.length > 0) {
+                sql = `UPDATE users SET username = ? WHERE username LIKE ? AND password LIKE ?`;
+                await query(sql, [json.newUsername, json.username, json.password]);
+                res.send('Success');
+            } else {
+                res.send('Error');
+            }
         }catch(err){
             res.send('Error');
             console.log("Database error: " + err);

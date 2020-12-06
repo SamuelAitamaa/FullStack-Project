@@ -68,15 +68,9 @@ export default {
   methods: {
     register() {
       this.error = [];
-      if (this.userpassword && this.newPassword && this.repeatPassword) {
-        console.log("Username and password are present");
-      }
 
       if (!this.userpassword) {
         this.error.push("ERROR! User password required.")
-      } else if (!this.validPass(this.userpassword)) {
-        this.error.push('Password must contain at least one lowercase letter, one uppercase letter one number, and be longer than six characters.');
-        console.log("Password is not valid");
       }
 
       if (!this.newPassword) {
@@ -91,10 +85,9 @@ export default {
       } else if (this.repeatPassword !== this.newPassword) {
         this.error.push('Repeated password must match the with the new password.');
         console.log("Password is not valid");
-        console.log("?1")
       }
 
-      if (this.validPass(this.userpassword) && this.userpassword && this.validPass(this.newPassword) && this.newPassword && this.validPass(this.repeatPassword) && this.repeatPassword && this.error.length === 0) {
+      if (this.error.length === 0) {
         console.log("Everything OK");
         this.saveNewPasswordToDb();
       }

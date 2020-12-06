@@ -75,8 +75,7 @@ export default {
         console.log("Password is not valid");
       }
 
-      if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword){
-        console.log("Everything OK");
+      if(this.error.length === 0){
         this.logIntoSite();
       }
     },
