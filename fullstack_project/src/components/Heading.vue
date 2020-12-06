@@ -75,4 +75,9 @@ button:hover{
   background-color: #ebb446;
   color: #171616;
 }
+@media all and (max-width: 500px){
+  button{
+    display: none;
+  }
+}
 </style>

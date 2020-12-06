@@ -12,8 +12,7 @@
   <h1 v-if="this.$store.state.user !== null">Welcome, {{ this.$store.state.user[1] }}</h1>
   <div id="nav">
     <div class="navItem">
-      <router-link to="/changepassword">Change password</router-link>
-      <br>
+      <router-link to="/changepassword">Change password</router-link> |
       <router-link to="/changeusername">Change username</router-link>
     </div>
     <div class="navItem">
@@ -197,6 +196,7 @@ export default {
 .navItem{
   margin: 0 20px;
   font-size: 18px;
+  color: #ebb446;
 }
 .navItem:first-child{
   margin-right: auto;

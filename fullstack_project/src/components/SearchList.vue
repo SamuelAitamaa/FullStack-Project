@@ -68,9 +68,9 @@ export default {
       return store.includes(JSON.stringify(element.id)) && (store.includes(JSON.stringify(element.title)) || (store.includes(JSON.stringify(element.name))))
     },
     deleteFromList(element) {
-      this.$emit("update:list");
+      //this.$emit("update:list");
       this.$store.commit("deleteMedia", element)
-      this.getListFromDb(this.$store.state.user[0]);
+      //this.getListFromDb(this.$store.state.user[0]);
     },
     getListFromDb(id) {
       let url;

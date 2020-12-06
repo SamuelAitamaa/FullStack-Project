@@ -24,7 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/ChangePassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/ChangePassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Heading.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Heading.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Nav.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/Profile.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" afterDir="false" />
@@ -119,7 +120,8 @@
       <workItem from="1607095862436" duration="9008000" />
       <workItem from="1607122471934" duration="345000" />
       <workItem from="1607168987797" duration="8726000" />
-      <workItem from="1607189000514" duration="6411000" />
+      <workItem from="1607189000514" duration="6799000" />
+      <workItem from="1607251045883" duration="9821000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
@@ -165,10 +167,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="756" y="187" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606908702297" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606830969426">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607253108329">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606830969426" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607253108329" />
     <state x="265" y="0" key="CommitChangelistDialog2" timestamp="1605779221284">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -177,22 +179,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606841455017" />
-    <state width="1899" height="186" key="GridCell.Tab.0.bottom" timestamp="1607191118029">
+    <state width="1899" height="186" key="GridCell.Tab.0.bottom" timestamp="1607251526512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="186" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607191118029" />
-    <state width="1899" height="186" key="GridCell.Tab.0.center" timestamp="1607191118029">
+    <state width="1899" height="186" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607251526512" />
+    <state width="1899" height="186" key="GridCell.Tab.0.center" timestamp="1607251526512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="186" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607191118029" />
-    <state width="1899" height="186" key="GridCell.Tab.0.left" timestamp="1607191118029">
+    <state width="1899" height="186" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607251526512" />
+    <state width="1899" height="186" key="GridCell.Tab.0.left" timestamp="1607251526512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="186" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607191118029" />
-    <state width="1899" height="186" key="GridCell.Tab.0.right" timestamp="1607191118029">
+    <state width="1899" height="186" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607251526512" />
+    <state width="1899" height="186" key="GridCell.Tab.0.right" timestamp="1607251526512">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="186" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607191118029" />
+    <state width="1899" height="186" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607251526512" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605772289753">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

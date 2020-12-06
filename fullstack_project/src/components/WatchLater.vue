@@ -118,6 +118,9 @@ export default {
   width: 100%;
   height: 100%;
 }
+.mediaImg:hover{
+  outline: 2px solid #ebb446;
+}
 h2, h3, p{
   margin: 10px 0;
   z-index: 2;
@@ -217,6 +220,11 @@ li:hover .imgBtn{
   .logo{
     width: 40px;
     height: 40px;
+  }
+  @media all and (max-width: 400px){
+    .aboutMedia{
+      width: 230px;
+    }
   }
 }
 ::-webkit-scrollbar{

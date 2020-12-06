@@ -143,12 +143,13 @@ export default {
 }
 
 .changepassword {
+
   background-color: #171616;
   border: 2px solid #ebb446 ;
   border-radius: 3px;
   width: 50%;
   margin-left: 26%;
-  margin-top: 20vh;
+  margin-top: 10vh;
   height: auto;
   padding-top: 40px;
   padding-bottom: 40px;

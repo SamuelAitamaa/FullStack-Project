@@ -1,25 +1,36 @@
 <template>
   <div id="nav">
-    <div class="navItem">
+    <div class="navItem" @click="flushSearch()">
       <router-link to="/"><img src="../assets/logos.png" alt="Logo of the application"></router-link>
     </div>
     <div class="navItem">
       <input type="text" v-model="input" @input.prevent="handleInput" placeholder="Search..." />
     </div>
-    <div class="navItem" v-if="this.width > 800">
+    <div class="navItem hideSmall" v-if="this.width > 800">
       <router-link to="/profile">Profile</router-link>
     </div>
-    <div class="navItem" v-if="this.width < 800 && this.$router.currentRoute.path === '/'">
+    <div class="navItem hideSmall" v-if="this.width < 800 && this.$router.currentRoute.path === '/'">
       <router-link to="/profile">Profile</router-link>
     </div>
-    <div class="navItem" v-if="this.width < 800 && this.$router.currentRoute.path === '/profile'">
+    <div class="navItem hideSmall" v-if="this.width < 800 && this.$router.currentRoute.path === '/profile'">
       <router-link to="/">Home</router-link>
     </div>
-    <div class="navItem" v-if="this.$store.state.user === null">
+    <div class="navItem hideSmall" v-if="this.$store.state.user === null">
       <router-link to="/login">Login</router-link>
     </div>
-    <div class="navItem" v-if="this.$store.state.user !== null">
+    <div class="navItem hideSmall" v-if="this.$store.state.user !== null">
       <button @click="logout">Logout</button>
+    </div>
+    <div class="navItem hideBig">
+      <div class="dropdown">
+        <button id="menu">Menu</button>
+        <div class="dropContent">
+          <router-link to="/profile">Profile</router-link>
+          <router-link to="/">Home</router-link>
+          <router-link to="/login" v-if="this.$store.state.user === null">Login</router-link>
+          <button @click="logout" v-if="this.$store.state.user !== null">Logout</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +56,10 @@ export default {
     },
     handleResize: function () {
       this.width = window.innerWidth;
+    },
+    flushSearch: function () {
+      this.input = '';
+      this.$emit('input:change', this.input);
     }
   },
   created: function () {
@@ -126,12 +141,50 @@ button:hover {
 button:active{
   outline: none;
 }
+.hideBig{
+  display: none;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropContent {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #171616;
+  min-width: 160px;
+  z-index: 1;
+  outline: none;
+
+}
+.dropContent a.router-link-active, .dropContent a , .dropContent a.router-link-exact-active, .dropContent button{
+  padding: 12px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ebb446;
+}
+.dropdown:hover .dropContent {
+  display: block;
+}
 @media screen and (max-width: 800px){
   img{
     transform: scale(0);
   }
   input{
     width: 220px;
+  }
+  @media all and (max-width: 500px){
+    .hideSmall{
+      display: none;
+    }
+    .hideBig{
+      display: block;
+    }
+    input{
+      width: 120px;
+    }
   }
 }
 </style>
