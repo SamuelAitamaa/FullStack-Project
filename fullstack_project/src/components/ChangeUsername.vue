@@ -121,7 +121,7 @@ export default {
       }
     },
     validName: function (name) {
-      let re = /^(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[A-Za-z]{2,}$/;
+      let re = /^(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[0-9A-Za-z]{2,}$/;
       return re.test(name);
     }
   }
