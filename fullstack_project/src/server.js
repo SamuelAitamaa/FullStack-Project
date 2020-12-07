@@ -146,6 +146,8 @@ app.post("/backend/register", urlEncodedParser, function (req, res){
     })()
 });
 
+// POST request for changing the users password. Request checks if the users old password is correct and if it is,
+// changing to the new password will commence.
 // http://localhost:8081/backend/changepassword
 app.post("/backend/changepassword", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/changepassword');
@@ -173,6 +175,8 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
     })()
 });
 
+// POST request for changing the users username. Request checks if password is correct and if it is, changing of the
+// username will commence.
 // http://localhost:8081/backend/changeusername
 app.post("/backend/changeusername", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/changeusername');
@@ -201,6 +205,7 @@ app.post("/backend/changeusername", urlEncodedParser, function (req, res){
     })()
 });
 
+// GET request for checking if the username is available.
 // http://localhost:8081/backend/checkavailability
 app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
     console.log('Get request on /backend/checkavailability');
@@ -278,6 +283,8 @@ app.delete("/backend/deletefromdb", urlEncodedParser, function (req, res){
     })()
 });
 
+// DELETE request for deleting the user and the list that the user had.
+// http://localhost:8081/backend/deleteuser
 app.delete("/backend/deleteuser", urlEncodedParser, function (req, res){
     console.log('Post reguest on /backend/deleteuser');
     console.log('body: %j', req.body);
