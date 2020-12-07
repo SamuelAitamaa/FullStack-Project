@@ -48,6 +48,13 @@ export default {
     input: String,
     element: Object,
   },
+  /**
+   * WatchLater "created" function makes API calls depending on the properties of the object passed to this component.
+   * If the object has the property "title", this function renders a movie on the list with the correct id.
+   * Otherwise render a tv series on the list with the correct id.
+   * This separation has to be done, because movies and tv series have own ids and have different property names on the
+   * JSON files that are fetched.
+   */
   created: function() {
     if(Object.prototype.hasOwnProperty.call(this.element, 'title')) {
       axios
@@ -78,12 +85,28 @@ export default {
     }
   },
   methods: {
+    /**
+     * Saves media to database and Vuex store and immediately gets the new list to update the list in profile screen.
+     * This functions will also be called if the users uses to search function within the Profile view and decides
+     * to add a media from there.
+     * @param{object} element to be added to
+     */
     addToList(element) {
       this.$store.commit("saveMedia", element)
     },
+    /**
+     * Deletes media from the database and Vuex store. This functions works with the id of the media to be deleted.
+     * @param{number} id of the media to be deleted
+     */
     deleteFromList(id) {
       this.$store.commit("deleteFromProfile", id)
     },
+    /**
+     * Changes the information visibility of a media. Each movie and series will have their information printed
+     * with them, but will not be displayed unless the user clicks on the image of the media. If information is
+     * displayed, scrolling will be disabled. When the user closes the information screen, scrolling will be enabled.
+     * @param{string} id of the media whose information will be displayed
+     */
     changeInfoVisibility: function (id) {
       this.infoVisible = !this.infoVisible;
       let element = document.getElementById(id);
@@ -93,6 +116,10 @@ export default {
         element.style.display = 'none';
       }
     },
+    /**
+     * Opens a new window with a google search and the providers name a the search query.
+     * @param{string} provider name
+     */
     openProvider(provider) {
       window.open(`https://www.google.com/search?q=${provider}`, '_blank');
     }

@@ -15,17 +15,41 @@ export default new Vuex.Store({
             storage: window.sessionStorage
     })],
     mutations: {
+        /**
+         * The "logged in" state is tracked with the user variable. If the user variable is null, the user is not
+         * logged in. Once the user has a username and a id, then the user is considered "logged in".
+         * @param{object} state is the current state of the application
+         * @param{object} payload is the object (user) which will "log in" the user to the site
+         */
         user(state, payload){
             state.user = payload;
             console.log('Mutation in user: ' + state.user)
         },
+        /**
+         * The "logged off" state is tracked with the user variable. If the user variable is null, the user is not
+         * logged in. Once the user has a username and a id, then the user is considered "logged in".
+         * @param{object} state is the current state of the application
+         */
         delUser(state){
             state.user = null;
             console.log('Mutation in user: ' + state.user)
         },
+        /**
+         * Saves the ids and type of media from the database to this list. This list will provide the Profile screen
+         * the correct information it needs to render the current logged in users list.
+         * @param{object} state is the current state of the application
+         * @param{object} payload is the id and media type which will be saved
+         */
         saveMediaList(state, payload){
             state.dbList = payload
         },
+        /**
+         * Saves the media to an (Vuex store) array, which will fasten the rendering of the media. Also saves the media
+         * to the database by sending the media type, the media id and the current user id within a post request to the
+         * database.
+         * @param{object} state is the current state of the application
+         * @param{object} payload is the element which hosts all the information about the media
+         */
         saveMedia(state, payload) {
             state.movies.push(payload)
             let url;
@@ -54,6 +78,12 @@ export default new Vuex.Store({
                 console.log('Error in async: ' + error);
             }
         },
+        /**
+         * Deletes the media from both (Vuex store) arrays and makes a delete request to the database to delete media
+         * from the current users list. Array deletion works with (item.id === payload.id).
+         * @param{object} state is the current state of the application
+         * @param{object} payload is the object which need to be deleted from the arrays
+         */
         deleteMedia(state, payload) {
             let index, id;
             state.movies.find(function(item, i){
@@ -69,7 +99,10 @@ export default new Vuex.Store({
             try {
                 url = 'http://localhost:8081/backend/deletefromdb'
                 axios.delete(url, {
-                    data: { media_id: id }
+                    data: {
+                        media_id: id,
+                        user_id: state.user[0]
+                    }
                 }).then(res => {
                     if(res.data === "Success"){
                         console.log('Deleting media from db complete!');
@@ -83,6 +116,12 @@ export default new Vuex.Store({
                 console.log('Error in async: ' + error);
             }
         },
+        /**
+         * Deletes the media from both (Vuex store) arrays and makes a delete request to the database to delete media
+         * from the current users list. Array deletion works with (item.id === payload).
+         * @param{object} state is the current state of the application
+         * @param{number} payload is the id of the object which need to be deleted from the arrays
+         */
         deleteFromProfile(state, payload) {
             let index, id;
             state.movies.find(function(item, i){
@@ -98,7 +137,10 @@ export default new Vuex.Store({
             try {
                 url = 'http://localhost:8081/backend/deletefromdb'
                 axios.delete(url, {
-                    data: { media_id: id }
+                    data: {
+                        media_id: id,
+                        user_id: state.user[0]
+                    }
                 }).then(res => {
                     if(res.data === "Success"){
                         console.log('Deleting media from db complete!');

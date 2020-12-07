@@ -45,6 +45,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * Updates the variable input when a "@input:change" emit is caught
+     * @param{string} emit is the result that will be put to the variable input
+     */
     inputChange(emit){
       this.input = emit;
     }

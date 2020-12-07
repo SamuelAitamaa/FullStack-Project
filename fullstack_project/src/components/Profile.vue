@@ -79,6 +79,10 @@ export default {
       username: ''
     }
   },
+  /**
+   * Profile "created" function redirects the user to the login screen, if the user is not logged in. If the user
+   * is logged in, the function fetches the latest list that the user has and sets the users name on display.
+   */
   created() {
     if(this.$store.state.user === null){
       this.$router.push("/login");
@@ -88,9 +92,19 @@ export default {
     }
   },
   methods: {
+    /**
+     * Updates the variable input when a "@input:change" emit is caught
+     * @param{string} emit is the result that will be put to the variable input
+     */
     inputChange(emit){
       this.input = emit;
     },
+    /**
+     * Changes the information visibility of a media. Each movie and series will have their information printed
+     * with them, but will not be displayed unless the user clicks on the image of the media. If information is
+     * displayed, scrolling will be disabled. When the user closes the information screen, scrolling will be enabled.
+     * @param{string} id of the media whose information will be displayed
+     */
     changeInfoVisibility: function (id) {
       this.infoVisible = !this.infoVisible;
       let element = document.getElementById(id);
@@ -100,6 +114,10 @@ export default {
         element.style.display = 'none';
       }
     },
+    /**
+     * Get the list from database depending on user id
+     * @param{number} id of the user
+     */
     getListFromDb(id) {
       let url;
       try {
@@ -128,6 +146,13 @@ export default {
         console.log('Error in async: ' + error);
       }
     },
+    /**
+     * Renders the list on the profile by getting a list of ids from Vuex store which has all the ids of the media the
+     * user has saved on his / her / their "Watch Later" list. The ids are saved to Vuex store from database.
+     * With the ids this function makes API calls and sets the results to a Vuex list of "movies" (contains both movies
+     * and series) and to an element array, which is passed to the WatchLater component where the information will
+     * be displayed.
+     */
     renderList() {
       console.log('Rendering list...')
       let list = this.$store.state.dbList;
@@ -150,10 +175,17 @@ export default {
       this.elements = movies;
       this.$store.state.movies = movies
     },
+    /**
+     * Hides the confirmation section after the user has clicked on "Delete user"
+     */
     hideAreYouSure(){
       console.log("Deleting user..")
       this.areyousure=!this.areyousure;
     },
+    /**
+     * Deletes the user and all media with the users id from the database. At the same time redirects the user
+     * back to the main page and sets the user as null (representing that the user is not logged in).
+     */
     deleteUser(){
       try{
         let url='http://localhost:8081/backend/deleteuser'
@@ -174,7 +206,6 @@ export default {
       }catch(err) {
         console.log('Error in async: '+err)
       }
-
     }
   }
 }

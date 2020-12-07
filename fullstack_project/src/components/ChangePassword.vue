@@ -58,6 +58,10 @@ export default {
       error: []
     }
   },
+  /**
+   * ChangePassword "created" function redirects the user to login screen if the user is not logged in.
+   * If the user is logged in the user username will be saved and also sent to the database to be tested.
+   */
   created: function () {
     if (this.$store.state.user === null) {
       this.$router.push("/login");
@@ -66,6 +70,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * Checks that all the information the user has provided is valid and correct. Once it passes all the test
+     * the users new password will be saved to the database.
+     */
     register() {
       this.error = [];
 
@@ -92,12 +100,19 @@ export default {
         this.saveNewPasswordToDb();
       }
     },
-
+    /**
+     * Checks the validity of the password with regexp
+     * @param{string} password which the user has inputted
+     * @returns {boolean} true if the password goes through the regexp, else false
+     */
     validPass: function (password) {
       let re = /^(?=.*[0-9]+.*)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)[0-9a-zA-Z]{6,}$/;
       return re.test(password);
     },
-
+    /**
+     * Saves the users new password the user has provided.
+     * @returns {Promise<void>}
+     */
     async saveNewPasswordToDb() {
       let url;
       try {

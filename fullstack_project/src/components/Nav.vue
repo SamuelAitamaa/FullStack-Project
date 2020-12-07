@@ -52,27 +52,42 @@ export default {
       width: ''
     }
   },
+  /**
+   * Nav "created" function adds an event listener to the resizing of the window that updates the width variable.
+   */
+  created: function () {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
   methods: {
+    /**
+     * Emits and event that updates the input on main screen, which is also passed down to other components.
+     */
     handleInput: function () {
       this.$emit('input:change', this.input);
     },
+    /**
+     * Logs the user out by deleting the user from Vuex store and sending the user to the main page.
+     */
     logout: function () {
       this.$store.commit('delUser');
       if(this.$router.currentRoute.path !== "/"){
         this.$router.push("/");
       }
     },
+    /**
+     * Updates the width variable, which will hide / show links on the navigation bar.
+     */
     handleResize: function () {
       this.width = window.innerWidth;
     },
+    /**
+     * Deletes the input from the search bar when going back to main page.
+     */
     flushSearch: function () {
       this.input = '';
       this.$emit('input:change', this.input);
     }
-  },
-  created: function () {
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize();
   }
 }
 </script>

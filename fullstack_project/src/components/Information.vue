@@ -52,6 +52,10 @@ export default {
     identity: Number,
     movie: Boolean
   },
+  /**
+   * Information "created" function makes API calls depending on the variable identity the component gets. The API call
+   * contains information related to the media and also the providers the media has.
+   */
   created: function () {
     let url = '';
     if(this.movie){url = `https://api.themoviedb.org/3/movie/${this.identity}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`;}
@@ -79,9 +83,16 @@ export default {
         })
   },
   methods: {
+    /**
+     * Emits an event, which causes the information screen to close
+     */
     hideInfo: function () {
       this.$emit('hide:info', this.identity);
     },
+    /**
+     * Opens a new window with a google search and the providers name a the search query.
+     * @param{string} provider name
+     */
     openProvider(provider) {
       window.open(`https://www.google.com/search?q=${provider}`, '_blank');
     }

@@ -46,30 +46,42 @@ export default {
       password: ''
     }
   },
+  /**
+   * ChangeUsername "created" function redirects the user to login screen if the user is not logged in
+   */
   created: function () {
     if (this.$store.state.user === null) {
       this.$router.push("/login");
     }
   },
   methods: {
-     register() {
-      this.error = ''
-       this.username = this.$store.state.user[1]
-      if (this.newUsername === this.username) {
-        this.error = 'Name already in your usage!'
-      } else if (!this.newUsername) {
-        this.error = 'Set a new username'
-      } else if (!this.validName(this.newUsername)) {
-        this.error = 'Name must begin with uppercase letter and must contain only characters.'
-      } else if (!this.password) {
-        this.error = "ERROR! User password required."
+  /**
+   * Checks that all the information the user has provided is valid and correct. Once it passes all the test
+   * the users new username will be saved to the database.
+   */
+   register() {
+    this.error = ''
+     this.username = this.$store.state.user[1]
+    if (this.newUsername === this.username) {
+      this.error = 'Name already in your usage!'
+    } else if (!this.newUsername) {
+      this.error = 'Set a new username'
+    } else if (!this.validName(this.newUsername)) {
+      this.error = 'Name must begin with uppercase letter and must contain only characters.'
+    } else if (!this.password) {
+      this.error = "ERROR! User password required."
+    }
+
+    if (this.error.length === 0) {
+        this.saveNewUsernameToDb();
       }
-
-      if (this.error.length === 0) {
-          this.saveNewUsernameToDb();
-        }
-      },
-
+    },
+    /**
+     * Saves the users new username the user has provided. If the username is already present in the database, this
+     * function will print an error message. Every users username must be unique. Also sets the new username to
+     * Vuex Store to display the new name in the profile page.
+     * @returns {Promise<void>}
+     */
     async saveNewUsernameToDb() {
       let url;
       try {
@@ -95,6 +107,11 @@ export default {
         console.log('Error in async: ' + error);
       }
     },
+    /**
+     * Checks the validity of the name with regexp
+     * @param{string} name which the user has inputted
+     * @returns {boolean} true if the name goes through the regexp, else false
+     */
     validName: function (name) {
       let re = /^(?=.*[A-Z]+.*)[0-9A-Za-z]{2,}$/;
       return re.test(name);

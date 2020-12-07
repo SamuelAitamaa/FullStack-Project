@@ -31,6 +31,12 @@ export default {
   props: {
     genre: Number
   },
+  /**
+   * MovieList "created" function makes API calls to TMDB to get movies and series.
+   * Genre 0 is unused by the API so if the genre is 0, then trending media will be called.
+   * If the genre is other than zero and corresponds a genre, then media that have the genre
+   * will be called. For API calls we use axios.
+   */
   created: function() {
     if(this.genre === 0){
       let one = `https://api.themoviedb.org/3/trending/all/week?page=1&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
@@ -59,6 +65,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * Shuffles an arrays content
+     * @param{array} array to be shuffled
+     */
     shuffle: function (array) {
       let index = array.length;
       while (index !== 0) {
@@ -69,6 +79,11 @@ export default {
         array[rndIndex] = temp;
       }
     },
+    /**
+     * Sets images to elements, since the API just gives the path to the images, not the whole url.
+     * If the media doesn't have a path to the image, it will be deleted from the list.
+     * @param{array} array to which the images will be set
+     */
     setImages: function (array) {
       array.reduceRight(function (acc, element, index, elements) {
         if(element.poster_path === null || element.poster_path === undefined){
@@ -78,6 +93,12 @@ export default {
         }
       }, []);
     },
+    /**
+     * Changes the information visibility of a media. Each movie and series will have their information printed
+     * with them, but will not be displayed unless the user clicks on the image of the media. If information is
+     * displayed, scrolling will be disabled. When the user closes the information screen, scrolling will be enabled.
+     * @param{string} id of the media whose information will be displayed
+     */
     changeInfoVisibility: function (id) {
       this.infoVisible = !this.infoVisible;
       let element = document.getElementById(id);
@@ -89,28 +110,55 @@ export default {
         this.enableScrolling();
       }
     },
+    /**
+     * Disables the scrolling of the page
+     */
     disableScrolling(){
       let x = window.scrollX;
       let y = window.scrollY;
       window.onscroll = function(){window.scrollTo(x, y);};
     },
+    /**
+     * Enables the scrolling of the page
+     */
     enableScrolling(){
       window.onscroll = function(){};
     },
+    /**
+     * Saves media to database and Vuex store and immediately gets the new list to update the list in profile screen.
+     * @param{object} element to be added to
+     */
     addToList(element) {
       this.$store.commit("saveMedia", element)
       this.getListFromDb(this.$store.state.user[0]);
     },
+    /**
+     * Checks if the user has a movie or series with a name and id and changes the button on the media accordingly.
+     * @param{object} element will be checked
+     * @returns {boolean} true if the id and name is found from Vuex store, else false
+     */
     checkList(element) {
       let store = JSON.stringify(this.$store.state.movies);
       return store.includes(JSON.stringify(element.id)) && (store.includes(JSON.stringify(element.title)) || (store.includes(JSON.stringify(element.name))))
     },
+    /**
+     * Hides the buttons on the media completely, if the user is not logged in
+     * @returns {boolean} true if the user is logged in, else false
+     */
     hideBtn: function () {
       return this.$store.state.user === null;
     },
+    /**
+     * Deletes media from the database and Vuex store
+     * @param{object} element to be deleted
+     */
     deleteFromList(element) {
       this.$store.commit("deleteMedia", element)
     },
+    /**
+     * Get the list from database depending on user id
+     * @param{number} id of the user
+     */
     getListFromDb(id) {
       let url;
       try {

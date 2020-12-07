@@ -20,11 +20,17 @@ export default {
     profile: Boolean
   },
   methods: {
+    /**
+     * Scrolls the list of media to right. Scrolling depends on the width of the window.
+     */
     scrollRight: function () {
       console.log('Scrolling right...');
       let list = document.getElementById(this.title);
       list.firstChild.scrollLeft += window.innerWidth - 200;
     },
+    /**
+     * Scrolls the list of media to left. Scrolling depends on the width of the window.
+     */
     scrollLeft: function () {
       console.log('Scrolling left...');
       let list = document.getElementById(this.title);

@@ -42,8 +42,10 @@ con.connect(function (err){
     console.log("Connected to MySQL!")
 });
 
-// GET request for getting information of a users list of media. This GET requires the
-// users ID to get the correct list of media. Gets the medias id and type from the list.
+/**
+ * GET request for getting information of a users list of media. This get request requires the
+ * users ID to get the correct list of media. Gets the medias id and type from the list.
+ */
 // http://localhost:8081/backend/getList
 app.get("/backend/getList", function (req, res){
     console.log('Get request on /backend/getList');
@@ -79,8 +81,10 @@ app.get("/backend/getList", function (req, res){
     })()
 })
 
-// GET request for logging in. Send the users username and password to check if the database
-// contains a corresponding username and at least one corresponding password.
+/**
+ * GET request for logging in. Sends the users username and password to check if the database
+ * contains a corresponding username and password combination.
+ */
 // http://localhost:8081/backend/login
 app.get("/backend/login", function (req, res){
     console.log('Get request on /backend/login');
@@ -112,9 +116,11 @@ app.get("/backend/login", function (req, res){
     })()
 })
 
-// POST request for registering a new account. The website checks validation (which is of course not enough)
-// and our database also has a UNIQUE attribute linked to the username, so two identical usernames are not possible.
-// Needs a username and a user password in correct forms to register.
+/**
+ * POST request for registering a new account. The website checks validation (which is of course not enough)
+ * and our database also has a UNIQUE attribute linked to the username, so two identical usernames are not possible.
+ * Needs a username and a user password in correct forms to register.
+ */
 // http://localhost:8081/backend/register
 app.post("/backend/register", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/register');
@@ -146,8 +152,10 @@ app.post("/backend/register", urlEncodedParser, function (req, res){
     })()
 });
 
-// POST request for changing the users password. Request checks if the users old password is correct and if it is,
-// changing to the new password will commence.
+/**
+ * POST request for changing the users password. The request checks if the users old password is correct and if it is,
+ * changing to the new password will commence.
+ */
 // http://localhost:8081/backend/changepassword
 app.post("/backend/changepassword", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/changepassword');
@@ -175,8 +183,10 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
     })()
 });
 
-// POST request for changing the users username. Request checks if password is correct and if it is, changing of the
-// username will commence.
+/**
+ * POST request for changing the users username. The request checks if password is correct and if it is, changing of the
+ * username will commence.
+ */
 // http://localhost:8081/backend/changeusername
 app.post("/backend/changeusername", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/changeusername');
@@ -205,7 +215,9 @@ app.post("/backend/changeusername", urlEncodedParser, function (req, res){
     })()
 });
 
-// GET request for checking if the username is available.
+/**
+ * GET request for checking if the username is available.
+ */
 // http://localhost:8081/backend/checkavailability
 app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
     console.log('Get request on /backend/checkavailability');
@@ -232,10 +244,10 @@ app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
     })()
 });
 
-
-
-// POST request for saving media information into database. The post need the id and type ('movie' or 'tv') of the media
-// and the id of the user. To save media the user need to be logged in, that way the users id is always present.
+/**
+ * POST request for saving media information into the database. The post needs the id and type ('movie' or 'tv') of the
+ * media and the id of the user. To save media the user need to be logged in, that way the users id is always present.
+ */
 // http://localhost:8081/backend/savetodb
 app.post("/backend/savetodb", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/savetodb');
@@ -259,7 +271,10 @@ app.post("/backend/savetodb", urlEncodedParser, function (req, res){
     })()
 });
 
-// DELETE request for deleting records from the database. The deletion requires the id of the media which needs to be deleted
+/**
+ * DELETE request for deleting media records from the database. The deletion requires the id of the user and the id of
+ * the media which needs to be deleted
+ */
 // http://localhost:8081/backend/deletefromdb
 app.delete("/backend/deletefromdb", urlEncodedParser, function (req, res){
     console.log('Post request on /backend/deletefromdb');
@@ -269,8 +284,8 @@ app.delete("/backend/deletefromdb", urlEncodedParser, function (req, res){
     (async () => {
         console.log('Starting async');
         try{
-            sql = "DELETE FROM list WHERE media_id LIKE ?";
-            let result = await query(sql, [json.media_id]);
+            sql = "DELETE FROM list WHERE media_id LIKE ? AND user_id LIKE ?";
+            let result = await query(sql, [json.media_id, json.user_id]);
             console.log('Deleting from db result: ')
             console.log(result.protocol41)
             res.send('Success');
@@ -283,7 +298,9 @@ app.delete("/backend/deletefromdb", urlEncodedParser, function (req, res){
     })()
 });
 
-// DELETE request for deleting the user and the list that the user had.
+/**
+ * DELETE request for deleting the user and the list that the user had.
+ */
 // http://localhost:8081/backend/deleteuser
 app.delete("/backend/deleteuser", urlEncodedParser, function (req, res){
     console.log('Post reguest on /backend/deleteuser');

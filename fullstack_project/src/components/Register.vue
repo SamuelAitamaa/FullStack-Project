@@ -54,6 +54,11 @@ export default {
     }
   },
   methods: {
+    /**
+     * Checks all the input fields for validity. If something is not valid, an error message will be printed which
+     * details the problem that the user has made. If everything is valid, the error message will be empty and
+     * in this case the users information (username and password) will be saved to the database.
+     */
     register() {
       this.error = [];
 
@@ -76,26 +81,35 @@ export default {
       } else if (this.repeatPassword !== this.userpassword) {
         this.error.push('Repeated password must match the with the password.');
         console.log("Password is not valid");
-
       }
 
       if(this.error.length === 0){
         console.log("Everything OK");
         this.saveUserToDatabase();
-
       }
     },
-
+    /**
+     * Checks the validity of the name with regexp
+     * @param{string} name which the user has inputted
+     * @returns {boolean} true if the name goes through the regexp, else false
+     */
     validName: function (name) {
       let re = /^(?=.*[A-Z]+.*)[0-9A-Za-z]{2,}$/;
       return re.test(name);
     },
-
+    /**
+     * Checks the validity of the password with regexp
+     * @param{string} password which the user has inputted
+     * @returns {boolean} true if the password goes through the regexp, else false
+     */
     validPass: function (password) {
       let re = /^(?=.*[0-9]+.*)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)[0-9a-zA-Z]{6,}$/;
       return re.test(password);
     },
-
+    /**
+     * Makes a string of the current date
+     * @returns {string} current date
+     */
     getDate: function () {
       let today = new Date();
       let dd = String(today.getDate()).padStart(2, '0');
@@ -104,7 +118,10 @@ export default {
 
       return mm + '-' + dd + '-' + yyyy;
     },
-
+    /**
+     * Saves the user to the database by making a post request with the users information as data.
+     * @returns {Promise<void>}
+     */
     async saveUserToDatabase() {
       let url;
       try {
@@ -131,10 +148,7 @@ export default {
     }
   }
 }
-
-//  color: rgba(180, 151, 43, 0.83);
 </script>
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');

@@ -50,12 +50,22 @@ export default {
       error: []
     }
   },
+  /**
+   * Login "created" function redirects the user to the profile screen if the user is logged in
+   */
   created: function () {
     if (this.$store.state.user !== null){
       this.$router.push("/profile");
     }
   },
   methods: {
+    /**
+     * Checks all the input fields for validity. If something is not valid, an error message will be printed which
+     * details the problem that the user has made. If everything is valid, the error message will be empty and
+     * in this case the the user information will be sent to the database and the database checks if there is
+     * a user with the correct information and send a "Success" message if the database has exact same information what
+     * the user had provided.
+     */
     validation() {
       this.error = [];
       if (this.username && this.userpassword) {
@@ -79,17 +89,31 @@ export default {
         this.logIntoSite();
       }
     },
-
+    /**
+     * Checks the validity of the name with regexp
+     * @param{string} name which the user has inputted
+     * @returns {boolean} true if the name goes through the regexp, else false
+     */
     validName: function (name) {
       let re = /^(?=.*[A-Z]+.*)[0-9A-Za-z]{2,}$/;
       return re.test(name);
     },
-
+    /**
+     * Checks the validity of the password with regexp
+     * @param{string} password which the user has inputted
+     * @returns {boolean} true if the password goes through the regexp, else false
+     */
     validPass: function (password) {
       let re = /^(?=.*[0-9]+.*)(?=.*[a-z]+.*)(?=.*[A-Z]+.*)[0-9a-zA-Z]{6,}$/;
       return re.test(password);
     },
-
+    /**
+     * Send a get request to the database which checks if it has the information the user has provided. If true
+     * The user will be logged into the site and the users id will be set to Vuex store which represents the
+     * "logged in" state. The list in Vuex will also be deleted since, the current users own list will be fetched
+     * in the Profile view into the list. Redirects the user to his / her / their profile page.
+     * @returns {Promise<void>}
+     */
     async logIntoSite() {
       let url;
       try {
@@ -121,7 +145,6 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>

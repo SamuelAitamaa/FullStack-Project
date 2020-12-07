@@ -31,6 +31,9 @@ export default {
     input: String
   },
   watch: {
+    /**
+     * As the input changes, make calls from the API with the input as a search query
+     */
     input: function() {
       axios
       .get(`http://api.themoviedb.org/3/search/multi?query=${this.input}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`)
@@ -47,6 +50,12 @@ export default {
     }
   },
   methods: {
+    /**
+     * Changes the information visibility of a media. Each movie and series will have their information printed
+     * with them, but will not be displayed unless the user clicks on the image of the media. If information is
+     * displayed, scrolling will be disabled. When the user closes the information screen, scrolling will be enabled.
+     * @param{string} id of the media whose information will be displayed
+     */
     changeInfoVisibility: function (id) {
       this.infoVisible = !this.infoVisible;
       let element = document.getElementById(id);
@@ -58,20 +67,36 @@ export default {
         this.enableScrolling();
       }
     },
+    /**
+     * Saves media to database and Vuex store and immediately gets the new list to update the list in profile screen.
+     * Also emits an event, which will cause Profile pages list to update.
+     * @param{object} element to be added to
+     */
     addToList(element) {
       this.$emit("update:list");
       this.$store.commit("saveMedia", element)
       this.getListFromDb(this.$store.state.user[0]);
     },
+    /**
+     * Checks if the user has a movie or series with a name and id and changes the button on the media accordingly.
+     * @param{object} element will be checked
+     * @returns {boolean} true if the id and name is found from Vuex store, else false
+     */
     checkList(element) {
       let store = JSON.stringify(this.$store.state.movies)
       return store.includes(JSON.stringify(element.id)) && (store.includes(JSON.stringify(element.title)) || (store.includes(JSON.stringify(element.name))))
     },
+    /**
+     * Deletes media from the database and Vuex store
+     * @param{object} element to be deleted
+     */
     deleteFromList(element) {
-      //this.$emit("update:list");
       this.$store.commit("deleteMedia", element)
-      //this.getListFromDb(this.$store.state.user[0]);
     },
+    /**
+     * Get the list from database depending on user id
+     * @param{number} id of the user
+     */
     getListFromDb(id) {
       let url;
       try {
@@ -101,14 +126,24 @@ export default {
         console.log('Error in async: ' + error);
       }
     },
+    /**
+     * Hides the buttons on the media completely, if the user is not logged in
+     * @returns {boolean} true if the user is logged in, else false
+     */
     hideBtn: function () {
       return this.$store.state.user === null;
     },
+    /**
+     * Disables the scrolling of the page
+     */
     disableScrolling(){
       let x = window.scrollX;
       let y = window.scrollY;
       window.onscroll = function(){window.scrollTo(x, y);};
     },
+    /**
+     * Enables the scrolling of the page
+     */
     enableScrolling(){
       window.onscroll = function(){};
     }
