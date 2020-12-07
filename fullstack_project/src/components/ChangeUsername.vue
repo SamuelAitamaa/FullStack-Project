@@ -11,6 +11,10 @@
           <input placeholder="New username" v-model="newUsername" id="newUsername">
           <br>
           <p>Must begin with uppercase letter.</p>
+          <label for="password">Password: </label>
+          <br>
+          <input type="password" placeholder="Current password" v-model="password" id="password">
+          <br>
         </div>
         <div class="button">
           <button type="submit">Change Username</button>
@@ -19,9 +23,6 @@
 
       <div class="errorMessage" v-if="error.length > 0">
             {{ error }}
-      </div>
-      <div class="availableMessage" v-else>
-        {{availableMessage}}
       </div>
     </div>
   </div>
@@ -42,7 +43,7 @@ export default {
       newUsername: null,
       error: '',
       availableMessage: '',
-      availability: Boolean
+      password: ''
     }
   },
   created: function () {
@@ -60,41 +61,14 @@ export default {
         this.error = 'Set a new username'
       } else if (!this.validName(this.newUsername)) {
         this.error = 'Name must begin with uppercase letter and must contain only characters.'
+      } else if (!this.password) {
+        this.error = "ERROR! User password required."
       }
 
-      if (this.error.length === 0 && this.checkAvailability) {
+      if (this.error.length === 0) {
           this.saveNewUsernameToDb();
         }
       },
-
-    async checkAvailability() {
-      let url;
-      try {
-        url = 'http://localhost:8081/backend/checkavailability'
-        console.log(url)
-        axios.get(url, {
-          params: {
-            headers: {},
-            newUsername: this.newUsername,
-          }
-        }).then(res => {
-          console.log(res);
-          if (res.data === "Success") {
-            this.availableMessage = "Available"
-            console.log("Available")
-            return true
-          } else {
-            this.availableMessage = "Not available"
-            console.log("Not available")
-            return false
-          }
-        }).catch(err => {
-          console.log(err.response);
-        });
-      } catch (error) {
-        console.log('Error in async: ' + error);
-      }
-    },
 
     async saveNewUsernameToDb() {
       let url;
@@ -105,13 +79,14 @@ export default {
           headers: {},
           username: this.username,
           newUsername: this.newUsername,
+          password: this.password
         }).then(res => {
           console.log(res);
           if (res.data === "Success") {
-            this.availableMessage = 'Changing username complete!';
+            this.error = 'Changing username complete!';
             this.$store.state.user[1] = this.newUsername
           } else {
-            this.availableMessage = 'Username not available!';
+            this.error = 'Username not available!';
           }
         }).catch(err => {
           console.log(err.response);
@@ -121,7 +96,7 @@ export default {
       }
     },
     validName: function (name) {
-      let re = /^(?=.*[A-Z]+.*)(?=.*[a-z]+.*)[0-9A-Za-z]{2,}$/;
+      let re = /^(?=.*[A-Z]+.*)[0-9A-Za-z]{2,}$/;
       return re.test(name);
     }
   }

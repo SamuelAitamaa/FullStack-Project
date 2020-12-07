@@ -56,9 +56,7 @@ export default {
   methods: {
     register() {
       this.error = [];
-      if (this.username && this.userpassword) {
-        console.log("Username and password are present");
-      }
+
       if (!this.username) {
         this.error.push("ERROR! Username required.");
       } else if (!this.validName(this.username)) {
@@ -78,10 +76,10 @@ export default {
       } else if (this.repeatPassword !== this.userpassword) {
         this.error.push('Repeated password must match the with the password.');
         console.log("Password is not valid");
-        console.log("?1")
+
       }
 
-      if(this.validName(this.username) && this.username && this.validPass(this.userpassword) && this.userpassword &&  this.validPass(this.repeatPassword) && this.repeatPassword && this.error.length === 0){
+      if(this.error.length === 0){
         console.log("Everything OK");
         this.saveUserToDatabase();
 
