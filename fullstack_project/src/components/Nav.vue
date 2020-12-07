@@ -9,12 +9,12 @@
     <div class="navItem hideSmall" v-if="this.width > 800">
       <router-link to="/profile">Profile</router-link>
     </div>
-    <div class="navItem hideSmall" v-if="this.width < 800 && this.$router.currentRoute.path === '/changepassword' ||
-    this.$router.currentRoute.path === '/changeusername'">
+    <div class="navItem hideSmall" v-if="this.width < 800 && (this.$router.currentRoute.path === '/changepassword' ||
+    this.$router.currentRoute.path === '/changeusername')">
       <router-link to="/profile">Profile</router-link>
     </div>
-    <div class="navItem hideSmall" v-if="this.width < 800 && this.$router.currentRoute.path === '/login' ||
-    this.$router.currentRoute.path === '/register'">
+    <div class="navItem hideSmall" v-if="this.width < 800 && (this.$router.currentRoute.path === '/login' ||
+    this.$router.currentRoute.path === '/register')">
       <router-link to="/">Home</router-link>
     </div>
     <div class="navItem hideSmall" v-if="this.width < 800 && this.$router.currentRoute.path === '/'">
