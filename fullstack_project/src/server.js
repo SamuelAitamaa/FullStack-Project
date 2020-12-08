@@ -45,6 +45,11 @@ con.connect(function (err){
 /**
  * GET request for getting information of a users list of media. This get request requires the
  * users ID to get the correct list of media. Gets the medias id and type from the list.
+ *
+ * @param{number} user_id of the user
+ * @return{array} if successful, return media array which contains the every media id and type of the elements found
+ *                in the users list
+ * @return{string} if unsuccessful, return string that contains the word "Error"
  */
 // http://localhost:8081/backend/getList
 app.get("/backend/getList", function (req, res){
@@ -55,11 +60,13 @@ app.get("/backend/getList", function (req, res){
     (async () => {
         console.log('Starting async');
         try{
+            // Check if there is any media on the users list
             sql = `SELECT media_id, media_type FROM list WHERE user_id LIKE ?`;
             let resultList = await query(sql, [json.user_id]);
 
             resultList = JSON.parse(JSON.stringify(resultList));
             if(resultList.length === 0){
+                // If there is no media
                 res.send('Error')
             }else{
                 console.log('Result below')
@@ -69,7 +76,7 @@ app.get("/backend/getList", function (req, res){
                 resultList.forEach(element => {
                     medias.push(element.media_id + element.media_type);
                 })
-
+                // Return the media
                 res.send(`${medias}`);
             }
         }catch(err){
@@ -84,6 +91,11 @@ app.get("/backend/getList", function (req, res){
 /**
  * GET request for logging in. Sends the users username and password to check if the database
  * contains a corresponding username and password combination.
+ *
+ * @param{string} username of the user
+ * @param{string} password of the user
+ * @return{string} if successful, return string that contains the id and type of the media (ex. 977635movie)
+ * @return{string} if unsuccessful, return string that contains the word "Error"
  */
 // http://localhost:8081/backend/login
 app.get("/backend/login", function (req, res){
@@ -94,6 +106,7 @@ app.get("/backend/login", function (req, res){
     (async () => {
         console.log('Starting async');
         try{
+            // Check if there is a user with the users given credentials
             sql = `SELECT username, password FROM users WHERE username LIKE ? AND password LIKE ?`;
             let resultUser = await query(sql, [json.username, json.userpassword]);
 
@@ -104,8 +117,10 @@ app.get("/backend/login", function (req, res){
                 console.log('Result below')
                 console.log(result)
 
+                // Return the id and username of the user
                 res.send(`${result[0].id} ${result[0].username}`);
             }else{
+                // If there is no user that corresponds the given credentials
                 res.send('Error');
             }
         }catch(err){
@@ -120,6 +135,12 @@ app.get("/backend/login", function (req, res){
  * POST request for registering a new account. The website checks validation (which is of course not enough)
  * and our database also has a UNIQUE attribute linked to the username, so two identical usernames are not possible.
  * Needs a username and a user password in correct forms to register.
+ *
+ * @param{string} username of the user
+ * @param{string} password of the user
+ * @param{date} date of the current day
+ * @return{string} if successful, return string that contains the word "Success"
+ * @return{string} if unsuccessful, return string that contains the word "Error"
  */
 // http://localhost:8081/backend/register
 app.post("/backend/register", urlEncodedParser, function (req, res){
@@ -153,8 +174,14 @@ app.post("/backend/register", urlEncodedParser, function (req, res){
 });
 
 /**
- * POST request for changing the users password. The request checks if the users old password is correct and if it is,
- * changing to the new password will commence.
+ * POST request for changing the users password. The request checks if the users (old) password is correct
+ * and if it is, changing to the new password will commence.
+ *
+ * @param{string} username of the user
+ * @param{string} (old) password of the user
+ * @param{string} new password of the user
+ * @return{string} if successful, return string that contains the word "Success"
+ * @return{string} if unsuccessful, return string that contains the word "Error"
  */
 // http://localhost:8081/backend/changepassword
 app.post("/backend/changepassword", urlEncodedParser, function (req, res){
@@ -165,14 +192,17 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
     (async () => {
         console.log('Starting async');
         try{
+            // Check if the username and password combination has a password
             sql = `SELECT password FROM users WHERE username LIKE ? AND password LIKE ?`;
             let result = await query(sql, [json.username, json.userpassword]);
 
             if (result.length > 0) {
+                // Update password
                 sql = `UPDATE users SET password = ? WHERE username LIKE ? AND password LIKE ?`;
                 await query(sql, [json.newPassword, json.username, json.userpassword]);
                 res.send('Success');
             } else {
+                // Don't update password if (old) credentials dont match
                 res.send('Error');
             }
         }catch(err){
@@ -186,6 +216,12 @@ app.post("/backend/changepassword", urlEncodedParser, function (req, res){
 /**
  * POST request for changing the users username. The request checks if password is correct and if it is, changing of the
  * username will commence.
+ *
+ * @param{string} username of the user
+ * @param{string} password of the user
+ * @param{string} new username of the user
+ * @return{string} if successful, return string that contains the word "Success"
+ * @return{string} if unsuccessful, return string that contains the word "Error"
  */
 // http://localhost:8081/backend/changeusername
 app.post("/backend/changeusername", urlEncodedParser, function (req, res){
@@ -196,14 +232,17 @@ app.post("/backend/changeusername", urlEncodedParser, function (req, res){
     (async () => {
         console.log('Starting async');
         try{
+            // Check if the username exists
             sql = `SELECT username FROM users WHERE username LIKE ? AND password LIKE ?`;
             let result = await query(sql, [json.username, json.password]);
 
             if (result.length > 0) {
+                // Update username
                 sql = `UPDATE users SET username = ? WHERE username LIKE ? AND password LIKE ?`;
                 await query(sql, [json.newUsername, json.username, json.password]);
                 res.send('Success');
             } else {
+                // Don't update username if username has been taken
                 res.send('Error');
             }
         }catch(err){
@@ -217,6 +256,10 @@ app.post("/backend/changeusername", urlEncodedParser, function (req, res){
 
 /**
  * GET request for checking if the username is available.
+ *
+ * @param{string} new username of the user
+ * @return{string} if successful, return string that contains the word "Success"
+ * @return{string} if unsuccessful, return string that contains the word "No success"
  */
 // http://localhost:8081/backend/checkavailability
 app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
@@ -227,12 +270,15 @@ app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
     (async () => {
         console.log('Starting async');
         try{
+            // Check if the username exists in the database
             sql = `SELECT username FROM users WHERE username LIKE ?`;
             let result = await query(sql, [json.newUsername]);
             if (result.length === 0) {
+                // If the username doesn't exist
                 res.send('Success');
                 console.log('Success')
             } else {
+                // If the username exists
                 res.send('Error');
                 console.log('No success')
             }
@@ -247,6 +293,12 @@ app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
 /**
  * POST request for saving media information into the database. The post needs the id and type ('movie' or 'tv') of the
  * media and the id of the user. To save media the user need to be logged in, that way the users id is always present.
+ *
+ * @param{number} id of the media
+ * @param{string} type of the media
+ * @param{number} id of the user
+ * @return{string} if successful, return string that contains the word "Success"
+ * @return{string} if unsuccessful, return string that contains the word "Error"
  */
 // http://localhost:8081/backend/savetodb
 app.post("/backend/savetodb", urlEncodedParser, function (req, res){
@@ -257,12 +309,14 @@ app.post("/backend/savetodb", urlEncodedParser, function (req, res){
     (async () => {
         console.log('Starting async');
         try{
+            // Update the list, parameters cannot be affected by user, so no check is done
             sql = "INSERT INTO list (media_id, media_type, user_id) VALUES (?, ?, ?)";
             let result = await query(sql, [json.media_id, json.media_type, json.user_id]);
             console.log('Saving to db result: ')
             console.log(result.protocol41)
             res.send('Success');
         }catch(err){
+            // On error don't update list
             console.log("Database error: " + err);
             res.send('Error');
         }finally {
@@ -274,6 +328,11 @@ app.post("/backend/savetodb", urlEncodedParser, function (req, res){
 /**
  * DELETE request for deleting media records from the database. The deletion requires the id of the user and the id of
  * the media which needs to be deleted
+ *
+ * @param{number} id of the media
+ * @param{number} id of the user
+ * @return{string} if successful, return string that contains the word "Success"
+ * @return{string} if unsuccessful, return string that contains the word "Error"
  */
 // http://localhost:8081/backend/deletefromdb
 app.delete("/backend/deletefromdb", urlEncodedParser, function (req, res){
@@ -284,12 +343,14 @@ app.delete("/backend/deletefromdb", urlEncodedParser, function (req, res){
     (async () => {
         console.log('Starting async');
         try{
+            // Delete media from the list, parameters cannot be affected by the user, so no check is done
             sql = "DELETE FROM list WHERE media_id LIKE ? AND user_id LIKE ?";
             let result = await query(sql, [json.media_id, json.user_id]);
             console.log('Deleting from db result: ')
             console.log(result.protocol41)
             res.send('Success');
         }catch(err){
+            // On error dont delete anything
             console.log("Database error: " + err);
             res.send('Error');
         }finally {
@@ -300,6 +361,10 @@ app.delete("/backend/deletefromdb", urlEncodedParser, function (req, res){
 
 /**
  * DELETE request for deleting the user and the list that the user had.
+ *
+ * @param{number} id of the user
+ * @return{string} if successful, return string that contains the word "Success"
+ * @return{string} if unsuccessful, return string that contains the word "Error"
  */
 // http://localhost:8081/backend/deleteuser
 app.delete("/backend/deleteuser", urlEncodedParser, function (req, res){
@@ -310,8 +375,11 @@ app.delete("/backend/deleteuser", urlEncodedParser, function (req, res){
     (async () => {
         console.log('Starting async');
         try{
+            // Parameter cannot be affected by the user, so no check is done
+            // Delete the list of the user
             sql = "DELETE FROM list WHERE user_id LIKE ?";
             let resultList= await query(sql, [json.user_id]);
+            // Delete the user
             sql = "DELETE FROM users WHERE id LIKE ?";
             let resultUser = await query(sql, [json.user_id]);
 
@@ -320,6 +388,7 @@ app.delete("/backend/deleteuser", urlEncodedParser, function (req, res){
             console.log(resultList.protocol41)
             res.send('Success');
         }catch(err){
+            // On error don't delete anything
             console.log("Database error: " + err);
             res.send('Error');
         }finally {
