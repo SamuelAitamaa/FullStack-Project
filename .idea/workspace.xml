@@ -24,14 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="15cacb3a-8180-401a-89b2-da1299d1b11d" name="Default Changelist" comment="grey div">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/MovieList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/components/SearchList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/src/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fullstack_project/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fullstack_project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/fullstack_project/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lueminut.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +141,7 @@
       <workItem from="1607349387426" duration="9760000" />
       <workItem from="1607416474000" duration="3930000" />
       <workItem from="1607505267931" duration="7541000" />
-      <workItem from="1607513869820" duration="3960000" />
+      <workItem from="1607513869820" duration="7946000" />
     </task>
     <task id="LOCAL-00001" summary="Added Vue Router">
       <created>1605772286721</created>
@@ -204,22 +199,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606841455017" />
-    <state width="1899" height="264" key="GridCell.Tab.0.bottom" timestamp="1607517855288">
+    <state width="1899" height="264" key="GridCell.Tab.0.bottom" timestamp="1607518487632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607517855288" />
-    <state width="1899" height="264" key="GridCell.Tab.0.center" timestamp="1607517855288">
+    <state width="1899" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607518487632" />
+    <state width="1899" height="264" key="GridCell.Tab.0.center" timestamp="1607518487632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="264" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607517855288" />
-    <state width="1899" height="264" key="GridCell.Tab.0.left" timestamp="1607517855288">
+    <state width="1899" height="264" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607518487632" />
+    <state width="1899" height="264" key="GridCell.Tab.0.left" timestamp="1607518487632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="264" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607517855288" />
-    <state width="1899" height="264" key="GridCell.Tab.0.right" timestamp="1607517855288">
+    <state width="1899" height="264" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607518487632" />
+    <state width="1899" height="264" key="GridCell.Tab.0.right" timestamp="1607518487632">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="264" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607517855288" />
+    <state width="1899" height="264" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607518487632" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1605772289753">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
