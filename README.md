@@ -17,6 +17,7 @@ list. You can also change your username, password and if you wish, also delete y
 ## Features
 * Browse trending movies and series and by categories
 * Search for specific movie / series
+* See providers for the movie / series
 * Register an account / Login to an account
 * Add movies / series to a "Watch Later" -list
 * Delete movies / series from the "Watch Later" -list
