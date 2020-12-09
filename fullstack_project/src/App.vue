@@ -6,7 +6,14 @@
 
 <script>
 export default {
-  name: "Main"
+  name: "Main",
+  watch: {
+    $route(to) {
+      document.title = `MyMovie - ${to.meta.title}`;
+      const link = document.querySelector("[rel='icon']")
+      link.setAttribute('href',to.meta.icon)
+    }
+  }
 }
 </script>
 

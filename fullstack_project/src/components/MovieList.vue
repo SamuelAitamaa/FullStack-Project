@@ -52,8 +52,8 @@ export default {
         this.setImages(this.elements);
       }))
     }else{
-      let one = `http://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
-      let two = `http://api.themoviedb.org/3/tv/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
+      let one = `https://api.themoviedb.org/3/movie/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
+      let two = `https://api.themoviedb.org/3/tv/popular?with_genres=${this.genre}&api_key=7a1108dafa3ea1ef83a43e999a63f38b`;
       let reqOne = axios.get(one);
       let reqTwo = axios.get(two);
       axios.all([reqOne, reqTwo]).then(axios.spread((...res) => {

@@ -9,7 +9,8 @@ let whitelist = ['http://localhost:8080',
                  'http://localhost:8082',
                  'http://localhost:8083',
                  'http://localhost:8084',
-                 'http://localhost:8085'];
+                 'http://localhost:8085',
+                 'https://mahamurahti.github.io'];
 // Dynamic CORS
 let corsOptions = {
     origin: function (origin, callback) {
@@ -247,42 +248,6 @@ app.post("/backend/changeusername", urlEncodedParser, function (req, res){
             }
         }catch(err){
             res.send('Error');
-            console.log("Database error: " + err);
-        }finally {
-            console.log('Ending async');
-        }
-    })()
-});
-
-/**
- * GET request for checking if the username is available.
- *
- * @param{string} new username of the user
- * @return{string} if successful, return string that contains the word "Success"
- * @return{string} if unsuccessful, return string that contains the word "No success"
- */
-// http://localhost:8081/backend/checkavailability
-app.get("/backend/checkavailability", urlEncodedParser, function (req, res){
-    console.log('Get request on /backend/checkavailability');
-    console.log('body: %j', req.query);
-    let json = req.query;
-    let sql
-    (async () => {
-        console.log('Starting async');
-        try{
-            // Check if the username exists in the database
-            sql = `SELECT username FROM users WHERE username LIKE ?`;
-            let result = await query(sql, [json.newUsername]);
-            if (result.length === 0) {
-                // If the username doesn't exist
-                res.send('Success');
-                console.log('Success')
-            } else {
-                // If the username exists
-                res.send('Error');
-                console.log('No success')
-            }
-        }catch(err){
             console.log("Database error: " + err);
         }finally {
             console.log('Ending async');
