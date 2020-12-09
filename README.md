@@ -26,7 +26,7 @@ list. You can also change your username, password and if you wish, also delete y
 Rest API is defined in finnish and can be found [here](https://github.com/Mahamurahti/FullStack-Project/blob/main/lueminut.txt)
 or [here](https://github.com/Mahamurahti/FullStack-Project/tree/main/fullstack_project)
 
-##Contributors
+## Contributors
 * Eric Keränen
 * Salla Mikkonen
 * Samuel Aitamaa
