@@ -12,7 +12,7 @@
     <button @click="deleteFromList(element.id)" class="imgBtn">-</button>
 
     <div class="aboutMedia">
-      <h2>{{ this.title }} {{ this.name }}</h2>
+      <h2>{{ this.title }}</h2>
       <h3>Rating: {{ this.rating }}</h3>
       <p>{{ this.overview }}</p>
       <h3 v-if="providers !== null">Available in:</h3>
@@ -37,7 +37,6 @@ export default {
   data(){
     return {
       title: '',
-      name: '',
       image: '',
       overview: '',
       providers: null,
@@ -74,7 +73,7 @@ export default {
       .get(`https://api.themoviedb.org/3/tv/${this.element.id}?api_key=7a1108dafa3ea1ef83a43e999a63f38b&language=en-US&append_to_response=watch%2Fproviders`)
       .then(res => {
         this.image = `http://image.tmdb.org/t/p/w300/${res.data.poster_path}`;
-        this.name = res.data.name;
+        this.title = res.data.name;
         this.id = res.data.id;
         this.rating = res.data.vote_average;
         this.overview = res.data.overview
@@ -121,7 +120,7 @@ export default {
      * @param{string} provider name
      */
     openProvider(provider) {
-      window.open(`https://www.google.com/search?q=${provider}`, '_blank');
+      window.open(`https://www.google.com/search?q=${provider + ' ' + this.title}`, '_blank');
     }
   }
 }

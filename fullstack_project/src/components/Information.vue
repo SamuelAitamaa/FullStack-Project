@@ -94,7 +94,7 @@ export default {
      * @param{string} provider name
      */
     openProvider(provider) {
-      window.open(`https://www.google.com/search?q=${provider}`, '_blank');
+      window.open(`https://www.google.com/search?q=${provider + ' ' + this.title}`, '_blank');
     }
   }
 }
